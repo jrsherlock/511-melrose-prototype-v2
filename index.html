@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>511 Melrose Group — Alcoholics Anonymous — Iowa City, IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1e2d3d;
+    --navy-light: #2a3f54;
+    --slate: #3d5a73;
+    --warm-gold: #c8973e;
+    --warm-gold-light: #e8b94a;
+    --amber: #d4a44a;
+    --cream: #faf6ef;
+    --cream-dark: #f0e9dd;
+    --sage: #6b8f71;
+    --sage-light: #8aab8f;
+    --text-dark: #2c2c2c;
+    --text-medium: #555;
+    --text-light: #777;
+    --border-light: #e0d8cc;
+    --white: #ffffff;
+    --shadow-soft: 0 2px 20px rgba(30, 45, 61, 0.08);
+    --shadow-card: 0 4px 24px rgba(30, 45, 61, 0.10);
+    --shadow-hover: 0 8px 32px rgba(30, 45, 61, 0.15);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--text-dark);
+    background: var(--cream);
+    line-height: 1.7;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAVIGATION ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(30, 45, 61, 0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 151, 62, 0.2);
+  }
+  nav .nav-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between; height: 72px;
+  }
+  nav .logo {
+    font-family: 'Lora', serif; font-size: 1.25rem; font-weight: 600;
+    color: var(--cream); text-decoration: none; letter-spacing: -0.02em;
+  }
+  nav .logo span { color: var(--warm-gold); }
+  nav .nav-links {
+    display: flex; gap: 6px; list-style: none; flex-wrap: wrap; justify-content: flex-end;
+  }
+  nav .nav-links a {
+    color: rgba(250, 246, 239, 0.8); text-decoration: none; font-size: 0.88rem;
+    font-weight: 500; padding: 8px 12px; border-radius: 6px; transition: var(--transition); white-space: nowrap;
+  }
+  nav .nav-links a:hover, nav .nav-links a.active {
+    color: var(--cream); background: rgba(200, 151, 62, 0.15);
+  }
+  nav .nav-links a.cta {
+    background: var(--warm-gold); color: var(--navy); font-weight: 600;
+  }
+  nav .nav-links a.cta:hover { background: var(--warm-gold-light); }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    padding: 8px; background: none; border: none;
+  }
+  .hamburger span { width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: var(--transition); }
+
+  /* ─── HERO ─── */
+  .hero {
+    padding: 130px 24px 60px;
+    background: linear-gradient(165deg, var(--navy) 0%, var(--navy-light) 40%, var(--slate) 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; right: -20%; width: 80%; height: 200%;
+    background: radial-gradient(ellipse, rgba(200, 151, 62, 0.06) 0%, transparent 70%); pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
+    background: linear-gradient(to top, var(--cream), transparent); pointer-events: none;
+  }
+  .hero-content {
+    max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
+    display: grid; grid-template-columns: 1fr 300px; gap: 48px; align-items: center;
+  }
+  .hero-text { text-align: left; }
+  .hero h1 {
+    font-family: 'Lora', serif; font-size: 3rem; font-weight: 700;
+    color: var(--cream); line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.03em;
+    animation: fadeUp 0.8s ease-out;
+  }
+  .hero .subtitle {
+    font-family: 'Lora', serif; font-size: 1.25rem; color: var(--warm-gold);
+    font-weight: 400; font-style: italic; margin-bottom: 20px; animation: fadeUp 0.8s ease-out 0.15s both;
+  }
+  .hero .tagline {
+    font-size: 1.05rem; color: rgba(250, 246, 239, 0.7); max-width: 560px;
+    line-height: 1.7; margin-bottom: 32px; animation: fadeUp 0.8s ease-out 0.3s both;
+  }
+  .hero-buttons {
+    display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.8s ease-out 0.45s both;
+  }
+  .hero-image {
+    animation: fadeUp 0.8s ease-out 0.3s both;
+  }
+  .hero-image img {
+    width: 100%; max-width: 300px; border-radius: var(--radius);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    border: 3px solid rgba(200, 151, 62, 0.25);
+    object-fit: cover;
+  }
+
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px;
+    border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600;
+    text-decoration: none; transition: var(--transition); cursor: pointer; border: none; font-family: inherit;
+  }
+  .btn-primary { background: var(--warm-gold); color: var(--navy); }
+  .btn-primary:hover { background: var(--warm-gold-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200, 151, 62, 0.3); }
+  .btn-secondary { background: rgba(250, 246, 239, 0.1); color: var(--cream); border: 1.5px solid rgba(250, 246, 239, 0.25); }
+  .btn-secondary:hover { background: rgba(250, 246, 239, 0.18); border-color: rgba(250, 246, 239, 0.4); transform: translateY(-2px); }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 80px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--warm-gold); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Lora', serif; font-size: 2.4rem; font-weight: 700;
+    color: var(--navy); line-height: 1.25; margin-bottom: 16px; letter-spacing: -0.02em;
+  }
+  .section-intro {
+    font-size: 1.1rem; color: var(--text-medium); max-width: 700px;
+    line-height: 1.75; margin-bottom: 48px;
+  }
+
+  /* ─── MEETINGS ─── */
+  #meetings { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+  .meetings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .meeting-card {
+    background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius);
+    padding: 28px; transition: var(--transition); position: relative; overflow: hidden;
+  }
+  .meeting-card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+    background: var(--warm-gold); opacity: 0; transition: var(--transition);
+  }
+  .meeting-card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); }
+  .meeting-card:hover::before { opacity: 1; }
+  .meeting-name { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
+  .meeting-detail { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-medium); }
+  .meeting-detail .icon { flex-shrink: 0; width: 18px; text-align: center; color: var(--sage); font-weight: 600; }
+  .meeting-tag {
+    display: inline-block; margin-top: 12px; padding: 4px 12px; border-radius: 20px;
+    font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .tag-open { background: rgba(107, 143, 113, 0.12); color: var(--sage); }
+  .tag-closed { background: rgba(200, 151, 62, 0.12); color: var(--warm-gold); }
+  .tag-beginner { background: rgba(30, 45, 61, 0.08); color: var(--slate); }
+
+  /* ─── NEW TO AA ─── */
+  #new-to-aa { background: var(--cream); }
+  .welcome-box {
+    background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius);
+    padding: 48px; margin-bottom: 40px; box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
+  }
+  .welcome-box::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--warm-gold), var(--sage));
+  }
+  .welcome-box h3 { font-family: 'Lora', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: 16px; }
+  .welcome-box p { color: var(--text-medium); margin-bottom: 16px; line-height: 1.8; }
+  .expect-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
+  .expect-card {
+    background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius);
+    padding: 32px; transition: var(--transition);
+  }
+  .expect-card:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); }
+  .expect-icon {
+    width: 48px; height: 48px; border-radius: 12px; display: flex;
+    align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px;
+  }
+  .expect-icon.gold { background: rgba(200, 151, 62, 0.12); }
+  .expect-icon.sage { background: rgba(107, 143, 113, 0.12); }
+  .expect-icon.navy { background: rgba(30, 45, 61, 0.08); }
+  .expect-card h4 { font-family: 'Lora', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: 10px; }
+  .expect-card p { font-size: 0.95rem; color: var(--text-medium); line-height: 1.7; }
+
+  /* ─── FAQ ─── */
+  .faq-item {
+    background: var(--white); border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm); margin-bottom: 12px; overflow: hidden; transition: var(--transition);
+  }
+  .faq-item:hover { border-color: var(--warm-gold); }
+  .faq-question {
+    width: 100%; background: none; border: none; padding: 20px 24px;
+    font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy);
+    text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; transition: var(--transition);
+  }
+  .faq-question:hover { color: var(--warm-gold); }
+  .faq-arrow { font-size: 1.2rem; transition: transform 0.3s ease; flex-shrink: 0; color: var(--warm-gold); }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .faq-item.open .faq-answer { max-height: 400px; }
+  .faq-answer-inner { padding: 0 24px 20px; font-size: 0.95rem; color: var(--text-medium); line-height: 1.8; }
+
+  /* ─── RESOURCES ─── */
+  #resources { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+  .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  .resource-card {
+    background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius);
+    padding: 32px; transition: var(--transition); text-decoration: none; color: inherit; display: block;
+  }
+  .resource-card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); border-color: var(--warm-gold); }
+  .resource-card .resource-type {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--sage); margin-bottom: 10px;
+  }
+  .resource-card h4 { font-family: 'Lora', serif; font-size: 1.2rem; color: var(--navy); margin-bottom: 10px; transition: var(--transition); }
+  .resource-card:hover h4 { color: var(--warm-gold); }
+  .resource-card p { font-size: 0.92rem; color: var(--text-medium); line-height: 1.7; }
+  .resource-card .arrow { display: inline-block; margin-top: 14px; color: var(--warm-gold); font-weight: 600; font-size: 0.9rem; transition: var(--transition); }
+  .resource-card:hover .arrow { transform: translateX(4px); }
+  .resources-subsection { margin-top: 56px; }
+  .resources-subsection h3 { font-family: 'Lora', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 8px; }
+  .resources-subsection > p { color: var(--text-medium); margin-bottom: 24px; }
+  .link-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .link-item {
+    display: flex; align-items: center; gap: 12px; padding: 16px 20px;
+    background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-sm);
+    text-decoration: none; color: var(--navy); font-weight: 500; font-size: 0.95rem; transition: var(--transition);
+  }
+  .link-item:hover { border-color: var(--warm-gold); box-shadow: var(--shadow-soft); transform: translateX(4px); }
+  .link-item .link-icon {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(200, 151, 62, 0.1); display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  }
+
+  /* ─── EVENTS ─── */
+  #events { background: var(--cream); }
+  .events-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .events-column h3 {
+    font-family: 'Lora', serif; font-size: 1.4rem; color: var(--navy);
+    margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--warm-gold);
+  }
+  .event-item {
+    background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius);
+    padding: 24px; margin-bottom: 16px; transition: var(--transition);
+  }
+  .event-item:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); }
+  .event-date {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(200, 151, 62, 0.1); color: var(--warm-gold); padding: 4px 12px;
+    border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 12px;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .event-recurring { background: rgba(107, 143, 113, 0.1); color: var(--sage); }
+  .event-item h4 { font-family: 'Lora', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 8px; }
+  .event-item p { font-size: 0.92rem; color: var(--text-medium); line-height: 1.7; }
+  .event-meta { display: flex; gap: 16px; margin-top: 10px; font-size: 0.85rem; color: var(--text-light); }
+  .event-meta span { display: flex; align-items: center; gap: 5px; }
+
+  /* ─── MINUTES ─── */
+  #minutes { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
+  .minutes-list { display: flex; flex-direction: column; gap: 0; }
+  .minutes-link {
+    display: flex; align-items: center; gap: 14px; padding: 14px 20px;
+    background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-sm);
+    text-decoration: none; color: var(--navy); font-weight: 500; font-size: 0.95rem;
+    transition: var(--transition);
+  }
+  .minutes-link:hover { border-color: var(--warm-gold); box-shadow: var(--shadow-soft); transform: translateX(4px); }
+  .minutes-icon {
+    flex-shrink: 0; width: 40px; height: 40px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; font-size: 0.7rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .minutes-icon.y2025 { background: rgba(107, 143, 113, 0.12); color: var(--sage); }
+  .minutes-icon.y2024 { background: rgba(200, 151, 62, 0.12); color: var(--warm-gold); }
+  .minutes-icon.y2023 { background: rgba(61, 90, 115, 0.1); color: var(--slate); }
+  .minutes-icon.yold  { background: rgba(30, 45, 61, 0.06); color: var(--text-light); }
+  .minutes-link .dl-arrow { margin-left: auto; color: var(--text-light); font-size: 0.85rem; transition: var(--transition); }
+  .minutes-link:hover .dl-arrow { color: var(--warm-gold); }
+  .minutes-link .mi-format-badge {
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; padding: 2px 8px; border-radius: 12px;
+    background: rgba(30, 45, 61, 0.06); color: var(--text-light);
+    margin-left: auto; flex-shrink: 0;
+  }
+  /* ─── MINUTES ACCORDIONS ─── */
+  .minutes-accordion { margin-bottom: 8px; }
+  .minutes-trigger {
+    width: 100%; background: var(--white); border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm); padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500;
+    color: var(--text-dark); text-align: left; cursor: pointer;
+    transition: var(--transition);
+  }
+  .minutes-trigger:hover { border-color: var(--warm-gold); box-shadow: var(--shadow-soft); }
+  .minutes-trigger .mt-label { flex: 1; }
+  .minutes-trigger .chevron {
+    width: 18px; height: 18px; color: var(--warm-gold); flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .minutes-accordion.open .minutes-trigger {
+    border-color: var(--warm-gold); background: var(--cream);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+  .minutes-accordion.open .minutes-trigger .chevron { transform: rotate(180deg); }
+  .minutes-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .minutes-accordion.open .minutes-body { max-height: 20000px; }
+  .minutes-inner {
+    padding: 28px; background: var(--white);
+    border: 1px solid var(--border-light); border-top: none;
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    font-size: 0.9rem; color: var(--text-medium); line-height: 1.8;
+  }
+  .minutes-inner p { margin-bottom: 14px; }
+  .minutes-inner p:last-child { margin-bottom: 0; }
+  .minutes-inner .mi-title {
+    font-family: 'Crimson Pro', serif; font-size: 1.15rem; font-weight: 600;
+    color: var(--text-dark); margin-bottom: 18px;
+    padding-bottom: 14px; border-bottom: 1px solid var(--border-light);
+  }
+  .minutes-inner .mi-meta {
+    font-size: 0.84rem; color: var(--text-light); font-style: italic;
+  }
+  .minutes-inner .mi-section {
+    font-family: 'Crimson Pro', serif; font-size: 1.05rem; font-weight: 600;
+    color: var(--slate); margin: 24px 0 14px;
+    padding-top: 18px; border-top: 1px solid var(--border-light);
+  }
+  .minutes-inner .mi-section:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .minutes-inner .mi-report {
+    font-size: 0.87rem; color: var(--text-dark); padding-left: 14px;
+    border-left: 2px solid var(--border-light); margin-bottom: 10px;
+  }
+  .minutes-inner .mi-report strong { font-weight: 500; }
+  .minutes-year-label {
+    grid-column: 1 / -1; font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 600;
+    color: var(--navy); margin-top: 20px; padding-bottom: 6px; border-bottom: 1px solid var(--border-light);
+  }
+  .minutes-year-label:first-child { margin-top: 0; }
+
+  /* ─── GUIDELINES ─── */
+  #guidelines { background: var(--cream); }
+  .guidelines-box {
+    background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius);
+    padding: 48px; box-shadow: var(--shadow-soft); position: relative; overflow: hidden;
+  }
+  .guidelines-box::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--navy), var(--warm-gold));
+  }
+  .guidelines-box .mission {
+    font-family: 'Lora', serif; font-size: 1.15rem; font-style: italic;
+    color: var(--text-medium); line-height: 1.8; padding: 20px 24px;
+    background: var(--cream); border-left: 3px solid var(--warm-gold); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 36px;
+  }
+  .guidelines-box h3 {
+    font-family: 'Lora', serif; font-size: 1.4rem; color: var(--navy);
+    margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border-light);
+  }
+  .guidelines-box h3:first-of-type { margin-top: 0; }
+  .guidelines-box h4 {
+    font-family: 'Lora', serif; font-size: 1.1rem; color: var(--slate);
+    margin: 24px 0 10px;
+  }
+  .guidelines-box p, .guidelines-box li {
+    font-size: 0.95rem; color: var(--text-medium); line-height: 1.8; margin-bottom: 8px;
+  }
+  .guidelines-box ul {
+    list-style: none; padding: 0; margin: 0 0 16px;
+  }
+  .guidelines-box ul li {
+    padding: 6px 0 6px 24px; position: relative;
+  }
+  .guidelines-box ul li::before {
+    content: ''; position: absolute; left: 8px; top: 16px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--warm-gold);
+  }
+  .safety-card {
+    margin-top: 36px; padding: 28px 32px; background: rgba(200, 151, 62, 0.06);
+    border: 1px solid rgba(200, 151, 62, 0.2); border-radius: var(--radius);
+  }
+  .safety-card h4 {
+    font-family: 'Lora', serif; font-size: 1.15rem; color: var(--navy); margin: 0 0 12px;
+  }
+  .safety-card p {
+    font-size: 0.93rem; color: var(--text-medium); line-height: 1.8; margin-bottom: 10px;
+  }
+  .safety-card p:last-child { margin-bottom: 0; }
+
+  /* ─── DONATE ─── */
+  #donate {
+    background: var(--navy); text-align: center; position: relative; overflow: hidden;
+  }
+  #donate::before {
+    content: ''; position: absolute; top: -50%; left: -20%; width: 60%; height: 200%;
+    background: radial-gradient(ellipse, rgba(200, 151, 62, 0.05) 0%, transparent 60%); pointer-events: none;
+  }
+  #donate .section-label { color: var(--warm-gold); }
+  #donate .section-title { color: var(--cream); }
+  #donate .section-intro { color: rgba(250, 246, 239, 0.7); margin-left: auto; margin-right: auto; }
+  .donate-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .donate-btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px;
+    border-radius: var(--radius-sm); font-size: 1rem; font-weight: 600; text-decoration: none;
+    transition: var(--transition); background: rgba(250, 246, 239, 0.08);
+    color: var(--cream); border: 1.5px solid rgba(250, 246, 239, 0.15);
+  }
+  .donate-btn:hover { background: rgba(250, 246, 239, 0.15); border-color: var(--warm-gold); transform: translateY(-2px); }
+
+  /* ─── BLOCKQUOTE ─── */
+  .quote-block {
+    background: var(--white); border-left: 4px solid var(--warm-gold);
+    border-radius: 0 var(--radius) var(--radius) 0; padding: 32px 36px; margin: 48px 0; box-shadow: var(--shadow-soft);
+  }
+  .quote-block p { font-family: 'Lora', serif; font-size: 1.15rem; font-style: italic; color: var(--text-medium); line-height: 1.8; }
+  .quote-block cite {
+    display: block; margin-top: 12px; font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem; font-style: normal; color: var(--text-light); font-weight: 500;
+  }
+
+  /* ─── FORMAT GRID ─── */
+  .format-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 24px; }
+  .format-item { padding: 20px; background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-sm); }
+  .format-item h5 { font-family: 'Lora', serif; font-size: 1rem; color: var(--navy); margin-bottom: 6px; }
+  .format-item p { font-size: 0.88rem; color: var(--text-medium); line-height: 1.6; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy); color: rgba(250, 246, 239, 0.6); padding: 60px 24px 32px;
+    border-top: 1px solid rgba(200, 151, 62, 0.15);
+  }
+  .footer-grid {
+    max-width: 1100px; margin: 0 auto; display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px;
+  }
+  .footer-brand h3 { font-family: 'Lora', serif; font-size: 1.3rem; color: var(--cream); margin-bottom: 12px; }
+  .footer-brand p { font-size: 0.9rem; line-height: 1.7; }
+  .footer-links h4 {
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--warm-gold); margin-bottom: 16px;
+  }
+  .footer-links a {
+    display: block; color: rgba(250, 246, 239, 0.6); text-decoration: none;
+    font-size: 0.9rem; padding: 4px 0; transition: var(--transition);
+  }
+  .footer-links a:hover { color: var(--cream); transform: translateX(3px); }
+  .footer-bottom {
+    max-width: 1100px; margin: 0 auto; padding-top: 24px;
+    border-top: 1px solid rgba(250, 246, 239, 0.08); font-size: 0.82rem; text-align: center; line-height: 1.8;
+  }
+  .footer-bottom a { color: var(--warm-gold); text-decoration: none; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; text-align: center; }
+    .hero-text { text-align: center; }
+    .hero-buttons { justify-content: center; }
+    .hero-image { display: flex; justify-content: center; }
+    .hero-image img { max-width: 220px; }
+    .events-layout { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.2rem; }
+    .hero .subtitle { font-size: 1.1rem; }
+    .section-title { font-size: 1.8rem; }
+    section { padding: 56px 20px; }
+    .welcome-box, .guidelines-box { padding: 24px; }
+    nav .nav-links {
+      display: none; position: absolute; top: 72px; left: 0; right: 0;
+      background: var(--navy); flex-direction: column; padding: 16px 24px;
+      border-top: 1px solid rgba(200, 151, 62, 0.15); gap: 4px;
+    }
+    nav .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .meetings-grid, .expect-grid, .resources-grid, .link-list, .format-grid, .minutes-list { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ NAVIGATION ═══════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo"><span>511</span> Melrose Group</a>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#meetings">Meetings</a></li>
+      <li><a href="#new-to-aa">New to AA?</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#minutes">Minutes</a></li>
+      <li><a href="#guidelines">Guidelines</a></li>
+      <li><a href="#donate" class="cta">Donate</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>511 Melrose Group</h1>
+      <div class="subtitle">Alcoholics Anonymous — Iowa City, Iowa</div>
+      <p class="tagline">A fellowship of people who share their experience, strength and hope with each other. You are welcome here.</p>
+      <div class="hero-buttons">
+        <a href="#meetings" class="btn btn-primary">Find a Meeting</a>
+        <a href="#new-to-aa" class="btn btn-secondary">New to AA?</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://i0.wp.com/511melrosegroup.org/wp-content/uploads/2022/01/194222678_1371358003248711_8087719969491546208_n.jpeg?resize=600,800&ssl=1"
+           alt="511 Melrose Avenue, Iowa City — Home of the Melrose Group"
+           loading="eager">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MEETINGS ═══════ -->
+<section id="meetings">
+  <div class="container">
+    <div class="section-label">Meeting Schedule</div>
+    <h2 class="section-title">Meetings at 511 Melrose Ave.</h2>
+    <p class="section-intro">
+      511 Melrose Ave, Iowa City, IA 52240 &nbsp;·&nbsp;
+      <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" style="color:var(--warm-gold);text-decoration:none;font-weight:600;">Directions &rarr;</a>
+    </p>
+    <div class="meetings-grid">
+      <div class="meeting-card fade-in">
+        <div class="meeting-name">Breakfast Club</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> 6:00 AM — Every Day</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Start your morning with the fellowship. Coffee is always on.</div>
+        <span class="meeting-tag tag-open">Open</span>
+      </div>
+      <div class="meeting-card fade-in">
+        <div class="meeting-name">Melrose Group</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Sun 8 AM · Mon–Fri 12:10 PM · Mon–Sat 6 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Tue &amp; Wed 8 PM · Fri 9:30 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Our flagship meetings — discussion, speaker, and topic formats.</div>
+        <span class="meeting-tag tag-open">Open</span>
+      </div>
+      <div class="meeting-card fade-in">
+        <div class="meeting-name">Monday Beginner's Meeting</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Monday at 6:00 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Designed for people new to AA. Questions welcome, no experience needed. A great first meeting.</div>
+        <span class="meeting-tag tag-beginner">Beginner-Friendly</span>
+      </div>
+      <div class="meeting-card fade-in">
+        <div class="meeting-name">LGBTQ Meeting</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Thursday at 7:30 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> A welcoming, inclusive space for LGBTQ members and allies.</div>
+        <span class="meeting-tag tag-open">Open</span>
+      </div>
+      <div class="meeting-card fade-in">
+        <div class="meeting-name">Together We Can Make It</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Saturday at 9:30 AM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Saturday morning discussion group.</div>
+        <span class="meeting-tag tag-open">Open</span>
+      </div>
+      <div class="meeting-card fade-in">
+        <div class="meeting-name">Flimsy Reed Big Book Study</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Sunday at 6:00 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Reading and discussing AA's foundational text, chapter by chapter.</div>
+        <span class="meeting-tag tag-closed">Closed</span>
+      </div>
+    </div>
+    <div class="quote-block fade-in" style="margin-top:48px;">
+      <p>"We are people who normally would not mix. But there exists among us a fellowship, a friendliness, and an understanding which is indescribably wonderful."</p>
+      <cite>— Alcoholics Anonymous (Big Book), Chapter 2</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ NEW TO AA ═══════ -->
+<section id="new-to-aa">
+  <div class="container">
+    <div class="section-label">Welcome</div>
+    <h2 class="section-title">New to AA?</h2>
+    <p class="section-intro">Walking through the door for the first time takes courage. Here's what you can expect at Melrose — no surprises, no judgment, just people who understand.</p>
+
+    <div class="welcome-box fade-in">
+      <h3>You're Welcome Here</h3>
+      <p>If you think you might have a problem with alcohol, you've come to the right place. The only requirement for AA membership is a desire to stop drinking — that's it. You don't need to sign up, pay anything, or make any commitments. Just show up.</p>
+      <p>The 511 Melrose building has been a home to AA meetings in Iowa City for decades. When you arrive, you'll find coffee, friendly faces, and people who have been exactly where you are. Many of us were nervous the first time too.</p>
+      <p><strong>Our Monday 6 PM Beginner's Meeting</strong> is specifically designed for people who are new or returning to AA. It's a great place to start — but you're welcome at any meeting on the schedule.</p>
+    </div>
+
+    <h3 style="font-family:'Lora',serif;font-size:1.5rem;color:var(--navy);margin-bottom:8px;">What to Expect at Your First Meeting</h3>
+    <p style="color:var(--text-medium);margin-bottom:8px;">Every meeting is a little different, but here's the general shape of things.</p>
+    <div class="expect-grid">
+      <div class="expect-card fade-in"><div class="expect-icon gold">&#9751;</div><h4>Just Show Up</h4><p>No registration, no appointment, no RSVP. Walk in, grab a cup of coffee, and find a seat. If you feel comfortable, let someone know it's your first time — they'll be glad to help you feel at home.</p></div>
+      <div class="expect-card fade-in"><div class="expect-icon sage">&#9834;</div><h4>Listening Is Enough</h4><p>You will never be required to speak. Most meetings include a moment for newcomers to introduce themselves by first name only — but that's entirely optional. Many people attend their first several meetings quietly.</p></div>
+      <div class="expect-card fade-in"><div class="expect-icon navy">&#9829;</div><h4>What Happens in the Room</h4><p>Meetings typically open with a reading, followed by sharing — one person at a time talking about their experience with alcoholism and recovery. Some meetings have a speaker, others are open discussion. All are confidential.</p></div>
+      <div class="expect-card fade-in"><div class="expect-icon gold">&#9878;</div><h4>No Dues or Fees</h4><p>AA is free. A basket is passed for voluntary contributions (our "7th Tradition"), but newcomers are asked <em>not</em> to contribute. We want you here regardless of your financial situation.</p></div>
+      <div class="expect-card fade-in"><div class="expect-icon sage">&#9733;</div><h4>Everyone Is Welcome</h4><p>AA welcomes people of all backgrounds — every age, race, gender, sexual orientation, religion (or none), and walk of life. The only thing we have in common is that we want to stop drinking.</p></div>
+      <div class="expect-card fade-in"><div class="expect-icon navy">&#8634;</div><h4>You Can Keep Coming Back</h4><p>One meeting might change your life, or it might take a few to feel comfortable. That's normal. Try different meetings and times. Many people find that regular attendance is what makes the difference.</p></div>
+    </div>
+
+    <div style="margin-top:56px;">
+      <h3 style="font-family:'Lora',serif;font-size:1.5rem;color:var(--navy);margin-bottom:8px;">Meeting Types at Melrose</h3>
+      <p style="color:var(--text-medium);margin-bottom:0;">Different meetings serve different needs — here's a quick guide.</p>
+      <div class="format-grid">
+        <div class="format-item fade-in"><h5>Open Meetings</h5><p>Anyone is welcome — members, family, friends, or anyone curious about AA.</p></div>
+        <div class="format-item fade-in"><h5>Closed Meetings</h5><p>Reserved for people who have a desire to stop drinking. A safe space for deeper sharing.</p></div>
+        <div class="format-item fade-in"><h5>Beginner's Meetings</h5><p>Focused on Steps 1, 2, and 3. Questions encouraged. Experienced members help newcomers.</p></div>
+        <div class="format-item fade-in"><h5>Big Book Study</h5><p>Reading and discussing "Alcoholics Anonymous" chapter by chapter. Great for learning the program.</p></div>
+        <div class="format-item fade-in"><h5>Discussion Meetings</h5><p>A topic is introduced and members share their experience as it relates. The most common format.</p></div>
+        <div class="format-item fade-in"><h5>Speaker Meetings</h5><p>One or two members share their story — what it was like, what happened, and what it's like now.</p></div>
+      </div>
+    </div>
+
+    <div class="faq-section" style="margin-top:48px;">
+      <h3 style="font-family:'Lora',serif;font-size:1.5rem;color:var(--navy);margin-bottom:20px;">Common Questions</h3>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">Do I have to call myself an alcoholic?<span class="faq-arrow">&#9660;</span></button><div class="faq-answer"><div class="faq-answer-inner">No. The only requirement for AA membership is a desire to stop drinking. You don't have to label yourself anything. Many people attend meetings for a while before deciding how they feel about the word "alcoholic" — and that's perfectly okay.</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">Is AA religious?<span class="faq-arrow">&#9660;</span></button><div class="faq-answer"><div class="faq-answer-inner">AA is a spiritual — not religious — program. You'll hear references to a "Higher Power" and "God as we understood Him," but AA has no religious affiliation. Members define their own Higher Power in whatever way is meaningful to them. There are atheists, agnostics, and people of every faith in AA.</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">Will anyone find out I went to a meeting?<span class="faq-arrow">&#9660;</span></button><div class="faq-answer"><div class="faq-answer-inner">Anonymity is a foundational principle of AA. What you hear in the room stays in the room. Members use first names only, and your attendance is never disclosed to anyone. Your privacy is respected absolutely.</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">What is a sponsor?<span class="faq-arrow">&#9660;</span></button><div class="faq-answer"><div class="faq-answer-inner">A sponsor is an AA member who has worked the 12 Steps and volunteers to guide a newer member through them. Think of it as a mentor — someone you can call when things get tough. Ask around at meetings; people are glad to help.</div></div></div>
+      <div class="faq-item"><button class="faq-question" onclick="this.parentElement.classList.toggle('open')">Can I bring a friend or family member?<span class="faq-arrow">&#9660;</span></button><div class="faq-answer"><div class="faq-answer-inner">Absolutely — to any "Open" meeting. Open meetings welcome anyone, including family, friends, students, and professionals. "Closed" meetings are reserved for those who have a desire to stop drinking.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ RESOURCES ═══════ -->
+<section id="resources">
+  <div class="container">
+    <div class="section-label">AA Literature &amp; Links</div>
+    <h2 class="section-title">Resources</h2>
+    <p class="section-intro">AA has a rich library of literature available — much of it free online. These are the official, AA-approved resources that power our meetings and our recovery.</p>
+    <div class="resources-grid">
+      <a href="https://www.aa.org/the-big-book" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Book — Free Online</div><h4>Alcoholics Anonymous (Big Book)</h4><p>AA's foundational text. Contains the program of recovery, the Twelve Steps, and dozens of personal stories.</p><span class="arrow">Read at aa.org &rarr;</span></a>
+      <a href="https://www.aa.org/twelve-steps-twelve-traditions" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Book — Free Online</div><h4>Twelve Steps &amp; Twelve Traditions</h4><p>Bill W.'s deeper exploration of each Step and Tradition. Essential reading for personal recovery and group unity.</p><span class="arrow">Read at aa.org &rarr;</span></a>
+      <a href="https://www.aa.org/daily-reflections" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Daily Reading</div><h4>Daily Reflections</h4><p>A short reading for each day of the year, written by AA members. A wonderful daily companion for your recovery.</p><span class="arrow">Read today's reflection &rarr;</span></a>
+      <a href="https://www.aa.org/what-is-aa" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Pamphlet</div><h4>Is A.A. for You?</h4><p>Twelve questions only you can answer. If you're wondering whether you belong in AA, this short read may help.</p><span class="arrow">Read at aa.org &rarr;</span></a>
+      <a href="https://www.aa.org/questions-and-answers-sponsorship" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Pamphlet</div><h4>Questions &amp; Answers on Sponsorship</h4><p>What is a sponsor? How do you find one? This pamphlet answers 34 common questions.</p><span class="arrow">Read at aa.org &rarr;</span></a>
+      <a href="https://www.aagrapevine.org/" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Magazine</div><h4>AA Grapevine</h4><p>AA's international monthly magazine since 1944. Personal stories, humor, and reflections from members worldwide.</p><span class="arrow">Visit aagrapevine.org &rarr;</span></a>
+    </div>
+    <div class="resources-subsection fade-in">
+      <h3>Local &amp; Service Links</h3>
+      <p>Melrose Group is part of a larger service structure. Here are the organizations that support AA in our area.</p>
+      <div class="link-list">
+        <a href="https://aaiowacity.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9962;</span> Iowa City Intergroup</a>
+        <a href="https://iadistrict13aa.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9878;</span> Iowa District 13</a>
+        <a href="https://www.aa-iowa.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9733;</span> AA Iowa (Area 24)</a>
+        <a href="https://www.aa.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9679;</span> AA World Services</a>
+        <a href="https://aa-intergroup.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9741;</span> Online Intergroup of AA</a>
+        <a href="https://www.aa.org/meeting-guide-app" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9742;</span> Meeting Guide App</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ EVENTS ═══════ -->
+<section id="events">
+  <div class="container">
+    <div class="section-label">Community</div>
+    <h2 class="section-title">Events &amp; Fellowship</h2>
+    <p class="section-intro">Recovery happens in meetings — but fellowship happens everywhere.</p>
+    <div class="events-layout">
+      <div class="events-column">
+        <h3>Upcoming Events</h3>
+        <div class="event-item fade-in"><div class="event-date event-recurring">&#9728; Recurring — Sundays</div><h4>Volleyball in the Park</h4><p>Join us at Iowa City's Lower City Park on Sundays at 1:30 PM. Come to play or just for fellowship!</p><div class="event-meta"><span>&#9903; Lower City Park</span><span>&#9716; 1:30 PM</span></div></div>
+        <div class="event-item fade-in"><div class="event-date">&#9830; Mar 11, 2026</div><h4>Group Conscience Meeting</h4><p>All home group members are encouraged to attend and participate in group decisions.</p><div class="event-meta"><span>&#9741; Zoom — ID: 882 0783 2747</span><span>&#9716; 7:00 PM</span></div></div>
+        <div class="event-item fade-in"><div class="event-date">&#9830; Apr 14, 2026</div><h4>Group Conscience Meeting</h4><p>Monthly business meeting — second Tuesday.</p><div class="event-meta"><span>&#9741; Zoom</span><span>&#9716; 7:00 PM</span></div></div>
+      </div>
+      <div class="events-column">
+        <h3>Service Opportunities</h3>
+        <div class="event-item fade-in"><div class="event-date event-recurring">&#9998; Ongoing</div><h4>Make Coffee</h4><p>Show up a little early to get the pot going. One of the simplest and most valued forms of service.</p></div>
+        <div class="event-item fade-in"><div class="event-date event-recurring">&#9998; Ongoing</div><h4>Chair a Meeting</h4><p>Open the meeting, choose a topic, and keep things on track. Just willingness and some sobriety.</p></div>
+        <div class="event-item fade-in"><div class="event-date event-recurring">&#9998; Ongoing</div><h4>Greet Newcomers</h4><p>Be the friendly face someone sees when they walk in scared and unsure.</p></div>
+        <div class="event-item fade-in"><div class="event-date event-recurring">&#9998; Ongoing</div><h4>Become a Home Group Member</h4><p>Make Melrose your home group and take part in Group Conscience decisions.</p></div>
+      </div>
+    </div>
+    <div class="quote-block fade-in" style="margin-top:48px;">
+      <p>"Our real purpose is to fit ourselves to be of maximum service to God and the people about us."</p>
+      <cite>— Alcoholics Anonymous (Big Book), Chapter 6, "Into Action"</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ GROUP CONSCIENCE MINUTES ═══════ -->
+<section id="minutes">
+  <div class="container">
+    <div class="section-label">Transparency</div>
+    <h2 class="section-title">Group Conscience Minutes</h2>
+    <p class="section-intro">Melrose Group Conscience meets the second Tuesday of each month at 7:00 PM on Zoom. All home group members are encouraged to attend. Minutes from past meetings are archived below.</p>
+
+    <div class="minutes-list">
+  <div class="minutes-year-label">2025</div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2025">Jul</span><span class="mt-label">July 2025</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Melrose Group Conscience 7-8-25</p>
+<p class="mi-meta">Present: Jason H., Kathy L., Becky B., Monica F., Mariah T., Laura L., Theresa W.</p>
+<p class="mi-meta">Absent:  Ariel K.</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer at 7:02pm</p>
+<h4 class="mi-section">Regular Reports</h4>
+<p class="mi-report"><strong>Treasurer’s report (Jason H.); Summarized the income, expenses, cash, contributions, and prudent reserve. Kathy put in invoice for upholstery in Melrose Inc safe.</strong></p>
+<p class="mi-report"><strong>Literature and Chips report (Theresa W.); - Nothing to report. Susan is in literature for district, T asked her to get us big print big books. $9 charge for BBs now</strong></p>
+<p class="mi-report"><strong>Webmaster’s report (Monica F.); Nothing new to report. We have 200 meeting guides with most recent version.</strong></p>
+<p class="mi-report"><strong>GSR Report (Monica F.); Monica did not attend last district. Nothing to report. Area 24 meeting notes.</strong></p>
+<p class="mi-report"><strong>Key-master’s report (Laura L.); Nothing new to report.</strong></p>
+<p class="mi-report"><strong>Intergroup District Rep (Becky B.); Meeting this coming Saturday</strong></p>
+<p class="mi-report"><strong>Alt GSR (Ariel K.); Did not attend last district. Nothing new to report.</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<p>Jason will get a first aid kit. Take money out of Melrose income.</p>
+<p>When anyone uses upstairs Room to meet be sure door is locked from inside.</p>
+<p>Tuesday 6pm Women’s meeting: Monica motioned to vote on women’s 6pm Tuesday upstairs, co-ed downstairs at 6pm. Everyone voted yes. Approved. Need to change meeting scheduled. Lavinia is interested in chairing women’s, Becky or Kathy can chair w/ her next week. If no one is interested in chairing, meeting will close.</p>
+<p>Laura H. interested in chairing new 6pm co-ed Tuesday meeting?  Laura L. will reach out to her. Re-evaluate in August.</p>
+<p>Script changes – Monica will send new script to Kathy and we will look at it next month.</p>
+<h4 class="mi-section">New Business</h4>
+<p>Kathy suggested People giving chips  -- do we need to put something in guidelines for sobriety time? We decided that isn’t necessary.</p>
+<p>Keys – Laura will attend in-person at Melrose for Group Conscience for those people that attend meeting in person-Thank you, Laura.</p>
+<p>Mariah mentioned that we may need extra key – someone lost when switching over. They will need to pay for it ($50) if they can’t find it. Laurie K suggested we put key tags on keys.</p>
+<p>Becky will give Lavinia key after July for women’s meeting.</p>
+<p>Laurie K suggested we add something about cell phone use in script, discourage people to be on phones during meeting.</p>
+<p>Laura recommended we have a chairing workshop.</p>
+<p>It was also mentioned there may be a mix up on how much sobriety one should have before chairing a meeting alone. Melrose has always gone by the guideline of 3 months.</p>
+<p class="mi-meta">Closed meeting with Serenity Prayer at 8:08pm. Next Group Conscience meeting will be August 12th @ 7pm. In person and on Zoom.</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2025">Jun</span><span class="mt-label">June 2025</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Melrose Group Conscience</p>
+<p class="mi-meta">Tuesday, June 9, 2025</p>
+<p class="mi-meta">Present:	Maria, Laura L, Jason H, Theresa W, Becky B, Kathy L, Laura H.</p>
+<p class="mi-meta">Absent:             Monica F., Mariah</p>
+<p>Serenity Prayer</p>
+<h4 class="mi-section">Committee Reports</h4>
+<p class="mi-report"><strong>Treasurer Report. (Jason)</strong></p>
+<p>Will make third quarter donations to Intergroup, District, GSO, Area the end of June.</p>
+<p class="mi-report"><strong>Chips and Lit report – (Theresa)</strong></p>
+<p>BIG BOOKS PRICE HAVE INCRASED TO $11.00.  WE WILL CONTINUE TO CHARGE THE $9.00 FOR N0W WITH THE UNDERSTANDING $11.00 MAY BE CHARGED LATER DUE TO MELROSE BEING UNABLEE TO COVER THE DIFFERENCE DUE TO MONEY RESTRAINTS.</p>
+<p class="mi-report"><strong>Keys (Laura)</strong></p>
+<p>All chairs have keys. No extras.</p>
+<p class="mi-report"><strong>Area Becky</strong></p>
+<p>Nothing to report</p>
+<h4 class="mi-section">Old Business</h4>
+<p>First aid kit not yet purchased</p>
+<p>New additions to chair script by Mariah (Mariah not present)</p>
+<p>Upstairs fire escape door locks from the inside. It is the responsibility of that person/group last unlocking it to lock it.</p>
+<h4 class="mi-section">New Business</h4>
+<p>What expenses to report in minutes</p>
+<p>Agenda next meeting</p>
+<p>Chair Script</p>
+<p>Handing out Chips</p>
+<p>First Aid Kit</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2025">May</span><span class="mt-label">May 2025</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Melrose Group Conscience 5-13-25</p>
+<p class="mi-meta">Present: Jason H., Kathy L., Becky B., Monica F., Mariah T., Theresa W.</p>
+<p class="mi-meta">Absent:  Laura L.</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer at 7:20pm</p>
+<h4 class="mi-section">Regular Reports</h4>
+<p class="mi-report"><strong>Treasurer’s report (Jason H.); Treasurer Jason summarized the income, expenses, cash, contributions, and prudent reserve. Spent money on literature, chips, and food for spring clean-up. (I believe we put in exact numbers for this for the group to see)</strong></p>
+<p class="mi-report"><strong>Literature and Chips report (Theresa W.); Theresa- Nothing to report.</strong></p>
+<p class="mi-report"><strong>Webmaster’s report (Monica F.); Nothing new to report.</strong></p>
+<p class="mi-report"><strong>GSR Report (Monica F.); Monica did not attend last district. Nothing to report.</strong></p>
+<p class="mi-report"><strong>Key-master’s report (Laura L.); Nothing new to report.</strong></p>
+<p class="mi-report"><strong>Intergroup District Rep (Becky B.); Spring Picnic</strong></p>
+<p class="mi-report"><strong>Alt GSR (Ariel K.); Nothing new to report.</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<p>Jason bought items for first-aid kit items, but Jason wants to get official. Mariah and Theresa suggested buying off Amazon. It was decided that we can keep some items at Melrose for emergencies.</p>
+<p>Monica brought up script change – adding “available to sponsor?” Discussed this addition as well as whether to keep “Please refrain from cross-talk&quot;. The sponsor sentence was voted in, and we voted to keep the cross-talk language. Jason motioned to vote: Monica, Kathy: no; Jason, Theresa, Becky, Mariah. Mariah will make a rough draft of updated script, then send to Kathy and Monica. Kathy will print out safety guidelines and have a copy of table, and one put on bulletin board.</p>
+<h4 class="mi-section">New Business</h4>
+<p>Kathy has new white board and put it in back room for Michael H. Kathy hasn’t f/u and talked to him if he has done it.</p>
+<p>Put “handing out chips” on agenda for June.</p>
+<p>Jason brought up door upstairs needs fixed. Kathy will reach out to 511 Melrose. Fire extinguisher been tested recently?</p>
+<p>Theresa brought up literature costs for next month’s meeting.</p>
+<p>Kathy brought up follow up with Laura L. about getting extra key back from a member who still has key.</p>
+<p class="mi-meta">Closed meeting with Serenity Prayer at 8:03pm.Next Group Conscience meeting will be June 10th @ 7pm. In person and on Zoom.</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2025">Feb</span><span class="mt-label">February 2025</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p>Group Conscience Meeting Tuesday, 
+February 11, 2025</p>
+<p class="mi-meta">Present:	Jason, Becky, Laura, Mariah, Kathy</p>
+<p class="mi-meta">Absent:   Monica, Theresa</p>
+<p>Open with Serenity Prayer</p>
+<h4 class="mi-section">Committee Reports</h4>
+<p>Treasury Report    Jason</p>
+<p>Chairs almost completed. Jason will place a thankyou card to the upholstery man on the table for people to sign.</p>
+<p class="mi-report"><strong>Intergroup   Becky</strong></p>
+<p class="mi-report"><strong>Intergroup will meet this week to make final decisions   for St. Patrick”s Day party.</strong></p>
+<p>Keys    Laura</p>
+<p>Nothing to Report</p>
+<p class="mi-report"><strong>Secretary    Mariah</strong></p>
+<p>Nothing to Report</p>
+    </div></div>
+  </div>
+  <div class="minutes-year-label">2024</div>
+
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2024">Oct</span><span class="mt-label">October 2024</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Group Conscience minutes for October 8, 2024</p>
+<p class="mi-meta">Present in person: Kathy L., Tom J.</p>
+<p class="mi-meta">Present via Zoom: Theresa W.</p>
+<p class="mi-meta">Absent: Jason H., Becky B., Monica F., Lauren H.</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer at 7:07 PM</p>
+<h4 class="mi-section">Regular Reports</h4>
+<p class="mi-report"><strong>Treasurer&#x27;s report (Jason H.); not reported</strong></p>
+<p class="mi-report"><strong>Literature and Chips report (Theresa W.); many white chips were purchased and placed in the meeting room, customized with “AA”.  Several Big Books have been purchased and the stock in the closet has been replenished.</strong></p>
+<p class="mi-report"><strong>Webmaster&#x27;s report (Lauren H.); not reported</strong></p>
+<p class="mi-report"><strong>GSR Report (Monica F.); not reported</strong></p>
+<p class="mi-report"><strong>Intergroup Report (Becky B.); Iowa City Intergroup will be having elections on Saturday, November 2 at 10:00 AM via Zoom.  Meeting ID is 810 0506 4290, the passcode is Wilson. There are many open positions; see the fliers at 511 Melrose for details.</strong></p>
+<p class="mi-report"><strong>Keymaster’s report (Kathy L.); The prior keyholder ledger has not yet been located. Some chairs have filled out the key number paper at the chairpersons’ desk, also several have placed the key numbers on the meeting board at the back of the room.</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<p>Status of buying and installing blinds: Kathy has purchased most of the blinds.  6 of the 7 will be replaced because one of them is relatively new and working properly.  Tom J. will find another volunteer to assist in hanging them.</p>
+<p>GC elections will be held on Sunday, October 20 from 3:00 to 5:00 PM, at 511 Melrose. People may participate either in-person or via Zoom. Monica has prepared a flyer to announce that there will be pizza for those who can attend in person.  The fliers are posted at 511 Melrose.</p>
+<p>Discussion and/or planning of candlelight vigil; this has been tabled until the elections are over.  It may get postponed until spring, given that colder weather is coming.</p>
+<p>Painting; Michael H. is still heading this effort</p>
+<h4 class="mi-section">New Business</h4>
+<p>There was a proposal that future Group Conscience meetings be conducted exclusively over Zoom.  This will help as colder weather approaches and perhaps would make the meetings more convenient to schedule.  Everyone present agreed, so note that this will start at the November 12 meeting.</p>
+<p>Seating for the meeting room; a suggestion was made that new folding chairs, with cushioned seats and backs. This will make seating more flexible to reconfigure.  Some small tables could be purchased to replace the tables in the meeting room now.  Currently, there are 25 seats around the outside of the room and there are 4 small tables.  The large tables would remain as they are, some chairs would be purchased to replace many of those.</p>
+<p>It was noted that neither the website at 511melrosegroup.org nor the meeting pamphlets currently publicize that there is a Saturday meeting at 6 PM.</p>
+<p>Traditionally, Melrose Group hosts a Thanksgiving dinner (on Thanksgiving Day, November 28) for people in AA who may not have a place to have a Thanksgiving meal.  This year, Melrose Group will supply a turkey, a ham, and water to drink.  All side dishes and other drinks are potluck.</p>
+<p class="mi-meta">Closed meeting with Serenity Prayer at 7:20 PM</p>
+<p class="mi-meta">Next Group Conscience meeting will be November 12, 2024 @ 7pm, ONLY VIA Zoom!</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2024">Sep</span><span class="mt-label">September 2024</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Group Conscience minutes for September 10, 2024</p>
+<p class="mi-meta">Present in person: Kathy L., Becky B., Jason H., Laura L., Tom J., Angela, Lance</p>
+<p class="mi-meta">Present via Zoom: Lauren H., Theresa W., Monica F.</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer at 7:10 PM</p>
+<p>Acceptance of last meeting’s minutes.  Monica moved that the minutes should be accepted, Jason seconded.  Vote was all “ayes”.</p>
+<h4 class="mi-section">Regular Reports</h4>
+<p class="mi-report"><strong>Treasurer&#x27;s report (Jason H.); Jason summarized the income, expenses, donations to local organization, available cash, and prudent reserve.</strong></p>
+<p class="mi-report"><strong>Literature and Chips report (Theresa W.); Nothing new to report.  Laura L. noted that the meeting room needs some more white chips.</strong></p>
+<p class="mi-report"><strong>Webmaster&#x27;s report (Lauren H.); Nothing new to report.</strong></p>
+<p class="mi-report"><strong>GSR Report (Monica F.); Monica will be at District 13 elections in Muscatine.  There will also be a fall potluck in Muscatine on October 13th, there are flyers out with the details.</strong></p>
+<p class="mi-report"><strong>Intergroup Report (Becky B.); Fall Party is October 19th, Zion is reserved (4:30-10 pm), donation requested ($75.00 was suggested). Doors open at 5:30, food and fellowship at 6, speakers at 7. Fall theme, plant raffle, donation can at entrance. Food will be chili cook-off (IG members volunteer to bring some), Intergroup will provide corn bread and drinks. Chili, side dishes, and desserts will be requested. One 15-minute speaker and one 30-minute speaker will be invited. Emily has cups, plasticware, etc.</strong></p>
+<p class="mi-report"><strong>Keymaster’s report (Kathy L.); The ledger has not been found yet.  In the mean time, a sheet will be placed at the chairperson’s table so that chairs can record their name and the number of the key they currently hold.  Thus, the ledger can be reconstituted to a degree until the original one can be found. Anyone else holding a key should either return it to Kathy or record the data on the form as well.</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<p>Status of ordering and replacing blinds: Kathy had purchase a couple of the “stringless” blinds from Walmart.  She may get the remaining blinds at Menards or Lowe’s.</p>
+<p>Discussion of potential collaboration with Zion Men&#x27;s Friday Night group for a Halloween party.  Lance (Treasurer of Zion Men’s Group) stated that the Men’s Group typically relied on the work of a small number of volunteers to plan and fund the party, and that these people were not interested in doing the work this year.  The group would, however support another effort to have the party by providing the venue and (perhaps) some labor for setup.  To that end, Laura L. moved that Melrose Group would plan and organize a party, and that Zion would provide the venue since 511 Melrose would not have enough space nor parking.  Jason seconded this motion.  A vote was held with the 9 Melrose members participating.  The final vote was Aye: 5, Nay: 3, Abstain: 1.  The party would be held on November 1 at Zion.  Laura L. volunteered to form and lead a committee to plan the party, determine food needs, etc.  Laura will begin to recruit other volunteers to divide the work.</p>
+<p>GC needs to fill the positions of Alternate GSR, Secretary, and Keymaster. GC elections will be held on Sunday, October 13 from 3:00 to 5:00 PM, at 511 Melrose. People may participate either in-person or via Zoom. Kathy prepared a document describing the terms and duties of the offices; this should be placed at 511 Melrose.   Monica suggested that a pizza party be held to encourage attendance.  Vote was held on whether to supply pizza from the treasury; all present voted “aye”. Monica also suggested that a flyer accompany the details on the duties of the offices, designed such that it would be eye-catching to get people’s attention.</p>
+<p>Discussion and/or planning of candlelight vigil; this will be tabled until the elections are over and the Haloween party planning is well along.</p>
+<p>Painting; Laura pointed out that it has been forever since the bathrooms have been painted.  They should be painted as well as the main room.  Laura will discuss this with Michael H.</p>
+<h4 class="mi-section">New Business</h4>
+<p>A new Blu-ray player has been purchased. Movie night will most likely get underway as the weather cools.  We seek persons who are willing to organize and schedule them, as well as get advice on movies to watch.  These movies can be anything; they do not have to have AA-oriented themes.</p>
+<p class="mi-meta">Closed meeting with Serenity Prayer at 7:35 PM</p>
+<p class="mi-meta">Next Group Conscience meeting will be October 8, 2024 @ 7pm.@ 511 Melrose (upstairs) or attend via Zoom.</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2024">Aug</span><span class="mt-label">August 2024</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Group Conscience minutes for August 13, 2024</p>
+<p class="mi-meta">Present in person: Kathy L., Laura L., Jason H., Tom J.</p>
+<p class="mi-meta">Present via Zoom: Becky B., Theresa W., Monica F., Marsha Stange</p>
+<p class="mi-meta">Absent: Lauren H.</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer</p>
+<h4 class="mi-section">Regular Reports</h4>
+<p class="mi-report"><strong>Treasurer&#x27;s report (Jason H.); Jason summarized the income, expenses, donations to local organization, available cash, and prudent reserve from July 9th to present.</strong></p>
+<p class="mi-report"><strong>Literature and Chips report (Theresa W.); all the chip stores are replenished.  Some Big Books were found, thus no need to order more of them.  Discussion about running out of pamphlets; Michael H. agreed to print more during a meeting.</strong></p>
+<p class="mi-report"><strong>Webmaster&#x27;s report (Lauren H.); nothing reported</strong></p>
+<p class="mi-report"><strong>GSR Report (Monica F.); nothing new from GSR district</strong></p>
+<p class="mi-report"><strong>Keymaster’s report (Kathy L.); see discussion below</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<p>Painting the rooms?   Michael H. will recruit people and lead this project.</p>
+<p>Movie night? Moving ahead. Michael H. and Rich are leading this effort.</p>
+<p>Blinds: Kathy L. measured the blinds and is preparing to order some of the same style as are currently installed.</p>
+<p>Seating: Tabled for now.</p>
+<p>Key policy: FYI: it costs Melrose, Inc. $1000 to re-key the house.  Prior to COVID shutdown, 2 keys were provided to each meeting; one for chair, one for co-chair.  Since then, only one key is issued per meeting.  There are still some keys outstanding since COVID.  Erin S. has all the records; someone volunteered to contact Erin to see how to get the current records so that they can be reconciled with the current keyholders as well as a couple of spare keys recently found. Vote was held whether to stay with the current key policy as the keyholders have been informed of in the past.  Aye: 7, Abstaining: 1.</p>
+<h4 class="mi-section">New Business</h4>
+<p>Someone asked about the history of the T- shirt hanging in the meeting room. Kathy has asked around and cannot find anyone who knows.</p>
+<p>Elections for 1 year GC officer terms are coming up in October. Will announce them with a flyer and/or by posting on one of the marker boards, stating which offices are open.  Looking for an alternate GSR for sure. Note: after the meeting, Tom J. stated his intention to leave the post of Secretary past the October GC meeting.</p>
+<p>Halloween Party: Laura Lamb attended to discuss the potential for working with the Zion men’s group to host a Halloween party. The men’s group representative (Lance) had a personal conflict during the GC meeting and couldn’t represent the group directly. The party has been held in the past, but not since COVID.  Currently the men’s group has had a lot of turnover and there are many inexperienced members, thus they seek to collaborate with Melrose Group.  Laura brought a list of items/tasks that would need to be purchased/staffed in order to host the party; a rough cost estimate for food was $700.</p>
+<p>After discussion, Monica moved, Kathy seconded, and the votes was all ayes that this should be tabled until Lance can attend to represent the Zion men’s group.</p>
+<p>Possible candlelight vigil for those AA members that have passed. Kathy heard a visitor mention that this would be a nice custom.  This is a “generic” event in that the names of the departed are not mentioned.  Would this be just Melrose Group or would other groups like to participate?  We would need to set a date and would need a volunteer to create guidelines and get the word out.  General consensus was to table this until the next meeting.</p>
+<p>Jason asked about cleaning 511 Melrose; apparently it is already cleaned every two weeks.</p>
+<p>Laura pointed out that football season is arriving soon; on Saturday home games, there will be no meetings at 511. (August 31, September 7, September 14, October 12, October 26, November 2). There is also a single Friday night 6:30 p.m. game on November 29; does this affect the 6 AM meeting?</p>
+<p class="mi-meta">Closed meeting with Serenity Prayer.</p>
+<p class="mi-meta">Next Group Conscience meeting will be September 10, 2024 @ 7pm.@ 511 Melrose or attend via Zoom.</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2024">Jul</span><span class="mt-label">July 2024</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Group Conscience minutes for July 9, 2024</p>
+<p class="mi-meta">Present in person: Jason H., Rocky, Tom J.</p>
+<p class="mi-meta">Present via Zoom: Kathy L.</p>
+<p class="mi-meta">Absent:  Theresa W., Becky B., Lauren H., Monica F.</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer</p>
+<h4 class="mi-section">Regular Reports</h4>
+<p class="mi-report"><strong>Treasurer’s report (Jason H.); Jason summarized the income, expenses, donations to local organization, available cash, and prudent reserve from June 12th to July 8 th .  Jason noted that there are several donation envelopes since July 1 which have not yet been deposited</strong></p>
+<p class="mi-report"><strong>Literature and Chips report (Theresa W.); nothing new to report</strong></p>
+<p class="mi-report"><strong>Webmaster’s report (Lauren H.); nothing new reported, but Lauren did put a more direct link to the Group Conscience Zoom meeting on the 511 website (Thanks!)</strong></p>
+<p class="mi-report"><strong>GSR Report (Monica F.); nothing new to report Keymaster’s report (Kathy L. is interim keymaster); see discussion below</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<p>White Boards are complete and mounted. Thanks to Michael H. and Randy!</p>
+<p>Saturday night 6 PM meetings have begun; Mark P. is chairperson. Going well, new pamphlets will be available which mentions this meeting.</p>
+<p>Are the meeting dates/times on master schedule and pamphlets consistent with the Melrose Group website? Not yet.</p>
+<p>Painting the rooms?  Current results of poll as of July 6: 12 votes cast, 10 Yes, 1 No, 1 Don’t Care. Service work question had same counts. How to proceed?  Michael H. will lead.</p>
+<p>Movie night? Current results of poll as of July 6: 9 votes cast, 9 Yes, 6 Yes to service work.</p>
+<p>We have a DVD player; internet connectivity (if needed) would have to use a hotspot from a phone. Movies do not have to be AA “approved”. Note that we will also need DVDs lent or donated.  How to proceed?  Need someone to lead this.</p>
+<p>Blinds: Melrose Inc. says it would be OK to replace blinds.  Kathy L. will look at options/styles to see what is practical. Tom J. will take some rough measurements so that costs can be estimated.</p>
+<p>Seating: poll (via a signup sheet) to see whether to repair or replace? Defer action until poll results are available.</p>
+<p>Expenditures: for spending on projects, should there be a threshold above where we poll the fellowship for approval?  Should this be an absolute amount (e.g., $500) or perhaps a percentage (e.g., 25 percent) of available cash on hand?  There was discussion back and forth about what is “available cash on hand”; available cash on hand = account balance – prudent reserve – (rent + literature + chips + coffee).</p>
+<p>Jason would like a better idea of our monthly/quarterly spend-down so that we have some basis for planning. Most thought that an absolute ceiling on project cost should be established, although we currently don’t have enough historical data to see how available cash fluctuates; so a solid cost ceiling evades us at the moment.</p>
+<p>What is the process? GC would identify a need, poll the fellowship to determine interest, get a ballpark cost estimate for the project, then proceed to Group Conscience for final approval.</p>
+<h4 class="mi-section">New Business</h4>
+<p>Need an alternate GSR. Kathy suggested we can go without one for a while.  GSR participates in meetings, area objectives/literature, outreach activities.</p>
+<p>Need a permanent keymaster?  Erin S. is otherwise involved for a while, so Kathy L. will serve as interim keymaster until Erin can resume the role.  Kathy did not yet have the keymaster records, though.</p>
+<p>What is the key policy for Melrose Inc.:  Melrose, Inc. charges 511 GC $50.00 for issuing new keys, each of which has a number stamped on them. They don’t track who has the keys once handed over, but they expect 511 GC to track them.</p>
+<p>Key policy for Melrose Group: Currently, one key is issued to each chairperson/chair team.  There are also a small number of keys issued to “elders” for special circumstances.  The keymaster tracks who are issued keys by number.  Chairs are expected to pass keys on to new chairs as terms end, and to notify keymaster.  In the past, some keys have been lost and thus 511 GC has paid to replace the key.</p>
+<p>Should 511 GC charge people who lose keys?  Comment 1: individuals should be responsible for the keys and reimburse GC when a new one is issued as a result.  Comment 2: individual may not have $50 available to replace key. What happens then?  Comment 3: one person complained that they were donating their time and stated GC should cover costs of lost keys.  Comment 4: if 511 GC covers costs of keys, then there are no consequences of being careless with keys Comment 5: losses make the building vulnerable to unauthorized access.  Summary: ongoing discussion needed (Zoom connectivity was poor, stalling conversation).</p>
+<p>Kathy mentioned that she had found two keys recently but had not reconciled them with Erin’s records.</p>
+<p>Regarding GC meeting minutes: Rather than asking multiple times for input, wait a week after sending them out for comments.  If no changes/comments, release to webmaster for publishing and print copies for meeting room.</p>
+<p>Rocky moved to adjourn, seconded by Tom J., all voted “aye”.  Meeting was adjourned.</p>
+<p class="mi-meta">Closed meeting with Serenity Prayer at 8:00 PM</p>
+<p class="mi-meta">Next Group Conscience meeting will be August 13, 2024 @ 7pm.@ 511 Melrose or attend via Zoom.</p>
+<p>Posted</p>
+<p>Uncategorized</p>
+<p>Tags:</p>
+<p>/*</p>
+<p>* Get the site wrapper.</p>
+<p>*/</p>
+<p>if ( ! sibling ) {</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2024">Jun</span><span class="mt-label">June 2024</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-meta">Present in person: Kathy L., Jason H., Mark P., Tom J.</p>
+<p class="mi-meta">Present via Zoom: Lauren H., Monica F.</p>
+<p class="mi-meta">Absent:  Theresa W., Becky B., Erin S.</p>
+<p>Meeting started at roughly 7:20 PM</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer</p>
+<h4 class="mi-section">Regular Reports</h4>
+<p class="mi-report"><strong>Treasurer’s report (Jason H.); Jason summarized the income, expenses, donations to local organization, available cash, and prudent reserve from May 15 th to June 11 th</strong></p>
+<p class="mi-report"><strong>Literature and Chips report (Theresa W.); Theresa checked in from work, there was nothing new to report Webmaster’s report (Lauren H.); Will update the website to reflect that the 8 PM meetings are only on Tuesday and Wednesday. Kathy to follow up with Lauren to get the right names associated with the right times.</strong></p>
+<p>Would it be OK to put Sunday afternoon volleyball in the events section? Consensus seems to be yes, could ask Greg C.</p>
+<p>Is there some way to put a more direct link to the Group Conscience Zoom meeting on the 511 website so that people don’t have to type in both the meeting ID and password?</p>
+<p class="mi-report"><strong>GSR Report (Monica F.); The “Box 459” newsletter has been discontinued because postage to mail it directly is not cost effective.  There is a spring conference in Clear Lake the weekend of June 15 th .</strong></p>
+<p class="mi-report"><strong>Keymaster’s report (Erin S.); (discussion among group) If chairpersons need a key, they must get it directly from Erin, so that it can be properly tracked. Anyone who has a key but is no longer a chairperson should either pass it on and notify Erin, or turn it in to Erin.</strong></p>
+<p>Announce the key protocol at meetings, so that keys can be recovered and distributed properly.</p>
+<p class="mi-report"><strong>Intergroup news (Monica F., Kathy L.); The Friday night women’s group is having a potluck; Kathy will get more details.  On October 19 th , there will be a Halloween chili cook off at Zion Lutheran; more details as the date gets closer.</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<p>White Boards (Tom J.): Michael H. (graphic artist) has begun to apply ruling and lettering to boards. Randy, Tom J. and at least one other person will arrange to hang the boards when Michael’s work is complete.  Michael could ask for a key so that he can get in to work on them between meeting times.</p>
+<p>Kathy has donated a big screen TV to 511 Melrose.  The general idea would be to reinstate movie nights.  Does anyone have an extra DVD player to donate or does anyone know where to find the DVD player that was at 511 before now?  Lauren will look at how to connect it.  Note that we will also need DVDs lent or donated.</p>
+<p>Painting: Poll the fellowship (as a signup sheet on the table) to find out how many people are (or are not) in favor of painting the meeting room.</p>
+<p>Blinds: Melrose Inc. says it would be OK to replace blinds. We should look at options/styles to see what is practical.</p>
+<p>Seating: poll (via a signup sheet) to see whether to repair or replace? The chairs are sturdy, but some need structural repair (especially the ones on the porch) and some require new coverings.  At least one person in GC does not care for bumping arms with others in the existing seats, so they sit at the table rather than around the outside.  Should also ask Randy about which are practical to repair and which are not.</p>
+<p>Expenditures: for spending on projects, should there be a threshold above where we poll the fellowship for approval?  Should this be an absolute amount (e.g., $500) or perhaps a percentage (e.g., 25 percent) of available cash on hand?</p>
+<h4 class="mi-section">New Business</h4>
+<p>Mark P. would like to resume the Saturday evening meeting at 6 PM each week; the meeting was suspended during COVID and was not restarted.  Kathy stated that Melrose Group must notify Melrose Inc. of new meetings, since Melrose Group is charged $45 per meeting. The meeting must not conflict with other 511 Melrose meetings already on the schedule.  The meeting must establish a hosting schedule (Mark P. volunteered to take the rest of this quarter and the third quarter), and the chairpersons would have to get keys from Erin.  Also it must be designated as open or closed.  Mark P. made the motion to approach Melrose Inc. with this proposal, seconded by Kathy L., all voted “aye”.</p>
+<p>Jason moved to adjourn, seconded (by whom?) all voted “aye”.  Meeting was adjourned.</p>
+<p class="mi-meta">Closed meeting with Serenity Prayer at 8:00 PM</p>
+<p class="mi-meta">Next Group Conscience meeting will be July 9, 2024 @ 7pm.@ 511 Melrose or attend via Zoom.</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2024">May</span><span class="mt-label">May 2024</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Group Conscience minutes for May 14, 2024</p>
+<p class="mi-meta">Present in person: Kathy L., Jason H., Angela, Tom J.</p>
+<p class="mi-meta">Present via Zoom: Theresa W., Lauren H.</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer</p>
+<h4 class="mi-section">Regular Reports</h4>
+<p>Last meeting’s minutes; accept and/or accept with modifications? (Tom J.) Kathy moved to accept them, Jason seconded, all voted ‘aye’</p>
+<p class="mi-report"><strong>Treasurer’s report (Jason H.); Jason summarized the income, expenses, donations to local organization, available cash, and prudent reserve since last month Literature and Chips report (Theresa W.); Theresa said that there was a shortage of 4 year and 8 year chips, so she ordered more. She listed some books (e.g., Living Sober) that were available and asked if they were approved by AA. Kathy had looked over the list of books and</strong></p>
+<p>said they were approved. There are some other books not approved by AA which could be donated to womens’ sober living, etc. Tom J. moved to donate these books, Kathy seconded, all voted ‘aye’</p>
+<p class="mi-report"><strong>Webmaster’s report (Lauren H.); Lauren said that she now had access to the site, but has to get familiar with the setup again. The group agreed that all AA meetings at 511 (e.g., breakfast club) should be listed there, as they are on the latest door posting and the pamphlets.</strong></p>
+<p class="mi-report"><strong>GSR Report (Monica F.); District had its Spring Picnic, panel event, and meeting on April 28 in Tiffin. Erin, the Alternate GSR, attended to see what a district meeting involves. Monica gavethe Melrose GSR report.</strong></p>
+<p>Managing keys to 511 (Erin S.); Erin was not present, so nothing new was available</p>
+<h4 class="mi-section">Old Business</h4>
+<p>White Boards (Tom J.): two new marker boards have arrived. Michael (graphic artist) has volunteered to apply ruling and lettering to boards.</p>
+<p>Randy, Tom J. and at least one other person will arrange to</p>
+<p>hang the boards when Michael’s work is complete.</p>
+<p>Melrose meeting date/times should be posted on website (make sure they align with 511 signage and Area 13 pamphlets)</p>
+<p>Old safety cards have been taken down; new one has been placed at the chairperson’s table.</p>
+<h4 class="mi-section">New Business</h4>
+<p>Kathy would like to donate a big screen TV to 511 Melrose. Randy will get a cart to move it around. The general idea would be to reinstate movie nights. Does anyone have an extra DVD player to donate?</p>
+<p>Other activities: Softball? Bart has organized this in the past.</p>
+<p>Other activities: Volleyball is beginning now every Sunday at 1:30 PM in Lower City Park. Greg C. has organized this.</p>
+<p>Other activities: How about another craft/art day? The last one was very successful.</p>
+<p>Other activities: How about a swim/pool day?</p>
+<p>Should we replace the blinds? They are getting unreliable. Kathy will discuss with Melrose, Inc.</p>
+<p>Painting the rooms? Someone talked directly with Melrose, Inc. but it must go through GC, then be approved by Melrose, Inc. Lauren H. expressed interest in helping. Michael has also said he will volunteer.</p>
+<p>Many of the chairs are in pretty bad shape. Does anyone have favorite sources for extra furniture? For example, University surplus, auction houses, Goodwill, Salvation Army, Stuff?</p>
+<p>Any feelings on spending limits? General consensus was that costs on individual projects be approved with some initial cost estimates.</p>
+<p class="mi-report"><strong>Intergroup picnic is Saturday, May 18 th 11 AM to 3 PM at Willow Creek Park, 1117 Teg Road; food at 11:30, meeting at 12:30.</strong></p>
+<p>Tom J. made the motion to adjourn; seconded by Angela, all voted “aye”.</p>
+<p class="mi-meta">Closed meeting with Serenity Prayer</p>
+<p class="mi-meta">Next Group Conscience meeting will be June 11, 2024 @ 7pm.@ 511 Melrose or attend via zoom.</p>
+<p>Posted</p>
+<p>Uncategorized</p>
+<p>Tags:</p>
+<p>/*</p>
+<p>* Get the site wrapper.</p>
+<p>*/</p>
+<p>if ( ! sibling ) {</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2024">Apr</span><span class="mt-label">April 2024</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Group Conscience minutes for April 9, 2024</p>
+<p class="mi-meta">Present: Kathy L., Brian N., Jason H., Becky B., Lauren H., Tom J. Theresa W.</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer</p>
+<h4 class="mi-section">Committee Reports</h4>
+<p class="mi-report"><strong>Treasurer’s Report: Kathy nominated Jason H as Treasurer due in part to his length of sobriety; someone seconded; votes were all “ayes”. Jason H. is now the Treasurer, he and Kathy are in the process of getting Jason access to the bank accounts and other details.</strong></p>
+<p class="mi-report"><strong>Literature and chip report: see discussion below</strong></p>
+<p class="mi-report"><strong>Webmaster’s report: see discussion below</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<p>Should Group Conscience pay for a Big Book when a new member joins Melrose Group? Cost to Melrose for each BB is $12. It was suggested that Big Books could be taken from the closet and the envelope in the book be put in the 7 th tradition safe to track how many books are given. If an individual prefers to pay for it, that would still be an option.  Discussion ensued.  Kathy made motion that present practice (a member of fellowship pays) should be continued; (someone) seconded; votes taken were all “ayes”.</p>
+<p>The cost to replace the two white boards on the south wall was discussed.  Tom had separately summarized two options (make vs. buy).  The group asked for a recommendation but Tom did not understand that.  A $500 budget was established for the replacement of these two boards with ready-made boards (i.e., with frames and trays).   Tom will explicitly make a recommendation and report back.</p>
+<p>Should the “safety statement” (currently taped to one of the marker boards) be placed in a frame?  Tom made the motion that it should be framed; Jason seconded, all votes were “ayes”.</p>
+<p>Spring clean up is this Saturday (April 13 th ).  We have all of the required equipment; need someone to remove old TVs and microwave from premises.</p>
+<h4 class="mi-section">New Business</h4>
+<p>Kathy said that one person had expressed concerns that Venmo contributions were “not anonymous”.  Lauren pointed out that when a donation is made through Venmo, the name used on that donation can be anything, independent of the donor’s account name or any other data associated with the donor’s account.  Lauren stated that PayPal may even be less “anonymous” in some regards.  Brian made a motion to continue to use Venmo as a donation mechanism; Jason seconded.  Voting was all “ayes”.</p>
+<p>The idea was brought up about putting all of the “Melrose” meetings on the 511melrosegroup.org web site.  Currently the Sunday 945 AM meeting is not included, also the Thursday 8 PM meeting is listed on the website but is not mentioned in the District 13 pamphlet.  Discussion on which “Melrose groups” should be covered by the 511melrosegroup.org page ensued.  Should all meetings physically held at 511 be represented?  Lauren made a motion to contact other groups to get permission; Tom seconded; all votes were “ayes”.  Kathy accepted action item to contact other groups to determine whether that group wants to have their meetings listed on the website.</p>
+<p>Theresa reported that she has ordered more books to place in the closet.  These are new books that we have not had before, so the fellowship will have more choices.</p>
+<p>Keys information is still being compiled. Ask Erin next time.  Becky stated that she has key #49 and will get it to Erin.</p>
+<p class="mi-report"><strong>Intergroup picnic is May 18 th at Willow Creek Park from 10 AM to 3 PM; food to start at 11 AM. Supplied food is TBD.  10 minute speaker will be Megan H.; other speaker(s) TBD</strong></p>
+<p>Kathy made the motion to adjourn; seconded by Becky, all voted “aye”.</p>
+<p class="mi-meta">Next Group Conscience meeting will be May 14, 2024 @ 7pm.@ 511 Melrose or attend via zoom.</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2024">Feb</span><span class="mt-label">February 2024</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-meta">Present: Kathy L, Theresa W., Jason, Erin, Mary, M. Lauren, Tom j</p>
+<p class="mi-meta">Absent: Becky B., Monic F., Micki</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer</p>
+<h4 class="mi-section">Committee Reports</h4>
+<p class="mi-report"><strong>Treasurer report-Kathy L.</strong></p>
+<p>$4000 prudent reserve, $8800. Still trying to find out quarterly donations for GSO, District, Intergroup, and is based on monies.</p>
+<p>Still needing someone to fill Treasurers position.</p>
+<p class="mi-report"><strong>Literature report-Theresa W.</strong></p>
+<p>BB and AA dictionaries will be ordered. Pamphlets ordered by Kathy L.</p>
+<p>Will try and find a place to display pamphlets so they are noticeable to fellowship and newcomers.</p>
+<p class="mi-report"><strong>Webmaster-Lauren</strong></p>
+<p>Will set up Venmo account on Melrose Group website for another alternative for donations.</p>
+<h4 class="mi-section">Old Business</h4>
+<p>Melrose chair script approved.</p>
+<p>Erin keys -will write contact info on the white board so she is contacted when key is passed to the next chair.</p>
+<h4 class="mi-section">New Business</h4>
+<p>Paying for books for new members that are unable to pay. Take out of basket?</p>
+<p>White boards – Do we need new white boards or can the old boards be cleaned up.</p>
+<p>Lauren and Erin volunteered to be the activity committee with recruits from fellowship.</p>
+<p>Books for newcomers unable to purchase BB. Shall Melrose take money out of the basket to pay for? Create a fund? Will discuss at next meeting.</p>
+<p>Meeting Adjourned 8pm.</p>
+<p class="mi-meta">Next Group Conscience meeting will be March 12, 2024 @ 7pm.@ 511   Melrose or attend via zoom.</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2024">Jan</span><span class="mt-label">January 2024</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-meta">Present: Theresa, Monica, Micki, Kathy, Jason</p>
+<p class="mi-meta">Absent:  Lauren, Becky</p>
+<p>Meeting opened with Serenity Prayer</p>
+<h4 class="mi-section">Committee Reports</h4>
+<p>Monica:   GSR</p>
+<p>GSR District meeting cancelled due to weather. A simplified version of the BB is being discussed for those that may benefit their journey from.</p>
+<p>Theresa:   Lit and Chips</p>
+<p>More chips will be ordered, currently there is a good supply of books. Pamphlets to be ordered by Kathy.</p>
+<p>Becky:  District</p>
+<p>No report</p>
+<p class="mi-report"><strong>Treasurer:  Kathy</strong></p>
+<p>Kathy is collecting the 7 th tradition to deposit.</p>
+<h4 class="mi-section">Old Business</h4>
+<p>A new time and day were discussed for GC to meet.</p>
+<p>All agreed to change monthly meetings to the</p>
+<p>second Tuesday of the month at 7PM. Attendance</p>
+<p>may be in person or zoom.</p>
+<p>Melrose Guidelines discussed since they were distributed to the fellowship. There were no complaints or issues relayed to Board. Motion was made to approve, motion seconded. Melrose Group Guidelines passed unanimously.</p>
+<p>Payments to GSO was discussed. Announcement will be typed up for chair to read at meetings Stating the GSO is financially down a million dollars. Any extra contributions would be appreciated to assist in decreasing their debt.</p>
+<p>Amount to submit as Melrose Group will be discussed at next meeting February 13, 7PM</p>
+<p>Review of Melrose meeting chair script was reviewed and discussed. Changes were incorporated and a motion was made then seconded to submit to fellowship for their review. We hope to vote an approval at the next meeting if there no issues or concerns from the fellowship.</p>
+<p>Looking for a new Treasurer.</p>
+<h4 class="mi-section">New Business</h4>
+<p>Erin would like to provide a more efficient way for key exchanges doe meeting chairs. Will discuss at next meeting.</p>
+<p class="mi-title">There will be a signup for email addresses for those that would like Group Conscience minutes sent to them.</p>
+<p>Respectfully Submitted,</p>
+<p>Kathy L.</p>
+<p>Posted</p>
+<p>Uncategorized</p>
+<p>511MelroseGroup</p>
+<p>Tags:</p>
+    </div></div>
+  </div>
+  <div class="minutes-year-label">2023</div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2023">Dec</span><span class="mt-label">December 2023</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p>5 people in attendance: Jeff Mc (zoom), Monica B, Kathy L, Brian, Jason</p>
+<p class="mi-meta">Called to order at 11:35</p>
+<p class="mi-report"><strong>Chair: Kathy let the meeting</strong></p>
+<p class="mi-report"><strong>Treasurer: Kathy announced that Ronnie stepped down from his position and she is acting as treasurer for the time being</strong></p>
+<p class="mi-report"><strong>Literature &amp; Chips: Theresa was absent and no report sent.</strong></p>
+<p class="mi-report"><strong>Secretary: Micki was sick but sent a report to Kathy. Monica volunteered to write these meeting minutes.</strong></p>
+<p class="mi-report"><strong>Intergroup: Becky was absent and no report sent.</strong></p>
+<p class="mi-report"><strong>Coffee (Jeff K): Absent, no report. Jeff is not expected to attend meetings.</strong></p>
+<p class="mi-report"><strong>Webmaster (Lauren): Absent – no report</strong></p>
+<p class="mi-report"><strong>GSR: Monica did not have anything new to report about district.</strong></p>
+<p class="mi-report"><strong>Alt-GSR: Erin was absent and no report.</strong></p>
+<p class="mi-report"><strong>Cakes (Molly): Absent. Not expected to attend meetings.</strong></p>
+<p class="mi-report"><strong>Key Committee: Vacant – no report</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<p>Melrose Guidelines were distributed by Kathy, reviewed and discussed by the group. Kathy and Monica will</p>
+<p>finalize rought draft and then bring it to the next GC for vote.</p>
+<p>Kathy brought up the topic of having a charge card for Melrose and will do some research on how other groups</p>
+<p>have done this.</p>
+<h4 class="mi-section">New Business</h4>
+<p>Monica proposed changes to Meeting Script which includes definition of crosstalk and adding a sentence about</p>
+<p>safety.</p>
+<p>“Please refrain from crosstalk during your share. Crosstalk is giving advice to others who have already shared,</p>
+<p>speaking directly to another person rather than to the group and questioning or interrupting the person</p>
+<p>speaking at the time.”</p>
+<p>“Melrose does not condone harassment or threatening behavior. If anyone feels uncomfortable or unsafe,</p>
+<p>please notify the chair or a trusted member in the room.”</p>
+<p>Monica made a motion to include these items and it was voted in.</p>
+<p>Motion made to adjourn, passes by majority.</p>
+<p class="mi-meta">Next Group Conscience: January 14, 2023 at 11:30 am</p>
+<p>Located at 511 Melrose House</p>
+<p>Agenda for next meeting:</p>
+<p>Credit card</p>
+<p>Discuss Melrose Guidelines</p>
+<p>Discuss contributing more funds to GSO- announce at meetings</p>
+<p>White board</p>
+<p>More pamphlets</p>
+<p>Posted</p>
+<p>Uncategorized</p>
+<p>511MelroseGroup</p>
+<p>Tags:</p>
+<p>/*</p>
+<p>* Get the site wrapper.</p>
+<p>*/</p>
+<p>if ( ! sibling ) {</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2023">Nov</span><span class="mt-label">November 2023</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-meta">Sunday, November 12, 2023</p>
+<p class="mi-title">Melrose Group Meeting Minutes</p>
+<p class="mi-meta">Sunday, November 12, 2023</p>
+<p class="mi-meta">Present: Kathy, Theresa, Jason, Micki, Brian, Erin, Mary, Donna, and Angie</p>
+<p class="mi-meta">Opened meeting with Serenity Prayer</p>
+<p>Discussion of guidelines and responsibilities of board members and to each other.</p>
+<p>Motion made by Erin to adopt a set of guidelines and responsibilities.  Micki 2nd the motion.   Majority passed.</p>
+<p>Kathy suggested a set length of sobriety to chair a meeting. Discussion</p>
+<p>Discussion of the length of term for the board members to serve. Erin made the motion for the chair, treasurer, and secretary to serve for the length of two years.  Other positions to serve for the term of one year. Jason 2nd the motion.  Majority passed. This will be revisited at next meeting.</p>
+<p>Brian volunteered to write the by-laws based our traditions.</p>
+<p>Jason and Donna volunteered to help.</p>
+<p>Kathy made the motion and Erin 2nd the motion. Majority</p>
+<p>passed.</p>
+<p>Jason made the motion to have another meeting for Brian, Jason, and Donna to meet. Brian 2nd.  Majority passed.</p>
+<p>Discussion to form committee to organize arranging Melrose activities.</p>
+<p>It is suggested event be approved by Melrose GC.</p>
+<p>How would we encourage service work in our fellowship?</p>
+<p>The next meeting will be on December 10 at 11:30 at Melrose or zoom.</p>
+<h4 class="mi-section">Old Business</h4>
+<p class="mi-title">Revisit length of time to serve on Melrose Group Conscience.</p>
+<p>Length of sobriety time to chair meetings.</p>
+<p>Ronnie to pass lit room key to Theresa and reimburse for money spent literature supplies and chips.</p>
+<p>Discuss for how to avoid members from spending personal funds to buy misc. supplies and having to wait for reimbursement.</p>
+<p>Respectfully submitted,</p>
+<p>Micki (Secretary)</p>
+<p>Posted</p>
+<p>Uncategorized</p>
+<p>511MelroseGroup</p>
+<p>Tags:</p>
+<p>/*</p>
+<p>* Get the site wrapper.</p>
+<p>*/</p>
+<p>if ( ! sibling ) {</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon y2023">Oct</span><span class="mt-label">October 2023</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Melrose Group Conscience 8 October 2023</p>
+<p>12 people in attendance: Jeff Mc, Ronnie W, Mya G, Teresa, Nate A, Monica B, Tom R, Marsha S, Kathy L, Erin, Micki, Jeff</p>
+<p class="mi-meta">Called to order at 11:34 am.</p>
+<p class="mi-report"><strong>Chair: Vacant – no report. Ronnie stepped in as temporary for this meeting.</strong></p>
+<p class="mi-report"><strong>Treasurer (Ronnie): (Report posted in main meeting room) Beginning balance in checking $5,302.76; prudent reserve $4,000.33. September deposits $1,100.33; expenses $1,141.77. Available balance after all outstanding checks paid: $5,750.67. Motion made to approve the Treasurer Report, passes by majority.</strong></p>
+<p class="mi-report"><strong>Literature &amp; Chips: Vacant – no report</strong></p>
+<p class="mi-report"><strong>Secretary: Vacant – no report</strong></p>
+<p class="mi-report"><strong>Intergroup (Becky B): Absent – no report</strong></p>
+<p class="mi-report"><strong>Coffee (Jeff K): Absent. The coffee, filters, etc. have been stocked routinely. Reminder – please call Jeff K</strong></p>
+<p>(number listed on front of coffee closet) before we are down to the last can so that he has lead time to restock.</p>
+<p class="mi-report"><strong>Webmaster (Lauren): Absent – no report</strong></p>
+<p class="mi-report"><strong>GSR: (Monica) – she has been attending District meetings. A District picnic was held recently in Muscatine. She will be out of town soon and we need an Alt GSR to pick up her duties when she’s away.</strong></p>
+<p class="mi-report"><strong>Alt-GSR: OPEN</strong></p>
+<p class="mi-report"><strong>Cakes (Molly): Absent. The cupcakes are wonderful.</strong></p>
+<p class="mi-report"><strong>Key Committee: Vacant – no report</strong></p>
+<p>Former key committee of Marry M, Ronnie W and Tom R has been keeping the keys organized. Ronnie has the key binder, and it is up to date. He will pass it along to the next Key person.</p>
+<h4 class="mi-section">Old Business</h4>
+<h4 class="mi-section">Topic: None</h4>
+<h4 class="mi-section">New Business</h4>
+<p>Elections for Vacant Service Positions:</p>
+<p class="mi-report"><strong>Chair: Kathy L volunteered for the position. Nomination of Kathy L made and seconded. Motion to approve Kathy L as Chair of the Group Conscience passes by majority.</strong></p>
+<p class="mi-report"><strong>Chips and Literature: Teresa volunteered for the position. Nomination of Teresa made and seconded. Motion to approve Teresa as Chips and Lit person passes by majority.</strong></p>
+<p class="mi-report"><strong>Secretary: Micki volunteered for the position. Nomination of Micki made and seconded. Motion to approve Micki as Secretary of the Group Conscience passes by majority.</strong></p>
+<p class="mi-report"><strong>Alt GSR: Erin volunteered for the position. Nomination of Erin made and seconded. Motion to approve Erin as Alt GSR passes by majority.</strong></p>
+<p class="mi-report"><strong>Keys: Erin volunteered for the position. Nomination of Erin made and seconded. Motion to approve Erin as Key person passes by majority.</strong></p>
+<p>Ronnie posted a list for new service people to put their name, email address and phone number so that we have the information for the group.</p>
+<p>Topics for future discussion:</p>
+<p> Is Becky B still interested in serving as Intergroup Representative? Is Lauren still interested in managing the website? We need to confirm.</p>
+<p> Length of Service Positions? This needs to be specified by the Group Conscience.</p>
+<p> Should we adopt a set of by-laws?</p>
+<p> Tom R suggests that the group resume doing events such as fall/spring clean up days, and other events such as Christmas and Thanksgiving meals. The group will discuss and appoint committees to organize these events.</p>
+<p class="mi-title"> Tom R also suggests that Melrose Group Conscience could work with the board of 511 Melrose Inc. to possibly fund a new air conditioning system, which has been needed for some time. Jeff Mc, the Treasurer of 511 Inc, responded that the board has gathered estimates for a new system and is planning to act on those in the spring. At that time, the 511 Inc Board will reach out to groups, and to the church that owns the building, for funding assistance.</p>
+<p>Motion made to adjourn, passes by majority.</p>
+<p class="mi-meta">Next Group Conscience: 12 November 2023 at 11:30 am</p>
+<p>Located at 511 Melrose House</p>
+    </div></div>
+  </div>
+  <div class="minutes-year-label">2020 – 2022</div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon yold">Jan</span><span class="mt-label">January 2022</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Melrose Group Conscience</p>
+<p class="mi-meta">9 Jan 2022</p>
+<p class="mi-meta">Present: 8 people in attendance: Monica, Laura L Zoom: Ali, Ronnie, Laura H, Jeff Mc, Joel, Jenny B (Mary &amp; Suzanne in attendance after 11:30 am)</p>
+<p class="mi-meta">Called to order at 11:30 am</p>
+<p class="mi-report"><strong>Chair (Ali): Laura L acting as chair in person since Ali is on zoom due to Covid risks</strong></p>
+<p class="mi-report"><strong>Treasurer (Suzanne): See attached report. Current balance is $3234.58, not including outstanding so $1494.58. Prudent  reserve has remained at $4000.38. We are receiving money and envelopes for books. Laura is owed reimbursement for  coffee. Got a donation from the Together We Can Make It meeting for $15. PayPal donations haven’t been active. Kate D  will need to be repaid for Zoom if we decide to continue. Suggestion to table Zoom decision for now. Unanimously  accepted secretary’s report</strong></p>
+<p class="mi-report"><strong>Literature &amp; Chips (Laura L): Doing fine, next month will need to order more books. We are down to one box. Secretary (Ali): Read minutes from last meeting. Jeff Mc moved to accept report as read. Laura H seconded and it was  accepted unanimously.</strong></p>
+<p class="mi-report"><strong>Intergroup (Monica): Attendance is down. They are working on the website to make it easier and communicating events  and open positions better. Motion to accept report made by Suzanne, second by Jeff Mc. Unanimously accepted. Coffee (Jeff K): Absent. Laura L has not seen or heard from the coffee chair. We have signs saying attendees can bring  their own cups.</strong></p>
+<p class="mi-report"><strong>Webmaster (Susan J): present, no report. Monica will join Susan on working on the website. GSR: (Ronnie): present, no report</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<h4 class="mi-section">Topic: Zoom meeting audit</h4>
+<p>Ali audited the meetings and the only active and attended meetings are 9:30 am T/Th. We will  encourage attendees of those meetings to attend the next Group Conscience.</p>
+<h4 class="mi-section">Topic: Friday 8PM Meeting</h4>
+<p>Stan and Pat have given up this meeting and turned in keys. This meeting is no longer active and has been removed from the list.</p>
+<h4 class="mi-section">Topic: Women’s Meeting at Tuesday 6PM</h4>
+<p>Monica brought up that the Women’s Meeting should be moved from 6PM to avoid confusion.  Perhaps Thursday at 7:30? Tabled</p>
+<h4 class="mi-section">Topic: Chairperson sign-up</h4>
+<p>People don’t understand board for sign-ups. Proposed sign-up sheet by chairperson’s seat for chairpersons to  sign-up. Keys are not being returned and 511 Inc may have to buy new keys for $1000.</p>
+<p>Laura L proposes buying a new whiteboard. Unanimous in buying a new whiteboard. Ali will modify the current  sign-up whiteboard to create a template for a new whiteboard. Current whiteboard is 4’x6’. We will do this in nicer  weather,</p>
+<h4 class="mi-section">Topic: Chairperson time requirement and time requirement for key</h4>
+<p>Chairperson requirement used to be two people and 90 day requirement. We haven’t enforced it. Time  requirement for a key would be 90 days minimum. Time requirement for a chairperson 90 days minimum. Time  requirement to be a co-chair who does not hold the keys or chair alone. Ali will print out a sheet with the rules and a  sign-up for chairpersons and keys, and to get or return a key, contact Laura L.</p>
+<p>More key discussion. We don’t get any more keys than we have and we only worry about our keys. The key  issue is a 511 Inc issue. Next 511 Inc meeting is Sunday at 9:30 am. The house doesn’t have any internet connection  which would allow for a keypad entry.</p>
+<h4 class="mi-section">New Business</h4>
+<h4 class="mi-section">Topic: Disruptive member making threats, making procedure for dealing with disruptive attendees Joel has been threatened by Brian B. , former bus driver fired for inappropriate behavior. They had  to lock him out of the house. Joel called 911 and the city on him but he left. Before the police arrived at the house. Joel  gave a report to the police. He has threatened Monica with extortion and with stealing her dog. Discussion ensued. There  are many more individuals who feel unsafe at meetings because of disruptive and dangerous behavior. Mary asked if 511 Inc safety policy is the same. It is and is posted at Melrose. The chairperson of the meeting has  the right to call the police on an individual for trespassing. It would be the same as if someone came to your house and  wouldn’t leave if asked. This also applies to the parking lot.</h4>
+<p>Doug discusses the fact that chairpersons are not educated in their rights and managing a meeting. Ali read GSO  guidance on safety issues. Mary and Doug will write something up to help guide chairpersons. Laura L and Ali will  modify chairpersons’ script. Ronnie discusses that the protocol is to call the police. Doug mentions that chairpersons</p>
+<p>do not know their role. “Our common welfare comes first, disruptive members will be asked to leave.” We need to  destigmatize calling the police.</p>
+<p>Laura H mentions that when someone is asked to leave a meeting to report that to the Group Conscience, board,  and 511. Inc. Laura H will send previous protocol to the group.</p>
+<p>Mary mentions that Brian is experiencing a mental health crisis and should seek help, Joel agrees and wants him  to seek help. Mary suggests approaching Brian and letting him know that the Group Conscience is concerned. Doug will  do it. Monica will give Doug and Laura L his phone number. If this warning is not effective, we will discuss further actions  to maintain safety of the group and its members.</p>
+<h4 class="mi-section">Topic: Melrose FB Page</h4>
+<p>Monica would like a Melrose Group FB page. Laura L suggests that she work on that with Susan when they are  working on the website. Discussion ensued. Ronnie asked why we would have another FB page when the unaffiliated one  is working fine and is worried current members would not join the new group who are members of the “what’s up” FB  group. More discussion ensued. Monica will create a plan for the FB group for next month. Tabled. Topic: Meeting Lists</p>
+<p>Joel mentioned that meetings listed on a third-party app are inaccurate. We have no way of changing or  controlling third-party apps and they are not responsive if we try. The Melrose group website has inactive meetings  listed, which Susan J and Monica will work on. As intergroup rep, Monica is working on having the Intergroup  webmaster take down inactive meetings. Having these inactive meetings listed directly harms newcomers and goes  against our primary purpose. We often run out of hard-copy meeting lists and it would be beneficial to have the pdf of  the meeting list from intergroup so that we could print them out if needed and include it on our website.</p>
+<p>Motion to adjourn made by Jeff Mc, Doug seconded.</p>
+<p class="mi-meta">Adjourned at 12:51 pm</p>
+    </div></div>
+  </div>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon yold">Jul</span><span class="mt-label">July 2021</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Melrose Group Conscience</p>
+<p class="mi-meta">11 July 2021</p>
+<p class="mi-meta">Present: 9 people in attendance: Laura L, Laura H, Nikki, Susan J, Jeff Mc, Brett, David B, Ali B Zoom: Matt N Called to order at 11:34 am</p>
+<p class="mi-report"><strong>Chair (vacant): Laura L volunteered to chair until a new chairperson is found.</strong></p>
+<p class="mi-report"><strong>Treasurer (Suzanne): absent, Ali will take a picture of the report and include it in the report. Available balance as of July  11, 2021 is $2272.07.</strong></p>
+<p class="mi-report"><strong>Literature &amp; Chips (Laura L): We need more chips. Literature is not going out as fast as the chips are. Envelopes to pay  for the books are in each book, and they should be paid upon receipt. Chip order would be around $200. The plan is to  get the raised white chips with the serenity prayer on it. Everyone was in favor of ordering chips. People are taking  chips without giving them to anyone in the meeting.</strong></p>
+<p class="mi-report"><strong>Secretary (Ali): Read report from last meeting.</strong></p>
+<p class="mi-report"><strong>Intergroup (Ronnie W): Ronnie attended the last intergroup meeting attendance has been low. The intergroup event  planned for August 9th has been indefinitely postponed due to lack of people/interest. Nikki added that they are looking  to do a Fall picnic in October. Ronnie has continued to keep the intergroup webmaster updated to meeting changes. Coffee (Jeff K): absent. Jeff Mc will reach out and see if he wants to resume his position.</strong></p>
+<p class="mi-report"><strong>Webmaster (Susan J): Susan will post the minutes, and Laura H will help. They are also trying to upload new events to  the website.</strong></p>
+<p>GSR/ alt-GSR Report: vacant positions, no report</p>
+<h4 class="mi-section">Old Business</h4>
+<h4 class="mi-section">Topic: Coffee Maker</h4>
+<p>The previous coffee maker was taken apart and cleaned by Matt N, but it was found to be in disrepair and not  worth the cost to fix. Matt took it apart twice. There was a lot of lime inside, but the seals were broken and the tube for  the tank had corroded where it attached to the tank. Matt downloaded the service manual, and the problem was the  quality of the water without a commercial grade water filter. It was also missing pieces and calcified, the stainless steel  was fine, but not the brass. The coffee maker would do best being washed once a week. A new coffee machine is likely  the best course of action.</p>
+<p>Jeff Mc head that Seth D, who is in the restaurant business, is willing to donate a coffee maker. It is twice the size  of the last coffee maker, and can make two pots of coffee at once. It has been in storage. 511 Inc will provide the filter. We may need to move the microwave to the other room.</p>
+<p>Jeff Mc moves to let Matt recycle the coffee maker in any way he can, Susan J seconds. All approve. Laura H moves to accept the accept the coffee maker, Susan J seconds. All approve.</p>
+<h4 class="mi-section">Topic: Cake</h4>
+<p>Laura L talked to Laurie and she is fine with pre-packaged treats. Laura L can pick them up on the way to the  birthday meeting.</p>
+<p>We need to let 511 know that we have a coffee maker to be installed and need a filter on the water line. Laura L  will meet Seth and bring the coffee maker here. Laura will let Jeff and 511 know. We have a lot of disposable cups, and  we will encourage people to bring their own cups to meetings. Jeff will make a sign for that. New Business</p>
+<h4 class="mi-section">Topic: New Meetings</h4>
+<p>Two people added an 8 PM Friday meeting, Kevin has a key but hasn’t attended a group conscience to formally  petition for the meeting.</p>
+<p>Brett asked about starting a meeting separate meeting from Melrose group. Since this group conscience and  group would be unaffiliated, as Brett wanted, we directed him to the 511 Inc meeting next Sunday. Nikki and Jim would like to start chairing Wednesday at 6 PM. Nikki was present to petition for this meeting. Laura  H makes a motion to start the Wednesday 6 PM, Jeff seconded. They will start August 1st. It will be announced on the  local websites.</p>
+<p>Motion to adjourn made by Jeff Mc, Laura H. seconded.</p>
+<p class="mi-meta">Adjourned at 12:08 pm</p>
+    </div></div>
+  </div>
+  <a href="https://drive.google.com/file/d/1922FJut9cX9wKmjvdc317Fev-jJBnWjA/view?usp=sharing" class="minutes-link fade-in" target="_blank"><span class="minutes-icon yold">Feb</span>February 2021 <span class="mi-format-badge">PDF</span><span class="dl-arrow">&darr;</span></a>
+  <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
+    <button class="minutes-trigger"><span class="minutes-icon yold">Jan</span><span class="mt-label">January 2021</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
+    <div class="minutes-body"><div class="minutes-inner">
+<p class="mi-title">Melrose Group Conscience</p>
+<p class="mi-meta">10 January 2021</p>
+<p class="mi-meta">Present: 10 people in attendance: Susan J, Laura B, , Laura L, Zoom: Ronnie W, Ali B, Shane, Marsha, Barb, Jeff MC, and Valarie L</p>
+<p class="mi-meta">Called to order at 11:41 am</p>
+<p class="mi-report"><strong>Chair Report: no report</strong></p>
+<p class="mi-report"><strong>Treasurers report: Stan paid December rent to 511 Inc. Kate decided to step down, Stan temporarily acting as Treasurer. Having tax attorney look at records and providing guidance. Jeff MC asked how much rent was paid. The amount paid for rent and current balance is unknown.</strong></p>
+<p class="mi-report"><strong>Secretary Report: Minutes were read by Ali B, incoming secretary, from last meeting. Minutes taken by Laura B as departing secretary. Question by Ali about whether or not PayPal being set up was passed. Question by Jeff MC on whether the phone line was disconnected, the answer is unknown.</strong></p>
+<p class="mi-report"><strong>Literature Report: Laura L has not made a literature order. The Breakfast Club (which meets at 6 AM Mon-Sat at 511 Melrose) will be donating $100 to the Melrose Group for chips, since they have been using the Melrose Group chips. Laura will make a literature and chips order.</strong></p>
+<p class="mi-report"><strong>Intergroup Report: Ronnie W: NYE party with panel and sobriety countdown went well, collected $182 from PayPal donations and $230 from Venmo donations. There was a good turnout with more than 100 people. Half of the donations went to Intergroup and half went to IAYPAA. The intergroup current balance is $3059.66. $1005 was previously donated to Melrose Group through the now-defunct intergroup GoFundMe. The intergroup GoFundMe has been shut down, there is still a balance available for groups to request from, but it will be closed soon.</strong></p>
+<p class="mi-report"><strong>GSR/ alt-GSR Report: no report, vacant positions</strong></p>
+<h4 class="mi-section">Old Business</h4>
+<h4 class="mi-section">Topic: Website</h4>
+<p>Discussion ensued. Barb asks if it would be possible to create a Facebook page instead of a website for Melrose Group Conscience. Barb asks about repetition of information since there is an intergroup website and cautions that it can get complicated when things are parsed out. Jeff MC asks if Melrose group could just have a tab on the intergroup website. Susan says that she would like a link on the intergroup website but thinks it would muddy the waters to have it on the intergroup website when it comes to donations. Suzanne agrees that Melrose should have a separate website, but believes it is important to have a link for the Melrose group website on the intergroup website.</p>
+<p>Motion by Laura B to set up a Melrose group website, which Susan J has volunteered to build and be Webmaster. Valarie L seconded. Motion passed unanimously. Matt N. volunteered to help Susan with the website.</p>
+<h4 class="mi-section">Topic: PayPal</h4>
+<p>Request for temporary treasurer. Suzanne is interested. Laura L would be helping the treasurer with all of the technical issues involving bank account and PayPal. Suzanne volunteers to be treasurer for a one-year position. Suzanne is elected treasurer unanimously.</p>
+<p>Suzanne will set up PayPal account, and meet with Laura L this week. Laura L and Laura B will also set up a Gmail account to link the PayPal account. Mary R offers to help Suzanne with tax and non-profit status.</p>
+<h4 class="mi-section">New Business</h4>
+<h4 class="mi-section">Topic: Removing Zoom Meetings from the website which aren&#x27;t attended</h4>
+<p>Ali B. brought up that the possibility that Saturday Zoom 6 PM and 8 PM be removed from the intergroup website. Discussion ensued. Consensus that the meetings should be removed if they aren&#x27;t attended. Ronnie W will contact the intergroup webmaster about removing the meetings the meeting list and making sure the meetings on the website are correct.</p>
+<p>Motion to adjourn made by Susan J, Suzanne seconded.</p>
+<p class="mi-meta">Adjourned at 12:32 pm</p>
+    </div></div>
+  </div>
+  <a href="https://drive.google.com/file/d/1p6bmg4cJ7ztbY_9nvO_vD3IEppXXZovu/view?usp=sharing" class="minutes-link fade-in" target="_blank"><span class="minutes-icon yold">Dec</span>December 2020 <span class="mi-format-badge">PDF</span><span class="dl-arrow">&darr;</span></a>
+  <a href="https://drive.google.com/file/d/1MSZiQdCFHvf-WpI8kdnsr0YP7vxCDz0R/view?usp=sharing" class="minutes-link fade-in" target="_blank"><span class="minutes-icon yold">Nov</span>November 2020 <span class="mi-format-badge">PDF</span><span class="dl-arrow">&darr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ GUIDELINES ═══════ -->
+<section id="guidelines">
+  <div class="container">
+    <div class="section-label">Governance</div>
+    <h2 class="section-title">Melrose Group Guidelines</h2>
+    <p class="section-intro">How our group operates — chairperson expectations, Group Conscience structure, officer positions, and our safety commitment.</p>
+
+    <div class="guidelines-box fade-in">
+      <div class="mission">Each Alcoholics Anonymous Group ought to be a spiritual entity having but one primary purpose — to carry the message to the alcoholic who still suffers.</div>
+
+      <h3>I. Meeting Chairpersons</h3>
+      <ul>
+        <li>All chairs should have three months of sobriety and have attended meetings for three months (excludes treatment meetings).</li>
+        <li>There is one numbered key for each meeting. When one person stops chairing and another starts, the key should transfer to the new person, and the Key Coordinator should be notified. Key numbers are on the whiteboard.</li>
+        <li>Every three months, there is an opportunity to rotate. The whiteboard will indicate who wants to take over for the next quarter. The spirit of rotation is encouraged.</li>
+        <li>It is suggested that the AA Melrose Chair Script be followed as written.</li>
+        <li>The chair should arrive thirty minutes before the start of the meeting to unlock the door, make coffee, and greet members as they arrive.</li>
+        <li>After each meeting, chairs are responsible for washing the dishes and coffee pots, turning off the coffee, making sure everyone is out of the building at the end of the meeting, and locking the door.</li>
+        <li>If there is a disruption during the meeting, you may ask the person to leave or get help from another alcoholic. It is not against AA traditions to call the police if safety is a concern.</li>
+      </ul>
+
+      <h3>II. Group Conscience</h3>
+      <ul>
+        <li>Group Conscience allows everyone to be an equal member of the group. We should not have designated or self-appointed "decision makers."</li>
+        <li>Any member that attends Group Conscience and considers Melrose Group their home group may vote.</li>
+        <li>Group Conscience meets once a month and may schedule additional meetings as needed. Members may attend in person or via Zoom (if available).</li>
+        <li>Members holding positions should have a report to share with the group.</li>
+        <li>Members who hold positions should arrive on time for each meeting. If unable to attend, please send a report to the Secretary at least 24 hours before the meeting.</li>
+        <li>If a member is absent more than 30% of meetings per year (without a report sent), Group Conscience may reconsider their membership and vote to replace that member.</li>
+      </ul>
+
+      <h3>III. Group Conscience Positions</h3>
+      <p>For officer positions, we look for the same character qualities that mark a good trusted servant: patience, understanding, and a firm determination to place principles before personalities.</p>
+
+      <h4>Group Conscience Chair <span style="font-size:0.85rem;color:var(--text-light);font-family:'Source Sans 3',sans-serif;font-weight:400;">— 2-year commitment · 2 years sobriety</span></h4>
+      <ul>
+        <li>Requires previous experience holding other position(s) on Group Conscience.</li>
+        <li>Creates an agenda for each meeting, facilitates the meetings, and coordinates activities with other group officers.</li>
+        <li>Communicates the news of Group Conscience meetings to the Melrose meetings.</li>
+      </ul>
+
+      <h4>Secretary <span style="font-size:0.85rem;color:var(--text-light);font-family:'Source Sans 3',sans-serif;font-weight:400;">— 2-year commitment · 2 years sobriety</span></h4>
+      <ul>
+        <li>Records the minutes during Group Conscience meetings, types up the minutes, and emails them to the board within a few days.</li>
+        <li>Prints minutes for the Melrose bulletin board.</li>
+        <li>Receives officer reports from those who cannot attend and reads them to the group.</li>
+      </ul>
+
+      <h4>Treasurer <span style="font-size:0.85rem;color:var(--text-light);font-family:'Source Sans 3',sans-serif;font-weight:400;">— 2-year commitment · 2 years sobriety</span></h4>
+      <ul>
+        <li>Creates a monthly financial report to print and distribute at Group Conscience.</li>
+        <li>After the group's basic needs are met (rent, literature, refreshments), participates in the financial support of the Fellowship by sending money to Intergroup, Area/District, and the General Service Board.</li>
+        <li>Documents all expenditures for literature, chips, coffee, and other group expenses.</li>
+        <li>Maintains prudent reserve.</li>
+      </ul>
+
+      <h4>Literature and Chips <span style="font-size:0.85rem;color:var(--text-light);font-family:'Source Sans 3',sans-serif;font-weight:400;">— 1-year commitment · 1 year sobriety</span></h4>
+      <ul>
+        <li>Tracks the need for books, pamphlets, and chips. Orders from AA.org when necessary and keeps invoices for reimbursement.</li>
+      </ul>
+
+      <h4>Intergroup Representative <span style="font-size:0.85rem;color:var(--text-light);font-family:'Source Sans 3',sans-serif;font-weight:400;">— 1-year commitment · 1 year sobriety</span></h4>
+      <ul>
+        <li>Attends all Intergroup meetings.</li>
+        <li>Represents Melrose Group, relaying current information between Melrose and Intergroup at each Group Conscience meeting.</li>
+      </ul>
+
+      <h4>Keys Coordinator <span style="font-size:0.85rem;color:var(--text-light);font-family:'Source Sans 3',sans-serif;font-weight:400;">— 2-year commitment · 1 year sobriety</span></h4>
+      <ul>
+        <li>Records key numbers for each meeting and ensures new chairs receive the key from previous chairs.</li>
+        <li>A record of key numbers and meeting chairs is written in the Key Binder. Each key costs the group $50, so lost or unaccounted-for keys are the responsibility of the chair who held it.</li>
+      </ul>
+
+      <h4>Webmaster <span style="font-size:0.85rem;color:var(--text-light);font-family:'Source Sans 3',sans-serif;font-weight:400;">— 2-year commitment · 1 year sobriety</span></h4>
+      <ul>
+        <li>Gathers needed passwords and logins for 511melrosegroup.org.</li>
+        <li>Maintains website, adding current events, Melrose news, and current meeting minutes.</li>
+        <li>Makes meeting adjustments on the website when meetings are added, removed, or times change.</li>
+      </ul>
+
+      <h4>GSR (General Service Representative) <span style="font-size:0.85rem;color:var(--text-light);font-family:'Source Sans 3',sans-serif;font-weight:400;">— 2-year commitment · 2 years sobriety</span></h4>
+      <ul>
+        <li>Active participation in Melrose Group is required, with a good understanding of the 12 Traditions.</li>
+        <li>The GSR is Melrose Group's link to AA as a whole. Attends district meetings and area assemblies.</li>
+        <li>Sees to it that Melrose Group's conscience on matters of importance becomes a part of the consensus at the annual Conference meeting.</li>
+      </ul>
+
+      <h4>Alternate GSR</h4>
+      <ul>
+        <li>Attends district meetings when the GSR is unavailable.</li>
+        <li>Works closely with the GSR to be a knowledgeable replacement.</li>
+      </ul>
+
+      <div class="safety-card">
+        <h4>IV. Safety Card (from GSO)</h4>
+        <p>A.A. membership does not include having to tolerate sexual harassment, threats of violence, financial coercion, or bullying. Nor is pressuring A.A. members into a particular point of view or belief relating to medication, religion, and other outside issues acceptable.</p>
+        <p>No one should have to tolerate racial, sexual orientation, gender, age, or other discrimination when they seek help from AA.</p>
+        <p>It is not against A.A. tradition to call the police or discuss an incident with a sponsor, Group Conscience member, or trusted friend for guidance.</p>
+        <p>Anonymity is not a cloak protecting criminal behavior. The same laws that apply to the public also apply to AA meetings.</p>
+        <p><strong>Please tell the meeting chairperson or another trusted member in the room if you need support.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ 7TH TRADITION / DONATE ═══════ -->
+<section id="donate">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="section-label">7th Tradition</div>
+    <h2 class="section-title">Support Melrose Group</h2>
+    <p class="section-intro">"Every A.A. group ought to be fully self-supporting, declining outside contributions." Your generosity keeps the lights on, the coffee hot, and the doors open for the next person who walks in.</p>
+    <div class="donate-buttons">
+      <a href="https://www.paypal.com/paypalme/melrosegroup" class="donate-btn" target="_blank" rel="noopener">&#36;&nbsp; Donate via PayPal</a>
+      <a href="https://venmo.com/u/melrosegroup511" class="donate-btn" target="_blank" rel="noopener">&#36;&nbsp; Donate via Venmo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>511 Melrose Group</h3>
+      <p>511 Melrose Ave, Iowa City, IA 52240<br>Meetings every day of the week.<br><br>Alcoholics Anonymous is a fellowship of people who share their experience, strength and hope with each other that they may solve their common problem and help others to recover from alcoholism.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Meetings</h4>
+      <a href="#meetings">Schedule</a>
+      <a href="#new-to-aa">New to AA?</a>
+      <a href="#resources">Resources</a>
+      <a href="#events">Events</a>
+    </div>
+    <div class="footer-links">
+      <h4>Group</h4>
+      <a href="#minutes">GC Minutes</a>
+      <a href="#guidelines">Guidelines</a>
+      <a href="#donate">7th Tradition</a>
+      <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" target="_blank">Directions</a>
+    </div>
+    <div class="footer-links">
+      <h4>AA Links</h4>
+      <a href="https://www.aa.org/" target="_blank" rel="noopener">aa.org</a>
+      <a href="https://aaiowacity.org/" target="_blank" rel="noopener">Iowa City Intergroup</a>
+      <a href="https://iadistrict13aa.org/" target="_blank" rel="noopener">Iowa District 13</a>
+      <a href="https://www.aa.org/meeting-guide-app" target="_blank" rel="noopener">Meeting Guide App</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>A.A. World Services, Inc. has not approved, endorsed, or reviewed this website, nor is it affiliated with it.<br>
+    The ability to link to A.A.W.S.' site does not imply otherwise. &copy; 2026 511 Melrose Group, Iowa City, IA</p>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 50);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+});
+
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (pageYOffset >= s.offsetTop - 100) current = s.getAttribute('id'); });
+  navLinks.forEach(l => { l.classList.remove('active'); if (l.getAttribute('href') === '#' + current) l.classList.add('active'); });
+});
+</script>
+</body>
+</html>
