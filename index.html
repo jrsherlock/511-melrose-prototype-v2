@@ -167,7 +167,7 @@
   .meeting-detail { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-medium); }
   .meeting-detail .icon { flex-shrink: 0; width: 18px; text-align: center; color: var(--sage); font-weight: 600; }
   .meeting-tag {
-    display: inline-block; margin-top: 12px; padding: 4px 12px; border-radius: 20px;
+    display: inline-block; margin-top: 12px; margin-right: 6px; padding: 4px 12px; border-radius: 20px;
     font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
   }
   .tag-open { background: rgba(107, 143, 113, 0.12); color: var(--sage); }
@@ -565,19 +565,34 @@
         <div class="meeting-detail"><span class="icon">&#9716;</span> 6:00 AM — Every Day</div>
         <div class="meeting-detail"><span class="icon">&#9900;</span> Start your morning with the fellowship. Coffee is always on.</div>
         <span class="meeting-tag tag-open">Open</span>
+        <span class="meeting-tag tag-beginner">Daily Reflections</span>
       </div>
       <div class="meeting-card fade-in">
         <div class="meeting-name">Melrose Group</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Sun 8 AM · Mon–Fri 12:10 PM · Mon–Sat 6 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Tue &amp; Wed 8 PM · Fri 9:30 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Our flagship meetings — discussion, speaker, and topic formats.</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> <strong>Open:</strong> Sun 8 AM · Mon–Fri 12:10 PM · Fri 6 &amp; 9:30 PM · Sat 9:30 AM &amp; 6 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> <strong>Closed:</strong> Tue 8 PM · Wed 6 &amp; 8 PM · Thu 6 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Our flagship meetings — discussion format throughout the week.</div>
+        <span class="meeting-tag tag-open">Open</span>
+        <span class="meeting-tag tag-closed">Closed</span>
+      </div>
+      <div class="meeting-card fade-in">
+        <div class="meeting-name">Beginner's Meeting</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Monday at 6:00 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Designed for people new to AA. Questions welcome, no experience needed. A great first meeting.</div>
+        <span class="meeting-tag tag-open">Open</span>
+        <span class="meeting-tag tag-beginner">Beginner-Friendly</span>
+      </div>
+      <div class="meeting-card fade-in">
+        <div class="meeting-name">Melrose Co-ed Meeting</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Tuesday at 6:00 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Open discussion meeting welcoming men and women.</div>
         <span class="meeting-tag tag-open">Open</span>
       </div>
       <div class="meeting-card fade-in">
-        <div class="meeting-name">Monday Beginner's Meeting</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Monday at 6:00 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Designed for people new to AA. Questions welcome, no experience needed. A great first meeting.</div>
-        <span class="meeting-tag tag-beginner">Beginner-Friendly</span>
+        <div class="meeting-name">Blue Noon Group</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Wednesday &amp; Friday at 12:10 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Midweek noon discussion meeting.</div>
+        <span class="meeting-tag tag-open">Open</span>
       </div>
       <div class="meeting-card fade-in">
         <div class="meeting-name">LGBTQ Meeting</div>
@@ -587,15 +602,23 @@
       </div>
       <div class="meeting-card fade-in">
         <div class="meeting-name">Together We Can Make It</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Saturday at 9:30 AM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Saturday morning discussion group.</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Sunday at 9:45 AM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Sunday morning discussion group.</div>
         <span class="meeting-tag tag-open">Open</span>
       </div>
       <div class="meeting-card fade-in">
-        <div class="meeting-name">Flimsy Reed Big Book Study</div>
+        <div class="meeting-name">Flimsy Reed Big Book Study Group</div>
         <div class="meeting-detail"><span class="icon">&#9716;</span> Sunday at 6:00 PM</div>
         <div class="meeting-detail"><span class="icon">&#9900;</span> Reading and discussing AA's foundational text, chapter by chapter.</div>
-        <span class="meeting-tag tag-closed">Closed</span>
+        <span class="meeting-tag tag-open">Open</span>
+        <span class="meeting-tag tag-beginner">Big Book</span>
+      </div>
+      <div class="meeting-card fade-in">
+        <div class="meeting-name">Poca a Poca</div>
+        <div class="meeting-detail"><span class="icon">&#9716;</span> Saturday at 4:00 PM</div>
+        <div class="meeting-detail"><span class="icon">&#9900;</span> Reunión en español. Spanish-language discussion meeting.</div>
+        <span class="meeting-tag tag-open">Open</span>
+        <span class="meeting-tag tag-beginner">Español</span>
       </div>
     </div>
     <div class="quote-block fade-in" style="margin-top:48px;">
@@ -667,16 +690,21 @@
       <a href="https://www.aa.org/what-is-aa" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Pamphlet</div><h4>Is A.A. for You?</h4><p>Twelve questions only you can answer. If you're wondering whether you belong in AA, this short read may help.</p><span class="arrow">Read at aa.org &rarr;</span></a>
       <a href="https://www.aa.org/questions-and-answers-sponsorship" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Pamphlet</div><h4>Questions &amp; Answers on Sponsorship</h4><p>What is a sponsor? How do you find one? This pamphlet answers 34 common questions.</p><span class="arrow">Read at aa.org &rarr;</span></a>
       <a href="https://www.aagrapevine.org/" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Magazine</div><h4>AA Grapevine</h4><p>AA's international monthly magazine since 1944. Personal stories, humor, and reflections from members worldwide.</p><span class="arrow">Visit aagrapevine.org &rarr;</span></a>
+      <a href="https://www.aa.org/assets/en_US/smf-121_en.pdf" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">PDF</div><h4>The Twelve Steps</h4><p>A one-page summary of AA's Twelve Steps — the spiritual foundation of personal recovery.</p><span class="arrow">Download PDF &rarr;</span></a>
+      <a href="https://www.aa.org/assets/en_US/smf-122_en.pdf" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">PDF</div><h4>The Twelve Traditions</h4><p>The principles that keep AA groups unified and focused on their primary purpose.</p><span class="arrow">Download PDF &rarr;</span></a>
+      <a href="https://www.aa.org/assets/en_US/smf-114_en.pdf" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">PDF</div><h4>The Twelve Concepts</h4><p>The guiding principles for AA's world service structure and group conscience in action.</p><span class="arrow">Download PDF &rarr;</span></a>
     </div>
     <div class="resources-subsection fade-in">
       <h3>Local &amp; Service Links</h3>
       <p>Melrose Group is part of a larger service structure. Here are the organizations that support AA in our area.</p>
       <div class="link-list">
+        <a href="https://511melrosegroup.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9751;</span> 511 Melrose Group</a>
         <a href="https://aaiowacity.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9962;</span> Iowa City Intergroup</a>
         <a href="https://iadistrict13aa.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9878;</span> Iowa District 13</a>
         <a href="https://www.aa-iowa.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9733;</span> AA Iowa (Area 24)</a>
         <a href="https://www.aa.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9679;</span> AA World Services</a>
         <a href="https://aa-intergroup.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9741;</span> Online Intergroup of AA</a>
+        <a href="http://iaypaa.org" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9734;</span> Iowa Young People AA (IAYPAA)</a>
         <a href="https://www.aa.org/meeting-guide-app" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9742;</span> Meeting Guide App</a>
       </div>
     </div>
