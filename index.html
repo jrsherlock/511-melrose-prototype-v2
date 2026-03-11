@@ -74,9 +74,12 @@
   nav .nav-links a.cta:hover { background: var(--warm-gold-light); }
   .hamburger {
     display: none; flex-direction: column; gap: 5px; cursor: pointer;
-    padding: 12px; background: none; border: none;
+    padding: 12px; background: none; border: none; z-index: 1002;
   }
   .hamburger span { width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: var(--transition); }
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* ─── HERO ─── */
   .hero {
@@ -588,12 +591,15 @@
     .welcome-box, .guidelines-box { padding: 24px; }
     .events-layout { grid-template-columns: 1fr; }
     nav .nav-links {
-      display: none; position: absolute; top: 72px; left: 0; right: 0;
-      background: var(--navy); flex-direction: column; padding: 20px 24px;
-      border-top: 1px solid rgba(200, 151, 62, 0.15); gap: 2px;
+      display: flex; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--navy); flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      z-index: 1001; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    nav .nav-links a { font-size: 1.05rem; padding: 14px 16px; }
-    nav .nav-links.open { display: flex; }
+    nav .nav-links a { font-size: 1.35rem; padding: 16px 24px; text-align: center; }
+    nav .nav-links a.cta { margin-top: 12px; }
+    nav .nav-links.open { opacity: 1; visibility: visible; }
     .hamburger { display: flex; }
     .expect-grid, .resources-grid, .link-list, .format-grid, .minutes-list { grid-template-columns: 1fr; }
     .next-meeting-banner { padding: 22px 20px; gap: 16px; flex-wrap: wrap; }
@@ -644,7 +650,7 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo"><span>511</span> Melrose Group</a>
-    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+    <button class="hamburger" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
@@ -1732,7 +1738,10 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
 document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+  link.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.remove('open');
+    document.querySelector('.hamburger').classList.remove('active');
+  });
 });
 
 const sections = document.querySelectorAll('section[id]');
