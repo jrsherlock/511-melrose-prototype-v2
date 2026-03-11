@@ -74,7 +74,7 @@
   nav .nav-links a.cta:hover { background: var(--warm-gold-light); }
   .hamburger {
     display: none; flex-direction: column; gap: 5px; cursor: pointer;
-    padding: 8px; background: none; border: none;
+    padding: 12px; background: none; border: none;
   }
   .hamburger span { width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: var(--transition); }
 
@@ -152,7 +152,7 @@
 
   /* ─── MEETINGS ─── */
   #meetings { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
-  .meetings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .meetings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 20px; }
   .meeting-card {
     background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius);
     padding: 28px; transition: var(--transition); position: relative; overflow: hidden;
@@ -186,7 +186,7 @@
   }
   .welcome-box h3 { font-family: 'Lora', serif; font-size: 1.6rem; color: var(--navy); margin-bottom: 16px; }
   .welcome-box p { color: var(--text-medium); margin-bottom: 16px; line-height: 1.8; }
-  .expect-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-top: 40px; }
+  .expect-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 24px; margin-top: 40px; }
   .expect-card {
     background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius);
     padding: 32px; transition: var(--transition);
@@ -223,7 +223,7 @@
 
   /* ─── RESOURCES ─── */
   #resources { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
-  .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 24px; }
   .resource-card {
     background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius);
     padding: 32px; transition: var(--transition); text-decoration: none; color: inherit; display: block;
@@ -241,7 +241,7 @@
   .resources-subsection { margin-top: 56px; }
   .resources-subsection h3 { font-family: 'Lora', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 8px; }
   .resources-subsection > p { color: var(--text-medium); margin-bottom: 24px; }
-  .link-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+  .link-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 12px; }
   .link-item {
     display: flex; align-items: center; gap: 12px; padding: 16px 20px;
     background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-sm);
@@ -329,7 +329,7 @@
     max-height: 0; overflow: hidden;
     transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .minutes-accordion.open .minutes-body { max-height: 20000px; }
+  .minutes-accordion.open .minutes-body { max-height: 5000px; }
   .minutes-inner {
     padding: 28px; background: var(--white);
     border: 1px solid var(--border-light); border-top: none;
@@ -445,7 +445,7 @@
   }
 
   /* ─── FORMAT GRID ─── */
-  .format-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 24px; }
+  .format-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 16px; margin-top: 24px; }
   .format-item { padding: 20px; background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius-sm); }
   .format-item h5 { font-family: 'Lora', serif; font-size: 1rem; color: var(--navy); margin-bottom: 6px; }
   .format-item p { font-size: 0.88rem; color: var(--text-medium); line-height: 1.6; }
@@ -483,20 +483,21 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  }
+  @media (max-width: 768px) {
     .hero-content { grid-template-columns: 1fr; text-align: center; }
     .hero-text { text-align: center; }
     .hero-buttons { justify-content: center; }
     .hero-image { display: flex; justify-content: center; }
     .hero-image img { max-width: 220px; }
-    .events-layout { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-  }
-  @media (max-width: 768px) {
+    .hero { padding: 100px 24px 60px; }
     .hero h1 { font-size: 2.2rem; }
     .hero .subtitle { font-size: 1.1rem; }
     .section-title { font-size: 1.8rem; }
     section { padding: 56px 20px; }
     .welcome-box, .guidelines-box { padding: 24px; }
+    .events-layout { grid-template-columns: 1fr; }
     nav .nav-links {
       display: none; position: absolute; top: 72px; left: 0; right: 0;
       background: var(--navy); flex-direction: column; padding: 16px 24px;
@@ -505,7 +506,38 @@
     nav .nav-links.open { display: flex; }
     .hamburger { display: flex; }
     .meetings-grid, .expect-grid, .resources-grid, .link-list, .format-grid, .minutes-list { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+    .quote-block { padding: 24px; margin: 32px 0; }
+    .expect-card { padding: 24px; }
+    .resource-card { padding: 24px; }
+    .minutes-inner { padding: 20px; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 40px 16px; }
+    .hero { padding: 96px 16px 48px; }
+    .hero h1 { font-size: 2rem; }
+    .section-title { font-size: 1.6rem; }
+    .section-intro { font-size: 1rem; }
+    .welcome-box, .guidelines-box { padding: 20px; }
+    .quote-block { padding: 20px; margin: 24px 0; }
+    .quote-block p { font-size: 1.05rem; }
+    .minutes-inner { padding: 16px; }
+    .expect-grid { gap: 16px; }
+    .meetings-grid { gap: 14px; }
+    .resources-grid { gap: 16px; }
+    .meeting-card { padding: 22px; }
+  }
+  @media (max-width: 480px) {
+    body { font-size: 15px; }
+    .hero h1 { font-size: 1.8rem; }
+    .hero .subtitle { font-size: 1rem; }
+    .section-title { font-size: 1.45rem; }
+    .welcome-box h3 { font-size: 1.3rem; }
+    .meeting-name { font-size: 1.1rem; }
+    .resource-card h4 { font-size: 1.1rem; }
+    .meeting-card { padding: 18px; }
+    .expect-card { padding: 20px; }
+    .resource-card { padding: 20px; }
   }
 </style>
 </head>
@@ -721,8 +753,8 @@
       <div class="events-column">
         <h3>Upcoming Events</h3>
         <div class="event-item fade-in"><div class="event-date event-recurring">&#9728; Recurring — Sundays</div><h4>Volleyball in the Park</h4><p>Join us at Iowa City's Lower City Park on Sundays at 1:30 PM. Come to play or just for fellowship!</p><div class="event-meta"><span>&#9903; Lower City Park</span><span>&#9716; 1:30 PM</span></div></div>
-        <div class="event-item fade-in"><div class="event-date">&#9830; Mar 11, 2026</div><h4>Group Conscience Meeting</h4><p>All home group members are encouraged to attend and participate in group decisions.</p><div class="event-meta"><span>&#9741; Zoom — ID: 882 0783 2747</span><span>&#9716; 7:00 PM</span></div></div>
-        <div class="event-item fade-in"><div class="event-date">&#9830; Apr 14, 2026</div><h4>Group Conscience Meeting</h4><p>Monthly business meeting — second Tuesday.</p><div class="event-meta"><span>&#9741; Zoom</span><span>&#9716; 7:00 PM</span></div></div>
+        <div class="event-item fade-in"><div class="event-date">&#9830; Apr 14, 2026</div><h4>Group Conscience Meeting</h4><p>All home group members are encouraged to attend and participate in group decisions.</p><div class="event-meta"><span>&#9903; 511 Melrose Ave (upstairs)</span><span>&#9716; 7:00 PM</span></div></div>
+        <div class="event-item fade-in"><div class="event-date">&#9830; May 12, 2026</div><h4>Group Conscience Meeting</h4><p>Monthly business meeting — second Tuesday.</p><div class="event-meta"><span>&#9903; 511 Melrose Ave (upstairs)</span><span>&#9716; 7:00 PM</span></div></div>
       </div>
       <div class="events-column">
         <h3>Service Opportunities</h3>
