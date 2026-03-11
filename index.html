@@ -74,7 +74,7 @@
   nav .nav-links a.cta:hover { background: var(--warm-gold-light); }
   .hamburger {
     display: none; flex-direction: column; gap: 5px; cursor: pointer;
-    padding: 12px; background: none; border: none; z-index: 1002;
+    padding: 12px; background: none; border: none;
   }
   .hamburger span { width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: var(--transition); }
   .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -590,18 +590,17 @@
     section { padding: 56px 20px; }
     .welcome-box, .guidelines-box { padding: 24px; }
     .events-layout { grid-template-columns: 1fr; }
+    nav.menu-open { bottom: 0; background: var(--navy); }
+    nav.menu-open .nav-inner { height: 100%; flex-direction: column; justify-content: flex-start; padding-top: 24px; }
     nav .nav-links {
-      display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: var(--navy); flex-direction: column; flex-wrap: nowrap;
-      align-items: center; justify-content: center; gap: 8px;
-      z-index: 1001; opacity: 0; visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-      padding: 0; margin: 0;
+      display: none; flex-direction: column; flex-wrap: nowrap;
+      align-items: center; justify-content: center; flex: 1;
+      gap: 8px; padding: 0; margin: 0; width: 100%;
     }
-    nav .nav-links li { list-style: none; width: auto; }
+    nav .nav-links li { list-style: none; }
     nav .nav-links a { font-size: 1.35rem; padding: 16px 24px; text-align: center; display: block; }
     nav .nav-links a.cta { margin-top: 12px; }
-    nav .nav-links.open { opacity: 1; visibility: visible; }
+    nav .nav-links.open { display: flex; }
     .hamburger { display: flex; }
     .expect-grid, .resources-grid, .link-list, .format-grid, .minutes-list { grid-template-columns: 1fr; }
     .next-meeting-banner { padding: 22px 20px; gap: 16px; flex-wrap: wrap; }
@@ -652,7 +651,7 @@
 <nav>
   <div class="nav-inner">
     <a href="#" class="logo"><span>511</span> Melrose Group</a>
-    <button class="hamburger" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
+    <button class="hamburger" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open');document.querySelector('nav').classList.toggle('menu-open')" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
@@ -1743,6 +1742,7 @@ document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
     document.querySelector('.nav-links').classList.remove('open');
     document.querySelector('.hamburger').classList.remove('active');
+    document.querySelector('nav').classList.remove('menu-open');
   });
 });
 
