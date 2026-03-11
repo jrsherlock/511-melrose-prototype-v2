@@ -355,6 +355,7 @@
     background: var(--white); border: 1px solid var(--border-light); border-radius: var(--radius);
     padding: 24px; margin-bottom: 16px; transition: var(--transition);
   }
+  .event-item[data-event] { cursor: pointer; }
   .event-item:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); }
   .event-date {
     display: inline-flex; align-items: center; gap: 8px;
@@ -367,6 +368,49 @@
   .event-item p { font-size: 0.92rem; color: var(--text-medium); line-height: 1.7; }
   .event-meta { display: flex; gap: 16px; margin-top: 10px; font-size: 0.85rem; color: var(--text-light); }
   .event-meta span { display: flex; align-items: center; gap: 5px; }
+
+  /* ─── EVENT MODAL ─── */
+  .event-modal-backdrop {
+    position: fixed; inset: 0; background: rgba(30, 45, 61, 0.7); z-index: 2000;
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .event-modal-backdrop.open { opacity: 1; visibility: visible; }
+  .event-modal {
+    background: var(--white); border-radius: var(--radius); max-width: 520px; width: 100%;
+    max-height: 85vh; overflow-y: auto; box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  .event-modal-image {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    border-radius: var(--radius) var(--radius) 0 0; display: block;
+  }
+  .event-modal-body { padding: 28px; }
+  .event-modal-body h3 {
+    font-family: 'Lora', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 16px;
+  }
+  .event-modal-detail {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.95rem; color: var(--text-medium); margin-bottom: 12px; line-height: 1.6;
+  }
+  .event-modal-detail .detail-icon { flex-shrink: 0; font-size: 1.1rem; margin-top: 2px; }
+  .event-modal-description {
+    font-size: 0.95rem; color: var(--text-medium); line-height: 1.7;
+    margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border-light);
+  }
+  .event-modal-close {
+    position: absolute; top: 12px; right: 12px; width: 36px; height: 36px;
+    border-radius: 50%; border: none; background: rgba(30, 45, 61, 0.7); color: var(--cream);
+    font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: var(--transition);
+  }
+  .event-modal-close:hover { background: var(--navy); }
+  .event-modal-link {
+    display: inline-block; margin-top: 20px; padding: 10px 20px;
+    background: var(--warm-gold); color: var(--navy); font-weight: 600;
+    border-radius: 6px; text-decoration: none; font-size: 0.9rem; transition: var(--transition);
+  }
+  .event-modal-link:hover { background: var(--warm-gold-light); }
 
   /* ─── MINUTES ─── */
   #minutes { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
@@ -798,10 +842,10 @@
     <div class="events-layout">
       <div class="events-column">
         <h3>Upcoming Events</h3>
-        <div class="event-item fade-in"><div class="event-date">&#9752; Mar 14, 2026</div><h4>St. Patrick's Day Party!</h4><p>Hosted by the IAYPAA X Host Committee. Bring a side dish to share!</p><div class="event-meta"><span>&#9903; 511 Melrose Ave</span><span>&#9716; 11:00 AM – 3:30 PM</span></div></div>
-        <div class="event-item fade-in"><div class="event-date event-recurring">&#9728; Recurring — Sundays</div><h4>Volleyball in the Park</h4><p>Join us at Iowa City's Lower City Park on Sundays at 1:30 PM. Come to play or just for fellowship!</p><div class="event-meta"><span>&#9903; Lower City Park</span><span>&#9716; 1:30 PM</span></div></div>
-        <div class="event-item fade-in"><div class="event-date">&#9830; Apr 14, 2026</div><h4>Group Conscience Meeting</h4><p>All home group members are encouraged to attend and participate in group decisions.</p><div class="event-meta"><span>&#9903; 511 Melrose Ave (upstairs)</span><span>&#9716; 7:00 PM</span></div></div>
-        <div class="event-item fade-in"><div class="event-date">&#9830; May 12, 2026</div><h4>Group Conscience Meeting</h4><p>Monthly business meeting — second Tuesday.</p><div class="event-meta"><span>&#9903; 511 Melrose Ave (upstairs)</span><span>&#9716; 7:00 PM</span></div></div>
+        <div class="event-item fade-in" data-event="stpats" data-title="St. Patrick's Day Party!" data-date="Saturday, March 14, 2026" data-time="11:00 AM – 3:30 PM" data-location="511 Melrose Avenue, Iowa City, IA 52246" data-organizer="IAYPAA X Host Committee" data-description="Join us for a St. Patrick's Day celebration at 511 Melrose! Bring a side dish to share. All are welcome for food, fun, and sober fellowship." data-image="https://i0.wp.com/aaiowacity.org/wp-content/uploads/2026/02/643823059_26306962708992684_4439738931521861985_n.webp?fit=1440%2C1920&amp;ssl=1" data-link="https://aaiowacity.org/event/st-patricks-day-party/"><div class="event-date">&#9752; Mar 14, 2026</div><h4>St. Patrick's Day Party!</h4><p>Hosted by the IAYPAA X Host Committee. Bring a side dish to share!</p><div class="event-meta"><span>&#9903; 511 Melrose Ave</span><span>&#9716; 11:00 AM – 3:30 PM</span></div></div>
+        <div class="event-item fade-in" data-event="volleyball" data-title="Volleyball in the Park" data-date="Every Sunday" data-time="1:30 PM" data-location="Lower City Park, Iowa City" data-description="Join us at Iowa City's Lower City Park on Sundays at 1:30 PM. Come to play or just for fellowship! All skill levels welcome — the point is showing up."><div class="event-date event-recurring">&#9728; Recurring — Sundays</div><h4>Volleyball in the Park</h4><p>Join us at Iowa City's Lower City Park on Sundays at 1:30 PM. Come to play or just for fellowship!</p><div class="event-meta"><span>&#9903; Lower City Park</span><span>&#9716; 1:30 PM</span></div></div>
+        <div class="event-item fade-in" data-event="gc-apr" data-title="Group Conscience Meeting" data-date="Tuesday, April 14, 2026" data-time="7:00 PM" data-location="511 Melrose Ave (upstairs), Iowa City" data-description="Monthly business meeting for all home group members. This is where group decisions are made — your voice matters. Come participate in how the Melrose Group operates."><div class="event-date">&#9830; Apr 14, 2026</div><h4>Group Conscience Meeting</h4><p>All home group members are encouraged to attend and participate in group decisions.</p><div class="event-meta"><span>&#9903; 511 Melrose Ave (upstairs)</span><span>&#9716; 7:00 PM</span></div></div>
+        <div class="event-item fade-in" data-event="gc-may" data-title="Group Conscience Meeting" data-date="Tuesday, May 12, 2026" data-time="7:00 PM" data-location="511 Melrose Ave (upstairs), Iowa City" data-description="Monthly business meeting — second Tuesday. All home group members are encouraged to attend and participate in group decisions."><div class="event-date">&#9830; May 12, 2026</div><h4>Group Conscience Meeting</h4><p>Monthly business meeting — second Tuesday.</p><div class="event-meta"><span>&#9903; 511 Melrose Ave (upstairs)</span><span>&#9716; 7:00 PM</span></div></div>
       </div>
       <div class="events-column">
         <h3>Service Opportunities</h3>
@@ -1995,6 +2039,68 @@ window.addEventListener('scroll', () => {
       msg.appendChild(document.createTextNode(' for the current schedule, or just come to 511 Melrose Ave \u2014 there\u2019s almost always a meeting happening.'));
       listEl.appendChild(msg);
     });
+})();
+</script>
+
+<!-- ═══════ EVENT MODAL ═══════ -->
+<div class="event-modal-backdrop" id="event-modal-backdrop">
+  <div class="event-modal" id="event-modal">
+    <button class="event-modal-close" id="event-modal-close">&times;</button>
+    <img class="event-modal-image" id="event-modal-image" src="" alt="">
+    <div class="event-modal-body">
+      <h3 id="event-modal-title"></h3>
+      <div class="event-modal-detail"><span class="detail-icon">&#128197;</span><span id="event-modal-date"></span></div>
+      <div class="event-modal-detail"><span class="detail-icon">&#128340;</span><span id="event-modal-time"></span></div>
+      <div class="event-modal-detail"><span class="detail-icon">&#128205;</span><span id="event-modal-location"></span></div>
+      <div class="event-modal-detail" id="event-modal-organizer-row"><span class="detail-icon">&#128101;</span><span id="event-modal-organizer"></span></div>
+      <div class="event-modal-description" id="event-modal-description"></div>
+      <a class="event-modal-link" id="event-modal-link" href="" target="_blank" rel="noopener">View on AA Iowa City &rarr;</a>
+    </div>
+  </div>
+</div>
+<script>
+(function() {
+  var backdrop = document.getElementById('event-modal-backdrop');
+  var modal = document.getElementById('event-modal');
+  var closeBtn = document.getElementById('event-modal-close');
+
+  function openModal(item) {
+    var d = item.dataset;
+    document.getElementById('event-modal-title').textContent = d.title;
+    document.getElementById('event-modal-date').textContent = d.date;
+    document.getElementById('event-modal-time').textContent = d.time;
+    document.getElementById('event-modal-location').textContent = d.location;
+
+    var img = document.getElementById('event-modal-image');
+    if (d.image) { img.src = d.image; img.alt = d.title; img.style.display = 'block'; }
+    else { img.style.display = 'none'; }
+
+    var orgRow = document.getElementById('event-modal-organizer-row');
+    if (d.organizer) { document.getElementById('event-modal-organizer').textContent = d.organizer; orgRow.style.display = 'flex'; }
+    else { orgRow.style.display = 'none'; }
+
+    document.getElementById('event-modal-description').textContent = d.description || '';
+
+    var link = document.getElementById('event-modal-link');
+    if (d.link) { link.href = d.link; link.style.display = 'inline-block'; }
+    else { link.style.display = 'none'; }
+
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.event-item[data-event]').forEach(function(item) {
+    item.addEventListener('click', function() { openModal(item); });
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', function(e) { if (e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 })();
 </script>
 </body>
