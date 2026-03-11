@@ -152,33 +152,115 @@
 
   /* ─── MEETINGS ─── */
   #meetings { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
-  .meetings-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 20px; }
-  .meeting-card {
-    background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius);
-    padding: 28px; transition: var(--transition); position: relative; overflow: hidden;
+
+  /* Next Meeting Banner */
+  .next-meeting-banner {
+    background: var(--navy); border-radius: var(--radius); padding: 28px 32px;
+    display: flex; align-items: center; gap: 24px; margin-bottom: 28px;
+    border-left: 4px solid var(--warm-gold); position: relative; overflow: hidden;
   }
-  .meeting-card::before {
+  .next-meeting-banner::after {
+    content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 120px;
+    background: linear-gradient(90deg, transparent, rgba(200, 151, 62, 0.06));
+    pointer-events: none;
+  }
+  .next-meeting-label {
+    font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-gold); margin-bottom: 4px;
+  }
+  .next-meeting-time {
+    font-family: 'Lora', serif; font-size: 2rem; font-weight: 700;
+    color: var(--warm-gold); line-height: 1.1; white-space: nowrap;
+  }
+  .next-meeting-info { flex: 1; }
+  .next-meeting-name {
+    font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 600;
+    color: var(--white); margin-bottom: 6px;
+  }
+  .next-meeting-countdown {
+    font-size: 0.92rem; color: rgba(255, 255, 255, 0.6);
+  }
+  .next-meeting-tags { margin-top: 8px; }
+  .next-meeting-tags .meeting-tag { margin-top: 0; }
+
+  /* Day Tabs */
+  .day-tabs {
+    display: flex; gap: 8px; margin: 0 0 24px; padding: 4px 0;
+    overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .day-tabs::-webkit-scrollbar { display: none; }
+  .day-tab {
+    flex-shrink: 0; padding: 10px 20px; border-radius: 24px; border: 1.5px solid var(--border-light);
+    background: var(--white); color: var(--navy); font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: var(--transition);
+    position: relative; white-space: nowrap;
+  }
+  .day-tab:hover { border-color: var(--warm-gold); background: rgba(200, 151, 62, 0.04); }
+  .day-tab.active {
+    background: var(--warm-gold); color: var(--navy); border-color: var(--warm-gold);
+  }
+  .day-tab.today::after {
+    content: ''; position: absolute; bottom: -2px; left: 50%; transform: translateX(-50%);
+    width: 5px; height: 5px; border-radius: 50%; background: var(--warm-gold);
+  }
+  .day-tab.active.today::after { background: var(--navy); }
+
+  /* Day Meeting List */
+  .day-meeting-list { display: flex; flex-direction: column; gap: 12px; }
+  .day-meeting-item {
+    background: var(--cream); border: 1px solid var(--border-light); border-radius: var(--radius);
+    padding: 20px 24px; display: flex; align-items: flex-start; gap: 20px;
+    transition: var(--transition); position: relative; overflow: hidden;
+  }
+  .day-meeting-item::before {
     content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
     background: var(--warm-gold); opacity: 0; transition: var(--transition);
   }
-  .meeting-card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); }
-  .meeting-card:hover::before { opacity: 1; }
-  .meeting-name { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 12px; }
-  .meeting-detail { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-medium); }
-  .meeting-detail .icon { flex-shrink: 0; width: 18px; text-align: center; color: var(--sage); font-weight: 600; }
+  .day-meeting-item:hover { box-shadow: var(--shadow-card); transform: translateY(-2px); }
+  .day-meeting-item:hover::before { opacity: 1; }
+  .day-meeting-item.next-up::before { opacity: 1; }
+  .day-meeting-item.next-up { box-shadow: var(--shadow-soft); }
+  .day-meeting-item.past { opacity: 0.45; }
+  .day-meeting-item.past:hover { opacity: 0.7; }
+  .meeting-time-block {
+    flex-shrink: 0; min-width: 72px; text-align: center; padding-top: 2px;
+  }
+  .meeting-time-display {
+    font-family: 'Lora', serif; font-size: 1.15rem; font-weight: 600; color: var(--navy);
+    line-height: 1.2;
+  }
+  .meeting-time-ampm {
+    font-family: 'Source Sans 3', sans-serif; font-size: 0.75rem; font-weight: 600;
+    color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .next-up .meeting-time-display { color: var(--warm-gold); }
+  .past .meeting-time-display { color: var(--text-light); }
+  .meeting-item-info { flex: 1; }
+  .meeting-item-name {
+    font-family: 'Lora', serif; font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 4px;
+  }
+  .past .meeting-item-name { color: var(--text-light); }
+  .meeting-item-status {
+    font-size: 0.82rem; color: var(--text-light); font-style: italic;
+  }
+  .meeting-item-tags { margin-top: 8px; }
   .meeting-tag {
-    display: inline-block; margin-top: 12px; margin-right: 6px; padding: 4px 12px; border-radius: 20px;
+    display: inline-block; margin-right: 6px; padding: 4px 12px; border-radius: 20px;
     font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
   }
   .tag-open { background: rgba(107, 143, 113, 0.12); color: var(--sage); }
   .tag-closed { background: rgba(200, 151, 62, 0.12); color: var(--warm-gold); }
   .tag-beginner { background: rgba(30, 45, 61, 0.08); color: var(--slate); }
   .meetings-loading, .meetings-error {
-    grid-column: 1 / -1; text-align: center; padding: 48px 24px;
+    text-align: center; padding: 48px 24px;
     font-size: 1.05rem; color: var(--text-medium);
   }
   .meetings-error a { color: var(--warm-gold); font-weight: 600; text-decoration: none; }
   .meetings-error a:hover { text-decoration: underline; }
+  .meetings-tz-note {
+    text-align: center; font-size: 0.82rem; color: var(--text-light);
+    margin-top: 20px; font-style: italic;
+  }
 
   /* ─── NEW TO AA ─── */
   #new-to-aa { background: var(--cream); }
@@ -512,7 +594,11 @@
     }
     nav .nav-links.open { display: flex; }
     .hamburger { display: flex; }
-    .meetings-grid, .expect-grid, .resources-grid, .link-list, .format-grid, .minutes-list { grid-template-columns: 1fr; }
+    .expect-grid, .resources-grid, .link-list, .format-grid, .minutes-list { grid-template-columns: 1fr; }
+    .next-meeting-banner { padding: 22px 20px; gap: 16px; flex-wrap: wrap; }
+    .next-meeting-time { font-size: 1.6rem; }
+    .day-tab { padding: 8px 16px; font-size: 0.85rem; }
+    .day-meeting-item { padding: 16px 18px; gap: 14px; }
     .footer-grid { grid-template-columns: 1fr; gap: 24px; }
     .quote-block { padding: 24px; margin: 32px 0; }
     .expect-card { padding: 24px; }
@@ -530,9 +616,12 @@
     .quote-block p { font-size: 1.05rem; }
     .minutes-inner { padding: 16px; }
     .expect-grid { gap: 16px; }
-    .meetings-grid { gap: 14px; }
+    .next-meeting-banner { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .day-meeting-item { flex-direction: column; gap: 4px; }
+    .meeting-time-block { display: flex; gap: 6px; align-items: baseline; min-width: auto; text-align: left; }
+    .meeting-time-display { font-size: 1rem; }
+    .meeting-time-ampm { font-size: 0.7rem; }
     .resources-grid { gap: 16px; }
-    .meeting-card { padding: 22px; }
   }
   @media (max-width: 480px) {
     body { font-size: 15px; }
@@ -540,9 +629,9 @@
     .hero .subtitle { font-size: 1rem; }
     .section-title { font-size: 1.45rem; }
     .welcome-box h3 { font-size: 1.3rem; }
-    .meeting-name { font-size: 1.1rem; }
+    .meeting-item-name { font-size: 1rem; }
     .resource-card h4 { font-size: 1.1rem; }
-    .meeting-card { padding: 18px; }
+    .day-tab { padding: 7px 12px; font-size: 0.8rem; }
     .expect-card { padding: 20px; }
     .resource-card { padding: 20px; }
   }
@@ -598,9 +687,10 @@
       511 Melrose Ave, Iowa City, IA 52240 &nbsp;·&nbsp;
       <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" style="color:var(--warm-gold);text-decoration:none;font-weight:600;">Directions &rarr;</a>
     </p>
-    <div class="meetings-grid" id="meetings-grid">
-      <div class="meetings-loading" id="meetings-loading">Loading meeting schedule&hellip;</div>
-    </div>
+    <div id="next-meeting-banner"></div>
+    <div class="day-tabs" id="day-tabs" role="tablist"></div>
+    <div class="day-meeting-list" id="day-meetings-list" role="tabpanel"></div>
+    <p class="meetings-tz-note">All times Central Time (Iowa City, IA)</p>
     <div class="quote-block fade-in" style="margin-top:48px;">
       <p>"We are people who normally would not mix. But there exists among us a fellowship, a friendliness, and an understanding which is indescribably wonderful."</p>
       <cite>— Alcoholics Anonymous (Big Book), Chapter 2</cite>
@@ -1658,13 +1748,12 @@ window.addEventListener('scroll', () => {
   var API_URL = 'https://aaiowacity.org/wp-admin/admin-ajax.php?action=meetings';
   var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   var SHORT_DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-  var grid = document.getElementById('meetings-grid');
 
-  function esc(str) {
-    var d = document.createElement('div');
-    d.textContent = str;
-    return d.textContent;
-  }
+  var bannerEl = document.getElementById('next-meeting-banner');
+  var tabsEl = document.getElementById('day-tabs');
+  var listEl = document.getElementById('day-meetings-list');
+  var allMeetings = [];
+  var selectedDay = new Date().getDay();
 
   function el(tag, cls, text) {
     var e = document.createElement(tag);
@@ -1673,112 +1762,215 @@ window.addEventListener('scroll', () => {
     return e;
   }
 
+  function timeToMinutes(t) {
+    var p = t.split(':');
+    return parseInt(p[0]) * 60 + parseInt(p[1]);
+  }
+
   function formatTime(t) {
     var parts = t.split(':'), h = parseInt(parts[0]), m = parts[1];
     var ampm = h >= 12 ? 'PM' : 'AM';
     h = h % 12 || 12;
-    return h + (m !== '00' ? ':' + m : '') + ' ' + ampm;
+    return { full: h + (m !== '00' ? ':' + m : '') + ' ' + ampm, hour: h + (m !== '00' ? ':' + m : ''), ampm: ampm };
   }
 
-  function describeDays(days) {
-    if (days.length === 7) return 'Every Day';
-    if (days.length === 1) return DAYS[days[0]];
-    var runs = [], run = [days[0]];
-    for (var i = 1; i < days.length; i++) {
-      if (days[i] === run[run.length - 1] + 1) run.push(days[i]);
-      else { runs.push(run); run = [days[i]]; }
+  function addTagsTo(container, types) {
+    if (types.indexOf('O') !== -1) container.appendChild(el('span', 'meeting-tag tag-open', 'Open'));
+    if (types.indexOf('C') !== -1) container.appendChild(el('span', 'meeting-tag tag-closed', 'Closed'));
+    if (types.indexOf('DR') !== -1) container.appendChild(el('span', 'meeting-tag tag-beginner', 'Daily Reflections'));
+    if (types.indexOf('B') !== -1 || types.indexOf('BIG') !== -1) container.appendChild(el('span', 'meeting-tag tag-beginner', 'Big Book'));
+    if (types.indexOf('LGBTQ') !== -1) container.appendChild(el('span', 'meeting-tag tag-beginner', 'LGBTQ+'));
+    if (types.indexOf('SP') !== -1) container.appendChild(el('span', 'meeting-tag tag-beginner', 'Espa\u00f1ol'));
+  }
+
+  function findNextMeeting() {
+    var now = new Date();
+    var today = now.getDay();
+    var nowMin = now.getHours() * 60 + now.getMinutes();
+
+    var todayMtgs = allMeetings.filter(function(m) { return m.day === today; })
+      .sort(function(a, b) { return a.time.localeCompare(b.time); });
+    for (var i = 0; i < todayMtgs.length; i++) {
+      if (timeToMinutes(todayMtgs[i].time) > nowMin) {
+        return { meeting: todayMtgs[i], isToday: true, dayLabel: 'Today' };
+      }
     }
-    runs.push(run);
-    return runs.map(function(r) {
-      if (r.length >= 3) return SHORT_DAYS[r[0]] + '\u2013' + SHORT_DAYS[r[r.length - 1]];
-      return r.map(function(d) { return SHORT_DAYS[d]; }).join(' & ');
-    }).join(', ');
+
+    for (var d = 1; d <= 7; d++) {
+      var checkDay = (today + d) % 7;
+      var dayMtgs = allMeetings.filter(function(m) { return m.day === checkDay; })
+        .sort(function(a, b) { return a.time.localeCompare(b.time); });
+      if (dayMtgs.length > 0) {
+        var label = d === 1 ? 'Tomorrow' : DAYS[checkDay];
+        return { meeting: dayMtgs[0], isToday: false, dayLabel: label };
+      }
+    }
+    return null;
   }
 
-  function summarizeTimes(meetings) {
-    var byTime = {};
-    meetings.forEach(function(m) {
-      if (!byTime[m.time]) byTime[m.time] = [];
-      byTime[m.time].push(m.day);
-    });
-    var parts = [];
-    Object.keys(byTime).sort().forEach(function(t) {
-      var days = byTime[t].sort(function(a,b) { return a - b; });
-      parts.push(describeDays(days) + ' ' + formatTime(t));
-    });
-    return parts.join(' \u00b7 ');
-  }
+  function renderBanner() {
+    bannerEl.textContent = '';
+    var result = findNextMeeting();
+    if (!result) return;
 
-  function addSchedule(card, meetings) {
-    var hasOpen = meetings.some(function(m) { return m.types.indexOf('O') !== -1; });
-    var hasClosed = meetings.some(function(m) { return m.types.indexOf('C') !== -1; });
+    var m = result.meeting;
+    var ft = formatTime(m.time);
+    var banner = el('div', 'next-meeting-banner');
 
-    if (hasOpen && hasClosed) {
-      var openMtgs = meetings.filter(function(m) { return m.types.indexOf('O') !== -1; });
-      var closedMtgs = meetings.filter(function(m) { return m.types.indexOf('C') !== -1; });
-      var d1 = el('div', 'meeting-detail');
-      d1.appendChild(el('span', 'icon')).textContent = '\u25CC';
-      var b1 = document.createElement('strong'); b1.textContent = 'Open: ';
-      d1.appendChild(b1);
-      d1.appendChild(document.createTextNode(summarizeTimes(openMtgs)));
-      card.appendChild(d1);
-      var d2 = el('div', 'meeting-detail');
-      d2.appendChild(el('span', 'icon')).textContent = '\u25CC';
-      var b2 = document.createElement('strong'); b2.textContent = 'Closed: ';
-      d2.appendChild(b2);
-      d2.appendChild(document.createTextNode(summarizeTimes(closedMtgs)));
-      card.appendChild(d2);
+    var timeBlock = el('div');
+    timeBlock.appendChild(el('div', 'next-meeting-label', 'Next Meeting'));
+    timeBlock.appendChild(el('div', 'next-meeting-time', ft.full));
+    banner.appendChild(timeBlock);
+
+    var info = el('div', 'next-meeting-info');
+    info.appendChild(el('div', 'next-meeting-name', m.name));
+
+    var countdownText = '';
+    if (result.isToday) {
+      var now = new Date();
+      var nowMin = now.getHours() * 60 + now.getMinutes();
+      var diff = timeToMinutes(m.time) - nowMin;
+      if (diff <= 60) {
+        countdownText = 'Starts in ' + diff + ' minute' + (diff !== 1 ? 's' : '');
+      } else {
+        var hrs = Math.floor(diff / 60);
+        var mins = diff % 60;
+        countdownText = 'Starts in ' + hrs + ' hr' + (hrs !== 1 ? 's' : '') + (mins > 0 ? ' ' + mins + ' min' : '');
+      }
     } else {
-      var d = el('div', 'meeting-detail');
-      d.appendChild(el('span', 'icon')).textContent = '\u25CC';
-      d.appendChild(document.createTextNode(summarizeTimes(meetings)));
-      card.appendChild(d);
+      countdownText = result.dayLabel + ' at ' + ft.full;
+    }
+    info.appendChild(el('div', 'next-meeting-countdown', countdownText));
+
+    var tags = el('div', 'next-meeting-tags');
+    addTagsTo(tags, m.types);
+    info.appendChild(tags);
+
+    banner.appendChild(info);
+    bannerEl.appendChild(banner);
+  }
+
+  function renderTabs() {
+    tabsEl.textContent = '';
+    var today = new Date().getDay();
+
+    for (var i = 0; i < 7; i++) {
+      var btn = document.createElement('button');
+      btn.className = 'day-tab';
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', i === selectedDay ? 'true' : 'false');
+      btn.textContent = SHORT_DAYS[i];
+      if (i === today) btn.classList.add('today');
+      if (i === selectedDay) btn.classList.add('active');
+      btn.setAttribute('data-day', i);
+      btn.addEventListener('click', function() {
+        var day = parseInt(this.getAttribute('data-day'));
+        selectedDay = day;
+        tabsEl.querySelectorAll('.day-tab').forEach(function(t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        this.classList.add('active');
+        this.setAttribute('aria-selected', 'true');
+        renderDayList(day);
+      });
+      tabsEl.appendChild(btn);
     }
   }
 
-  function addTags(card, meetings) {
-    var allTypes = {};
-    meetings.forEach(function(m) { m.types.forEach(function(t) { allTypes[t] = true; }); });
-    if (allTypes['O']) card.appendChild(el('span', 'meeting-tag tag-open', 'Open'));
-    if (allTypes['C']) card.appendChild(el('span', 'meeting-tag tag-closed', 'Closed'));
-    if (allTypes['DR']) card.appendChild(el('span', 'meeting-tag tag-beginner', 'Daily Reflections'));
-    if (allTypes['B'] || allTypes['BIG']) card.appendChild(el('span', 'meeting-tag tag-beginner', 'Big Book'));
-    if (allTypes['LGBTQ']) card.appendChild(el('span', 'meeting-tag tag-beginner', 'LGBTQ+'));
-    if (allTypes['SP'] || (allTypes['S'] && meetings[0].name.match(/poca/i))) card.appendChild(el('span', 'meeting-tag tag-beginner', 'Espa\u00f1ol'));
+  function renderDayList(dayIndex) {
+    listEl.textContent = '';
+    var now = new Date();
+    var today = now.getDay();
+    var nowMin = now.getHours() * 60 + now.getMinutes();
+    var isToday = dayIndex === today;
+
+    var dayMeetings = allMeetings.filter(function(m) { return m.day === dayIndex; })
+      .sort(function(a, b) { return a.time.localeCompare(b.time); });
+
+    if (dayMeetings.length === 0) {
+      listEl.appendChild(el('div', 'meetings-loading', 'No meetings scheduled for ' + DAYS[dayIndex] + '.'));
+      return;
+    }
+
+    var nextIdx = -1;
+    if (isToday) {
+      for (var i = 0; i < dayMeetings.length; i++) {
+        if (timeToMinutes(dayMeetings[i].time) > nowMin) { nextIdx = i; break; }
+      }
+    }
+
+    dayMeetings.forEach(function(m, idx) {
+      var ft = formatTime(m.time);
+      var item = el('div', 'day-meeting-item fade-in');
+
+      if (isToday && nextIdx === -1) {
+        item.classList.add('past');
+      } else if (isToday && idx < nextIdx) {
+        item.classList.add('past');
+      } else if (isToday && idx === nextIdx) {
+        item.classList.add('next-up');
+      }
+
+      var tb = el('div', 'meeting-time-block');
+      tb.appendChild(el('div', 'meeting-time-display', ft.hour));
+      tb.appendChild(el('div', 'meeting-time-ampm', ft.ampm));
+      item.appendChild(tb);
+
+      var info = el('div', 'meeting-item-info');
+      info.appendChild(el('div', 'meeting-item-name', m.name));
+
+      if (isToday && nextIdx !== -1 && idx < nextIdx) {
+        info.appendChild(el('div', 'meeting-item-status', 'Ended'));
+      } else if (isToday && idx === nextIdx) {
+        var diff = timeToMinutes(m.time) - nowMin;
+        var label = diff <= 60
+          ? 'Starts in ' + diff + ' minute' + (diff !== 1 ? 's' : '')
+          : 'Up next';
+        info.appendChild(el('div', 'meeting-item-status', label));
+      }
+
+      var tags = el('div', 'meeting-item-tags');
+      addTagsTo(tags, m.types);
+      info.appendChild(tags);
+
+      item.appendChild(info);
+      listEl.appendChild(item);
+    });
+
+    if (isToday && nextIdx === -1) {
+      var result = findNextMeeting();
+      var msgText = result
+        ? 'All meetings have wrapped for today. ' + result.dayLabel + ' starts at ' + formatTime(result.meeting.time).full + ' with ' + result.meeting.name + '.'
+        : 'All meetings have wrapped for today. Check back tomorrow!';
+      var msgEl = el('div', 'meetings-loading');
+      msgEl.style.padding = '24px';
+      msgEl.style.marginTop = '12px';
+      msgEl.textContent = msgText;
+      listEl.appendChild(msgEl);
+    }
+
+    listEl.querySelectorAll('.fade-in').forEach(function(e) { observer.observe(e); });
   }
+
+  listEl.appendChild(el('div', 'meetings-loading', 'Loading meeting schedule\u2026'));
 
   fetch(API_URL)
     .then(function(res) { return res.json(); })
     .then(function(data) {
-      var melrose = data.filter(function(m) { return m.location_id === MELROSE_LOCATION_ID; });
-      if (!melrose.length) throw new Error('No meetings found');
+      allMeetings = data.filter(function(m) { return m.location_id === MELROSE_LOCATION_ID; });
+      if (!allMeetings.length) throw new Error('No meetings found');
 
-      // Group by name
-      var groups = {};
-      melrose.forEach(function(m) {
-        if (!groups[m.name]) groups[m.name] = [];
-        groups[m.name].push(m);
-      });
+      renderBanner();
+      renderTabs();
+      renderDayList(selectedDay);
 
-      // Sort groups by earliest time
-      var sorted = Object.keys(groups).sort(function(a, b) {
-        return groups[a][0].time.localeCompare(groups[b][0].time);
-      });
-
-      grid.textContent = '';
-      sorted.forEach(function(name) {
-        var meetings = groups[name];
-        var card = el('div', 'meeting-card fade-in');
-        card.appendChild(el('div', 'meeting-name', esc(name)));
-        addSchedule(card, meetings);
-        addTags(card, meetings);
-        grid.appendChild(card);
-      });
-
-      grid.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+      setInterval(function() { renderBanner(); }, 60000);
     })
     .catch(function() {
-      grid.textContent = '';
+      bannerEl.textContent = '';
+      tabsEl.textContent = '';
+      listEl.textContent = '';
       var msg = el('div', 'meetings-error');
       msg.appendChild(document.createTextNode('Unable to load the meeting schedule. Please visit '));
       var link = document.createElement('a');
@@ -1788,7 +1980,7 @@ window.addEventListener('scroll', () => {
       link.textContent = 'aaiowacity.org';
       msg.appendChild(link);
       msg.appendChild(document.createTextNode(' for the current schedule, or just come to 511 Melrose Ave \u2014 there\u2019s almost always a meeting happening.'));
-      grid.appendChild(msg);
+      listEl.appendChild(msg);
     });
 })();
 </script>
