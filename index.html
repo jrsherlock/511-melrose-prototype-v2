@@ -173,6 +173,12 @@
   .tag-open { background: rgba(107, 143, 113, 0.12); color: var(--sage); }
   .tag-closed { background: rgba(200, 151, 62, 0.12); color: var(--warm-gold); }
   .tag-beginner { background: rgba(30, 45, 61, 0.08); color: var(--slate); }
+  .meetings-loading, .meetings-error {
+    grid-column: 1 / -1; text-align: center; padding: 48px 24px;
+    font-size: 1.05rem; color: var(--text-medium);
+  }
+  .meetings-error a { color: var(--warm-gold); font-weight: 600; text-decoration: none; }
+  .meetings-error a:hover { text-decoration: underline; }
 
   /* ─── NEW TO AA ─── */
   #new-to-aa { background: var(--cream); }
@@ -591,67 +597,8 @@
       511 Melrose Ave, Iowa City, IA 52240 &nbsp;·&nbsp;
       <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" style="color:var(--warm-gold);text-decoration:none;font-weight:600;">Directions &rarr;</a>
     </p>
-    <div class="meetings-grid">
-      <div class="meeting-card fade-in">
-        <div class="meeting-name">Breakfast Club</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> 6:00 AM — Every Day</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Start your morning with the fellowship. Coffee is always on.</div>
-        <span class="meeting-tag tag-open">Open</span>
-        <span class="meeting-tag tag-beginner">Daily Reflections</span>
-      </div>
-      <div class="meeting-card fade-in">
-        <div class="meeting-name">Melrose Group</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> <strong>Open:</strong> Sun 8 AM · Mon–Fri 12:10 PM · Fri 6 &amp; 9:30 PM · Sat 9:30 AM &amp; 6 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> <strong>Closed:</strong> Tue 8 PM · Wed 6 &amp; 8 PM · Thu 6 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Our flagship meetings — discussion format throughout the week.</div>
-        <span class="meeting-tag tag-open">Open</span>
-        <span class="meeting-tag tag-closed">Closed</span>
-      </div>
-      <div class="meeting-card fade-in">
-        <div class="meeting-name">Beginner's Meeting</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Monday at 6:00 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Designed for people new to AA. Questions welcome, no experience needed. A great first meeting.</div>
-        <span class="meeting-tag tag-open">Open</span>
-        <span class="meeting-tag tag-beginner">Beginner-Friendly</span>
-      </div>
-      <div class="meeting-card fade-in">
-        <div class="meeting-name">Melrose Co-ed Meeting</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Tuesday at 6:00 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Open discussion meeting welcoming men and women.</div>
-        <span class="meeting-tag tag-open">Open</span>
-      </div>
-      <div class="meeting-card fade-in">
-        <div class="meeting-name">Blue Noon Group</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Wednesday &amp; Friday at 12:10 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Midweek noon discussion meeting.</div>
-        <span class="meeting-tag tag-open">Open</span>
-      </div>
-      <div class="meeting-card fade-in">
-        <div class="meeting-name">LGBTQ Meeting</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Thursday at 7:30 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> A welcoming, inclusive space for LGBTQ members and allies.</div>
-        <span class="meeting-tag tag-open">Open</span>
-      </div>
-      <div class="meeting-card fade-in">
-        <div class="meeting-name">Together We Can Make It</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Sunday at 9:45 AM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Sunday morning discussion group.</div>
-        <span class="meeting-tag tag-open">Open</span>
-      </div>
-      <div class="meeting-card fade-in">
-        <div class="meeting-name">Flimsy Reed Big Book Study Group</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Sunday at 6:00 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Reading and discussing AA's foundational text, chapter by chapter.</div>
-        <span class="meeting-tag tag-open">Open</span>
-        <span class="meeting-tag tag-beginner">Big Book</span>
-      </div>
-      <div class="meeting-card fade-in">
-        <div class="meeting-name">Poca a Poca</div>
-        <div class="meeting-detail"><span class="icon">&#9716;</span> Saturday at 4:00 PM</div>
-        <div class="meeting-detail"><span class="icon">&#9900;</span> Reunión en español. Spanish-language discussion meeting.</div>
-        <span class="meeting-tag tag-open">Open</span>
-        <span class="meeting-tag tag-beginner">Español</span>
-      </div>
+    <div class="meetings-grid" id="meetings-grid">
+      <div class="meetings-loading" id="meetings-loading">Loading meeting schedule&hellip;</div>
     </div>
     <div class="quote-block fade-in" style="margin-top:48px;">
       <p>"We are people who normally would not mix. But there exists among us a fellowship, a friendliness, and an understanding which is indescribably wonderful."</p>
@@ -1588,6 +1535,146 @@ window.addEventListener('scroll', () => {
   sections.forEach(s => { if (pageYOffset >= s.offsetTop - 100) current = s.getAttribute('id'); });
   navLinks.forEach(l => { l.classList.remove('active'); if (l.getAttribute('href') === '#' + current) l.classList.add('active'); });
 });
+
+/* ─── DYNAMIC MEETINGS FROM INTERGROUP API ─── */
+(function loadMeetings() {
+  var MELROSE_LOCATION_ID = 5675;
+  var API_URL = 'https://aaiowacity.org/wp-admin/admin-ajax.php?action=meetings';
+  var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var SHORT_DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var grid = document.getElementById('meetings-grid');
+
+  function esc(str) {
+    var d = document.createElement('div');
+    d.textContent = str;
+    return d.textContent;
+  }
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text) e.textContent = text;
+    return e;
+  }
+
+  function formatTime(t) {
+    var parts = t.split(':'), h = parseInt(parts[0]), m = parts[1];
+    var ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12 || 12;
+    return h + (m !== '00' ? ':' + m : '') + ' ' + ampm;
+  }
+
+  function describeDays(days) {
+    if (days.length === 7) return 'Every Day';
+    if (days.length === 1) return DAYS[days[0]];
+    var runs = [], run = [days[0]];
+    for (var i = 1; i < days.length; i++) {
+      if (days[i] === run[run.length - 1] + 1) run.push(days[i]);
+      else { runs.push(run); run = [days[i]]; }
+    }
+    runs.push(run);
+    return runs.map(function(r) {
+      if (r.length >= 3) return SHORT_DAYS[r[0]] + '\u2013' + SHORT_DAYS[r[r.length - 1]];
+      return r.map(function(d) { return SHORT_DAYS[d]; }).join(' & ');
+    }).join(', ');
+  }
+
+  function summarizeTimes(meetings) {
+    var byTime = {};
+    meetings.forEach(function(m) {
+      if (!byTime[m.time]) byTime[m.time] = [];
+      byTime[m.time].push(m.day);
+    });
+    var parts = [];
+    Object.keys(byTime).sort().forEach(function(t) {
+      var days = byTime[t].sort(function(a,b) { return a - b; });
+      parts.push(describeDays(days) + ' ' + formatTime(t));
+    });
+    return parts.join(' \u00b7 ');
+  }
+
+  function addSchedule(card, meetings) {
+    var hasOpen = meetings.some(function(m) { return m.types.indexOf('O') !== -1; });
+    var hasClosed = meetings.some(function(m) { return m.types.indexOf('C') !== -1; });
+
+    if (hasOpen && hasClosed) {
+      var openMtgs = meetings.filter(function(m) { return m.types.indexOf('O') !== -1; });
+      var closedMtgs = meetings.filter(function(m) { return m.types.indexOf('C') !== -1; });
+      var d1 = el('div', 'meeting-detail');
+      d1.appendChild(el('span', 'icon')).textContent = '\u25CC';
+      var b1 = document.createElement('strong'); b1.textContent = 'Open: ';
+      d1.appendChild(b1);
+      d1.appendChild(document.createTextNode(summarizeTimes(openMtgs)));
+      card.appendChild(d1);
+      var d2 = el('div', 'meeting-detail');
+      d2.appendChild(el('span', 'icon')).textContent = '\u25CC';
+      var b2 = document.createElement('strong'); b2.textContent = 'Closed: ';
+      d2.appendChild(b2);
+      d2.appendChild(document.createTextNode(summarizeTimes(closedMtgs)));
+      card.appendChild(d2);
+    } else {
+      var d = el('div', 'meeting-detail');
+      d.appendChild(el('span', 'icon')).textContent = '\u25CC';
+      d.appendChild(document.createTextNode(summarizeTimes(meetings)));
+      card.appendChild(d);
+    }
+  }
+
+  function addTags(card, meetings) {
+    var allTypes = {};
+    meetings.forEach(function(m) { m.types.forEach(function(t) { allTypes[t] = true; }); });
+    if (allTypes['O']) card.appendChild(el('span', 'meeting-tag tag-open', 'Open'));
+    if (allTypes['C']) card.appendChild(el('span', 'meeting-tag tag-closed', 'Closed'));
+    if (allTypes['DR']) card.appendChild(el('span', 'meeting-tag tag-beginner', 'Daily Reflections'));
+    if (allTypes['B'] || allTypes['BIG']) card.appendChild(el('span', 'meeting-tag tag-beginner', 'Big Book'));
+    if (allTypes['LGBTQ']) card.appendChild(el('span', 'meeting-tag tag-beginner', 'LGBTQ+'));
+    if (allTypes['SP'] || (allTypes['S'] && meetings[0].name.match(/poca/i))) card.appendChild(el('span', 'meeting-tag tag-beginner', 'Espa\u00f1ol'));
+  }
+
+  fetch(API_URL)
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      var melrose = data.filter(function(m) { return m.location_id === MELROSE_LOCATION_ID; });
+      if (!melrose.length) throw new Error('No meetings found');
+
+      // Group by name
+      var groups = {};
+      melrose.forEach(function(m) {
+        if (!groups[m.name]) groups[m.name] = [];
+        groups[m.name].push(m);
+      });
+
+      // Sort groups by earliest time
+      var sorted = Object.keys(groups).sort(function(a, b) {
+        return groups[a][0].time.localeCompare(groups[b][0].time);
+      });
+
+      grid.textContent = '';
+      sorted.forEach(function(name) {
+        var meetings = groups[name];
+        var card = el('div', 'meeting-card fade-in');
+        card.appendChild(el('div', 'meeting-name', esc(name)));
+        addSchedule(card, meetings);
+        addTags(card, meetings);
+        grid.appendChild(card);
+      });
+
+      grid.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+    })
+    .catch(function() {
+      grid.textContent = '';
+      var msg = el('div', 'meetings-error');
+      msg.appendChild(document.createTextNode('Unable to load the meeting schedule. Please visit '));
+      var link = document.createElement('a');
+      link.href = 'https://aaiowacity.org/meetings/';
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'aaiowacity.org';
+      msg.appendChild(link);
+      msg.appendChild(document.createTextNode(' for the current schedule, or just come to 511 Melrose Ave \u2014 there\u2019s almost always a meeting happening.'));
+      grid.appendChild(msg);
+    });
+})();
 </script>
 </body>
 </html>
