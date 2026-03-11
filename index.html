@@ -1775,8 +1775,8 @@ window.addEventListener('scroll', () => {
   }
 
   function addTagsTo(container, types) {
-    if (types.indexOf('O') !== -1) container.appendChild(el('span', 'meeting-tag tag-open', 'Open'));
-    if (types.indexOf('C') !== -1) container.appendChild(el('span', 'meeting-tag tag-closed', 'Closed'));
+    if (types.indexOf('O') !== -1) { var t = el('span', 'meeting-tag tag-open', 'All Welcome'); t.title = 'Open meeting \u2014 anyone is welcome to attend'; container.appendChild(t); }
+    if (types.indexOf('C') !== -1) { var t = el('span', 'meeting-tag tag-closed', 'AA Only'); t.title = 'Closed meeting \u2014 for those with a desire to stop drinking'; container.appendChild(t); }
     if (types.indexOf('DR') !== -1) container.appendChild(el('span', 'meeting-tag tag-beginner', 'Daily Reflections'));
     if (types.indexOf('B') !== -1 || types.indexOf('BIG') !== -1) container.appendChild(el('span', 'meeting-tag tag-beginner', 'Big Book'));
     if (types.indexOf('LGBTQ') !== -1) container.appendChild(el('span', 'meeting-tag tag-beginner', 'LGBTQ+'));
