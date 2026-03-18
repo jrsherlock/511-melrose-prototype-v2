@@ -1806,7 +1806,7 @@ window.addEventListener('scroll', () => {
 /* ─── DYNAMIC MEETINGS FROM INTERGROUP API ─── */
 (function loadMeetings() {
   var MELROSE_LOCATION_ID = 5675;
-  var API_URL = 'https://aaiowacity.org/wp-admin/admin-ajax.php?action=meetings';
+  var API_URL = 'https://aaiowacity.org/wp-admin/admin-ajax.php';
   var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   var SHORT_DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
@@ -2016,7 +2016,7 @@ window.addEventListener('scroll', () => {
 
   listEl.appendChild(el('div', 'meetings-loading', 'Loading meeting schedule\u2026'));
 
-  fetch(API_URL)
+  fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'action=meetings' })
     .then(function(res) { return res.json(); })
     .then(function(data) {
       allMeetings = data.filter(function(m) { return m.location_id === MELROSE_LOCATION_ID; });
