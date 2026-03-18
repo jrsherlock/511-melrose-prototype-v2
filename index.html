@@ -2020,6 +2020,17 @@ window.addEventListener('scroll', () => {
     .then(function(res) { return res.json(); })
     .then(function(data) {
       allMeetings = data.filter(function(m) { return m.location_id === MELROSE_LOCATION_ID; });
+
+      /* ── Local overrides ──
+         The district calendar may list meetings with names that differ from
+         what the home group has decided.  Apply corrections here. */
+      allMeetings.forEach(function(m) {
+        // Tuesday 6 PM — group conscience changed this to a standard Melrose meeting (not co-ed)
+        if (m.day === 2 && m.time.indexOf('18:00') === 0) {
+          m.name = 'Melrose Group';
+        }
+      });
+
       if (!allMeetings.length) throw new Error('No meetings found');
 
       renderBanner();
