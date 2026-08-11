@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="511 Melrose Group">
+  <title>511 Melrose Group</title>
+  <rect width="64" height="64" rx="13" fill="#1e2d3d"/>
+  <!-- roof -->
+  <path d="M32 10 L57 33.5 H7 Z" fill="#e8b94a"/>
+  <!-- body -->
+  <rect x="15" y="31.5" width="34" height="22.5" rx="1.5" fill="#c8973e"/>
+  <!-- arched doorway, lit: the light is on for you -->
+  <path d="M26.5 54 V42.5 a5.5 5.5 0 0 1 11 0 V54 Z" fill="#faf6ef"/>
+</svg>
