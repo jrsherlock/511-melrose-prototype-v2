@@ -692,6 +692,17 @@
     .resource-card { padding: 20px; }
   }
 </style>
+<!-- Umami analytics: cookieless, no consent banner needed, counts every visit
+     rather than sampling. The data-umami-event attributes throughout this page
+     are already in place and are inert until this script is enabled.
+
+     If the website ID ever needs replacing, get it from Umami Cloud under
+     Settings > Websites > Edit, shown as data-website-id in the tracking code.
+     That is not the same as the account ID. Verify a candidate ID with:
+       curl -X POST https://cloud.umami.is/api/send -H "Content-Type: application/json" \
+         -d '{"type":"event","payload":{"website":"THE_ID","hostname":"511melrosegroup.org","url":"/"}}'
+     A valid ID returns HTTP 200. An invalid one returns {"error":"Website not found"}. -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="73e1e553-a544-4dfb-b165-ea9cace33b7d"></script>
 </head>
 <body>
 
@@ -703,13 +714,13 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
-      <li><a href="#meetings">Meetings</a></li>
-      <li><a href="#new-to-aa">New to AA?</a></li>
-      <li><a href="#resources">Resources</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#minutes">Minutes</a></li>
-      <li><a href="#guidelines">Guidelines</a></li>
-      <li><a href="#donate" class="cta">Donate</a></li>
+      <li><a href="#meetings" data-umami-event="nav" data-umami-event-section="meetings">Meetings</a></li>
+      <li><a href="#new-to-aa" data-umami-event="nav" data-umami-event-section="new-to-aa">New to AA?</a></li>
+      <li><a href="#resources" data-umami-event="nav" data-umami-event-section="resources">Resources</a></li>
+      <li><a href="#events" data-umami-event="nav" data-umami-event-section="events">Events</a></li>
+      <li><a href="#minutes" data-umami-event="nav" data-umami-event-section="minutes">Minutes</a></li>
+      <li><a href="#guidelines" data-umami-event="nav" data-umami-event-section="guidelines">Guidelines</a></li>
+      <li><a href="#donate" class="cta" data-umami-event="nav" data-umami-event-section="donate">Donate</a></li>
     </ul>
   </div>
 </nav>
@@ -722,8 +733,8 @@
       <div class="subtitle">Alcoholics Anonymous — Iowa City, Iowa</div>
       <p class="tagline">A fellowship of people who share their experience, strength and hope with each other. You are welcome here.</p>
       <div class="hero-buttons">
-        <a href="#meetings" class="btn btn-primary">Find a Meeting</a>
-        <a href="#new-to-aa" class="btn btn-secondary">New to AA?</a>
+        <a href="#meetings" class="btn btn-primary" data-umami-event="nav" data-umami-event-section="meetings">Find a Meeting</a>
+        <a href="#new-to-aa" class="btn btn-secondary" data-umami-event="nav" data-umami-event-section="new-to-aa">New to AA?</a>
       </div>
     </div>
   </div>
@@ -736,7 +747,7 @@
     <h2 class="section-title">Meetings at 511 Melrose Ave.</h2>
     <p class="section-intro">
       511 Melrose Ave, Iowa City, IA 52240 &nbsp;·&nbsp;
-      <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" style="color:var(--warm-gold);text-decoration:none;font-weight:600;">Directions &rarr;</a>
+      <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" style="color:var(--warm-gold);text-decoration:none;font-weight:600;" data-umami-event="directions">Directions &rarr;</a>
     </p>
     <div id="next-meeting-banner"></div>
     <div class="day-tabs" id="day-tabs" role="tablist"></div>
@@ -805,28 +816,28 @@
     <h2 class="section-title">Resources</h2>
     <p class="section-intro">AA has a rich library of literature available — much of it free online. These are the official, AA-approved resources that power our meetings and our recovery.</p>
     <div class="resources-grid">
-      <a href="https://www.aa.org/the-big-book" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Book — Free Online</div><h4>Alcoholics Anonymous (Big Book)</h4><p>AA's foundational text. Contains the program of recovery, the Twelve Steps, and dozens of personal stories.</p><span class="arrow">Read at aa.org &rarr;</span></a>
-      <a href="https://www.aa.org/twelve-steps-twelve-traditions" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Book — Free Online</div><h4>Twelve Steps &amp; Twelve Traditions</h4><p>Bill W.'s deeper exploration of each Step and Tradition. Essential reading for personal recovery and group unity.</p><span class="arrow">Read at aa.org &rarr;</span></a>
-      <a href="https://www.aa.org/daily-reflections" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Daily Reading</div><h4>Daily Reflections</h4><p>A short reading for each day of the year, written by AA members. A wonderful daily companion for your recovery.</p><span class="arrow">Read today's reflection &rarr;</span></a>
-      <a href="https://www.aa.org/what-is-aa" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Pamphlet</div><h4>Is A.A. for You?</h4><p>Twelve questions only you can answer. If you're wondering whether you belong in AA, this short read may help.</p><span class="arrow">Read at aa.org &rarr;</span></a>
-      <a href="https://www.aa.org/questions-and-answers-sponsorship" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Pamphlet</div><h4>Questions &amp; Answers on Sponsorship</h4><p>What is a sponsor? How do you find one? This pamphlet answers 34 common questions.</p><span class="arrow">Read at aa.org &rarr;</span></a>
-      <a href="https://www.aagrapevine.org/" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">Magazine</div><h4>AA Grapevine</h4><p>AA's international monthly magazine since 1944. Personal stories, humor, and reflections from members worldwide.</p><span class="arrow">Visit aagrapevine.org &rarr;</span></a>
-      <a href="https://www.aa.org/assets/en_US/smf-121_en.pdf" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">PDF</div><h4>The Twelve Steps</h4><p>A one-page summary of AA's Twelve Steps — the spiritual foundation of personal recovery.</p><span class="arrow">Download PDF &rarr;</span></a>
-      <a href="https://www.aa.org/assets/en_US/smf-122_en.pdf" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">PDF</div><h4>The Twelve Traditions</h4><p>The principles that keep AA groups unified and focused on their primary purpose.</p><span class="arrow">Download PDF &rarr;</span></a>
-      <a href="https://www.aa.org/assets/en_US/smf-114_en.pdf" class="resource-card fade-in" target="_blank" rel="noopener"><div class="resource-type">PDF</div><h4>The Twelve Concepts</h4><p>The guiding principles for AA's world service structure and group conscience in action.</p><span class="arrow">Download PDF &rarr;</span></a>
+      <a href="https://www.aa.org/the-big-book" class="resource-card fade-in" target="_blank" rel="noopener" data-umami-event="literature"><div class="resource-type">Book — Free Online</div><h4>Alcoholics Anonymous (Big Book)</h4><p>AA's foundational text. Contains the program of recovery, the Twelve Steps, and dozens of personal stories.</p><span class="arrow">Read at aa.org &rarr;</span></a>
+      <a href="https://www.aa.org/twelve-steps-twelve-traditions" class="resource-card fade-in" target="_blank" rel="noopener" data-umami-event="literature"><div class="resource-type">Book — Free Online</div><h4>Twelve Steps &amp; Twelve Traditions</h4><p>Bill W.'s deeper exploration of each Step and Tradition. Essential reading for personal recovery and group unity.</p><span class="arrow">Read at aa.org &rarr;</span></a>
+      <a href="https://www.aa.org/daily-reflections" class="resource-card fade-in" target="_blank" rel="noopener" data-umami-event="literature"><div class="resource-type">Daily Reading</div><h4>Daily Reflections</h4><p>A short reading for each day of the year, written by AA members. A wonderful daily companion for your recovery.</p><span class="arrow">Read today's reflection &rarr;</span></a>
+      <a href="https://www.aa.org/what-is-aa" class="resource-card fade-in" target="_blank" rel="noopener" data-umami-event="literature"><div class="resource-type">Pamphlet</div><h4>Is A.A. for You?</h4><p>Twelve questions only you can answer. If you're wondering whether you belong in AA, this short read may help.</p><span class="arrow">Read at aa.org &rarr;</span></a>
+      <a href="https://www.aa.org/questions-and-answers-sponsorship" class="resource-card fade-in" target="_blank" rel="noopener" data-umami-event="literature"><div class="resource-type">Pamphlet</div><h4>Questions &amp; Answers on Sponsorship</h4><p>What is a sponsor? How do you find one? This pamphlet answers 34 common questions.</p><span class="arrow">Read at aa.org &rarr;</span></a>
+      <a href="https://www.aagrapevine.org/" class="resource-card fade-in" target="_blank" rel="noopener" data-umami-event="literature"><div class="resource-type">Magazine</div><h4>AA Grapevine</h4><p>AA's international monthly magazine since 1944. Personal stories, humor, and reflections from members worldwide.</p><span class="arrow">Visit aagrapevine.org &rarr;</span></a>
+      <a href="https://www.aa.org/assets/en_US/smf-121_en.pdf" class="resource-card fade-in" target="_blank" rel="noopener" data-umami-event="literature-pdf"><div class="resource-type">PDF</div><h4>The Twelve Steps</h4><p>A one-page summary of AA's Twelve Steps — the spiritual foundation of personal recovery.</p><span class="arrow">Download PDF &rarr;</span></a>
+      <a href="https://www.aa.org/assets/en_US/smf-122_en.pdf" class="resource-card fade-in" target="_blank" rel="noopener" data-umami-event="literature-pdf"><div class="resource-type">PDF</div><h4>The Twelve Traditions</h4><p>The principles that keep AA groups unified and focused on their primary purpose.</p><span class="arrow">Download PDF &rarr;</span></a>
+      <a href="https://www.aa.org/assets/en_US/smf-114_en.pdf" class="resource-card fade-in" target="_blank" rel="noopener" data-umami-event="literature-pdf"><div class="resource-type">PDF</div><h4>The Twelve Concepts</h4><p>The guiding principles for AA's world service structure and group conscience in action.</p><span class="arrow">Download PDF &rarr;</span></a>
     </div>
     <div class="resources-subsection fade-in">
       <h3>Local &amp; Service Links</h3>
       <p>Melrose Group is part of a larger service structure. Here are the organizations that support AA in our area.</p>
       <div class="link-list">
         <a href="https://511melrosegroup.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9751;</span> 511 Melrose Group</a>
-        <a href="https://aaiowacity.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9962;</span> Iowa City Intergroup</a>
-        <a href="https://iadistrict13aa.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9878;</span> Iowa District 13</a>
-        <a href="https://www.aa-iowa.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9733;</span> AA Iowa (Area 24)</a>
-        <a href="https://www.aa.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9679;</span> AA World Services</a>
-        <a href="https://aa-intergroup.org/" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9741;</span> Online Intergroup of AA</a>
-        <a href="http://iaypaa.org" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9734;</span> Iowa Young People AA (IAYPAA)</a>
-        <a href="https://www.aa.org/meeting-guide-app" class="link-item" target="_blank" rel="noopener"><span class="link-icon">&#9742;</span> Meeting Guide App</a>
+        <a href="https://aaiowacity.org/" class="link-item" target="_blank" rel="noopener" data-umami-event="outbound" data-umami-event-site="aaiowacity.org"><span class="link-icon">&#9962;</span> Iowa City Intergroup</a>
+        <a href="https://iadistrict13aa.org/" class="link-item" target="_blank" rel="noopener" data-umami-event="outbound" data-umami-event-site="iadistrict13aa.org"><span class="link-icon">&#9878;</span> Iowa District 13</a>
+        <a href="https://www.aa-iowa.org/" class="link-item" target="_blank" rel="noopener" data-umami-event="outbound" data-umami-event-site="aa-iowa.org"><span class="link-icon">&#9733;</span> AA Iowa (Area 24)</a>
+        <a href="https://www.aa.org/" class="link-item" target="_blank" rel="noopener" data-umami-event="outbound" data-umami-event-site="aa.org"><span class="link-icon">&#9679;</span> AA World Services</a>
+        <a href="https://aa-intergroup.org/" class="link-item" target="_blank" rel="noopener" data-umami-event="outbound" data-umami-event-site="aa-intergroup.org"><span class="link-icon">&#9741;</span> Online Intergroup of AA</a>
+        <a href="http://iaypaa.org" class="link-item" target="_blank" rel="noopener" data-umami-event="outbound" data-umami-event-site="iaypaa.org"><span class="link-icon">&#9734;</span> Iowa Young People AA (IAYPAA)</a>
+        <a href="https://www.aa.org/meeting-guide-app" class="link-item" target="_blank" rel="noopener" data-umami-event="meeting-guide-app"><span class="link-icon">&#9742;</span> Meeting Guide App</a>
       </div>
     </div>
   </div>
@@ -1684,7 +1695,7 @@ February 11, 2025</p>
 <p class="mi-meta">Adjourned at 12:08 pm</p>
     </div></div>
   </div>
-  <a href="https://drive.google.com/file/d/1922FJut9cX9wKmjvdc317Fev-jJBnWjA/view?usp=sharing" class="minutes-link fade-in" target="_blank"><span class="minutes-icon yold">Feb</span>February 2021 <span class="mi-format-badge">PDF</span><span class="dl-arrow">&darr;</span></a>
+  <a href="https://drive.google.com/file/d/1922FJut9cX9wKmjvdc317Fev-jJBnWjA/view?usp=sharing" class="minutes-link fade-in" target="_blank" data-umami-event="minutes-pdf"><span class="minutes-icon yold">Feb</span>February 2021 <span class="mi-format-badge">PDF</span><span class="dl-arrow">&darr;</span></a>
   <div class="minutes-accordion fade-in" onclick="this.classList.toggle('open')">
     <button class="minutes-trigger"><span class="minutes-icon yold">Jan</span><span class="mt-label">January 2021</span><svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></button>
     <div class="minutes-body"><div class="minutes-inner">
@@ -1712,8 +1723,8 @@ February 11, 2025</p>
 <p class="mi-meta">Adjourned at 12:32 pm</p>
     </div></div>
   </div>
-  <a href="https://drive.google.com/file/d/1p6bmg4cJ7ztbY_9nvO_vD3IEppXXZovu/view?usp=sharing" class="minutes-link fade-in" target="_blank"><span class="minutes-icon yold">Dec</span>December 2020 <span class="mi-format-badge">PDF</span><span class="dl-arrow">&darr;</span></a>
-  <a href="https://drive.google.com/file/d/1MSZiQdCFHvf-WpI8kdnsr0YP7vxCDz0R/view?usp=sharing" class="minutes-link fade-in" target="_blank"><span class="minutes-icon yold">Nov</span>November 2020 <span class="mi-format-badge">PDF</span><span class="dl-arrow">&darr;</span></a>
+  <a href="https://drive.google.com/file/d/1p6bmg4cJ7ztbY_9nvO_vD3IEppXXZovu/view?usp=sharing" class="minutes-link fade-in" target="_blank" data-umami-event="minutes-pdf"><span class="minutes-icon yold">Dec</span>December 2020 <span class="mi-format-badge">PDF</span><span class="dl-arrow">&darr;</span></a>
+  <a href="https://drive.google.com/file/d/1MSZiQdCFHvf-WpI8kdnsr0YP7vxCDz0R/view?usp=sharing" class="minutes-link fade-in" target="_blank" data-umami-event="minutes-pdf"><span class="minutes-icon yold">Nov</span>November 2020 <span class="mi-format-badge">PDF</span><span class="dl-arrow">&darr;</span></a>
     </div>
   </div>
 </section>
@@ -1843,24 +1854,24 @@ February 11, 2025</p>
     </div>
     <div class="footer-links">
       <h4>Meetings</h4>
-      <a href="#meetings">Schedule</a>
-      <a href="#new-to-aa">New to AA?</a>
-      <a href="#resources">Resources</a>
-      <a href="#events">Events</a>
+      <a href="#meetings" data-umami-event="nav" data-umami-event-section="meetings">Schedule</a>
+      <a href="#new-to-aa" data-umami-event="nav" data-umami-event-section="new-to-aa">New to AA?</a>
+      <a href="#resources" data-umami-event="nav" data-umami-event-section="resources">Resources</a>
+      <a href="#events" data-umami-event="nav" data-umami-event-section="events">Events</a>
     </div>
     <div class="footer-links">
       <h4>Group</h4>
-      <a href="#minutes">GC Minutes</a>
-      <a href="#guidelines">Guidelines</a>
-      <a href="#donate">7th Tradition</a>
-      <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" target="_blank">Directions</a>
+      <a href="#minutes" data-umami-event="nav" data-umami-event-section="minutes">GC Minutes</a>
+      <a href="#guidelines" data-umami-event="nav" data-umami-event-section="guidelines">Guidelines</a>
+      <a href="#donate" data-umami-event="nav" data-umami-event-section="donate">7th Tradition</a>
+      <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" target="_blank" data-umami-event="directions">Directions</a>
     </div>
     <div class="footer-links">
       <h4>AA Links</h4>
-      <a href="https://www.aa.org/" target="_blank" rel="noopener">aa.org</a>
-      <a href="https://aaiowacity.org/" target="_blank" rel="noopener">Iowa City Intergroup</a>
-      <a href="https://iadistrict13aa.org/" target="_blank" rel="noopener">Iowa District 13</a>
-      <a href="https://www.aa.org/meeting-guide-app" target="_blank" rel="noopener">Meeting Guide App</a>
+      <a href="https://www.aa.org/" target="_blank" rel="noopener" data-umami-event="outbound" data-umami-event-site="aa.org">aa.org</a>
+      <a href="https://aaiowacity.org/" target="_blank" rel="noopener" data-umami-event="outbound" data-umami-event-site="aaiowacity.org">Iowa City Intergroup</a>
+      <a href="https://iadistrict13aa.org/" target="_blank" rel="noopener" data-umami-event="outbound" data-umami-event-site="iadistrict13aa.org">Iowa District 13</a>
+      <a href="https://www.aa.org/meeting-guide-app" target="_blank" rel="noopener" data-umami-event="meeting-guide-app">Meeting Guide App</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -2017,6 +2028,8 @@ window.addEventListener('scroll', () => {
       if (i === today) btn.classList.add('today');
       if (i === selectedDay) btn.classList.add('active');
       btn.setAttribute('data-day', i);
+      btn.setAttribute('data-umami-event', 'schedule-day');
+      btn.setAttribute('data-umami-event-day', SHORT_DAYS[i]);
       btn.addEventListener('click', function() {
         var day = parseInt(this.getAttribute('data-day'));
         selectedDay = day;
