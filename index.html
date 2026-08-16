@@ -152,6 +152,51 @@
     line-height: 1.75; margin-bottom: 48px;
   }
 
+  /* ─── FOOTBALL CLOSURE NOTICES ─── */
+  .site-notice {
+    position: relative; z-index: 2;
+    display: flex; align-items: flex-start; gap: 14px;
+    max-width: 760px; margin: 0 0 36px;
+    background: rgba(200, 151, 62, 0.12); border: 1px solid rgba(200, 151, 62, 0.45);
+    border-left: 4px solid var(--warm-gold); border-radius: var(--radius);
+    padding: 16px 44px 16px 20px; color: var(--cream); text-align: left;
+    font-family: 'Source Sans 3', sans-serif; font-size: 0.98rem; line-height: 1.55;
+  }
+  .site-notice[hidden] { display: none; }
+  .site-notice .notice-icon { font-size: 1.3rem; line-height: 1.2; flex-shrink: 0; }
+  .site-notice strong { color: var(--warm-gold-light); font-weight: 700; }
+  .site-notice a { color: var(--warm-gold-light); font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+  .site-notice .notice-close {
+    position: absolute; top: 8px; right: 10px; background: none; border: none;
+    color: rgba(250, 246, 239, 0.7); font-size: 1.4rem; line-height: 1; cursor: pointer; padding: 4px 6px;
+  }
+  .site-notice .notice-close:hover { color: var(--warm-gold-light); }
+
+  .schedule-notice {
+    display: flex; align-items: flex-start; gap: 14px;
+    background: rgba(200, 151, 62, 0.10); border: 1px solid rgba(200, 151, 62, 0.4);
+    border-left: 4px solid var(--warm-gold); border-radius: var(--radius);
+    padding: 18px 22px; margin-bottom: 24px; color: var(--text-dark);
+    font-size: 0.98rem; line-height: 1.6;
+  }
+  .schedule-notice[hidden] { display: none; }
+  .schedule-notice .notice-icon { font-size: 1.3rem; line-height: 1.2; flex-shrink: 0; }
+  .schedule-notice strong { color: var(--navy); }
+  .schedule-notice .closure-dates { margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px 8px; }
+  .schedule-notice .closure-dates li {
+    background: var(--white); border: 1px solid var(--border-light); border-radius: 20px;
+    padding: 3px 12px; font-size: 0.86rem; font-weight: 600; color: var(--navy); white-space: nowrap;
+  }
+  .schedule-notice .closure-dates li.past { opacity: 0.45; text-decoration: line-through; }
+  .schedule-notice a { color: var(--slate); font-weight: 600; }
+  .day-closure-note {
+    background: rgba(200, 151, 62, 0.10); border: 1px dashed rgba(200, 151, 62, 0.6);
+    border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 4px;
+    font-size: 0.9rem; color: var(--text-dark); line-height: 1.5;
+  }
+  .day-closure-note strong { color: var(--navy); }
+  .next-meeting-closure { font-size: 0.85rem; color: var(--warm-gold-light); margin-top: 6px; }
+
   /* ─── MEETINGS ─── */
   #meetings { background: var(--white); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
 
@@ -736,6 +781,14 @@
 <!-- ═══════ HERO ═══════ -->
 <section class="hero">
   <div class="hero-content">
+    <div class="site-notice" id="football-notice" role="note" hidden>
+      <span class="notice-icon" aria-hidden="true">&#127944;</span>
+      <div>
+        <strong>Football Saturdays:</strong> There will be <strong>no meetings at 511 Melrose</strong> on Saturdays of Iowa Hawkeye home football games, or on <strong>Friday, November 27</strong> (the day after Thanksgiving &mdash; Iowa vs. Nebraska).
+        <a href="#meetings" data-umami-event="football-notice">See dates &rarr;</a>
+      </div>
+      <button class="notice-close" id="football-notice-close" aria-label="Dismiss notice">&times;</button>
+    </div>
     <div class="hero-text">
       <h1>511 Melrose Group</h1>
       <div class="subtitle">Alcoholics Anonymous — Iowa City, Iowa</div>
@@ -757,6 +810,15 @@
       511 Melrose Ave, Iowa City, IA 52240 &nbsp;·&nbsp;
       <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" style="color:var(--warm-gold);text-decoration:none;font-weight:600;" data-umami-event="directions">Directions &rarr;</a>
     </p>
+    <div class="schedule-notice" id="football-schedule-notice" role="note" hidden>
+      <span class="notice-icon" aria-hidden="true">&#127944;</span>
+      <div>
+        <strong>No meetings at 511 Melrose on Iowa home football game days.</strong>
+        This includes every Saturday home game and Friday, November 27 (the day after Thanksgiving). The following 2026 dates are affected:
+        <ul class="closure-dates" id="football-closure-dates"></ul>
+        <div style="margin-top:8px;font-size:0.88rem;color:var(--text-medium);">Source: <a href="https://hawkeyesports.com/sports/football/schedule" target="_blank" rel="noopener">hawkeyesports.com schedule</a>. Meetings resume as normal on all other days.</div>
+      </div>
+    </div>
     <div id="next-meeting-banner"></div>
     <div class="day-tabs" id="day-tabs" role="tablist"></div>
     <div class="day-meeting-list" id="day-meetings-list" role="tabpanel"></div>
@@ -1922,6 +1984,52 @@ window.addEventListener('scroll', () => {
   var DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   var SHORT_DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
+  /* ── Football closures ──
+     No meetings at 511 Melrose on Iowa home football game days.
+     Source: https://hawkeyesports.com/sports/football/schedule (2026 season) */
+  var CLOSURES = [
+    { date: '2026-09-05', label: 'Sat, Sep 5',  opp: 'Northern Illinois' },
+    { date: '2026-09-12', label: 'Sat, Sep 12', opp: 'Iowa State' },
+    { date: '2026-09-19', label: 'Sat, Sep 19', opp: 'UNI' },
+    { date: '2026-10-03', label: 'Sat, Oct 3',  opp: 'Ohio State' },
+    { date: '2026-10-31', label: 'Sat, Oct 31', opp: 'Wisconsin' },
+    { date: '2026-11-14', label: 'Sat, Nov 14', opp: 'Purdue' },
+    { date: '2026-11-27', label: 'Fri, Nov 27', opp: 'Nebraska (day after Thanksgiving)' }
+  ];
+  function isoDate(d) {
+    return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+  }
+  function closureFor(d) {
+    var iso = isoDate(d);
+    for (var i = 0; i < CLOSURES.length; i++) if (CLOSURES[i].date === iso) return CLOSURES[i];
+    return null;
+  }
+  var todayIso = isoDate(new Date());
+  var closuresActive = todayIso <= CLOSURES[CLOSURES.length - 1].date;
+
+  (function renderFootballNotices() {
+    var siteNotice = document.getElementById('football-notice');
+    var schedNotice = document.getElementById('football-schedule-notice');
+    var datesEl = document.getElementById('football-closure-dates');
+    if (!closuresActive) return;
+    if (siteNotice && !sessionStorage.getItem('footballNoticeDismissed')) {
+      siteNotice.hidden = false;
+      document.getElementById('football-notice-close').addEventListener('click', function() {
+        siteNotice.hidden = true;
+        try { sessionStorage.setItem('footballNoticeDismissed', '1'); } catch (e) {}
+      });
+    }
+    if (schedNotice) {
+      schedNotice.hidden = false;
+      CLOSURES.forEach(function(c) {
+        var li = document.createElement('li');
+        li.textContent = c.label + ' \u2014 vs. ' + c.opp;
+        if (c.date < todayIso) li.className = 'past';
+        datesEl.appendChild(li);
+      });
+    }
+  })();
+
   var bannerEl = document.getElementById('next-meeting-banner');
   var tabsEl = document.getElementById('day-tabs');
   var listEl = document.getElementById('day-meetings-list');
@@ -1961,21 +2069,26 @@ window.addEventListener('scroll', () => {
     var today = now.getDay();
     var nowMin = now.getHours() * 60 + now.getMinutes();
 
-    var todayMtgs = allMeetings.filter(function(m) { return m.day === today; })
-      .sort(function(a, b) { return a.time.localeCompare(b.time); });
-    for (var i = 0; i < todayMtgs.length; i++) {
-      if (timeToMinutes(todayMtgs[i].time) > nowMin) {
-        return { meeting: todayMtgs[i], isToday: true, dayLabel: 'Today' };
+    var todayClosure = closureFor(now);
+    if (!todayClosure) {
+      var todayMtgs = allMeetings.filter(function(m) { return m.day === today; })
+        .sort(function(a, b) { return a.time.localeCompare(b.time); });
+      for (var i = 0; i < todayMtgs.length; i++) {
+        if (timeToMinutes(todayMtgs[i].time) > nowMin) {
+          return { meeting: todayMtgs[i], isToday: true, dayLabel: 'Today' };
+        }
       }
     }
 
-    for (var d = 1; d <= 7; d++) {
-      var checkDay = (today + d) % 7;
+    for (var d = 1; d <= 8; d++) {
+      var checkDate = new Date(now.getFullYear(), now.getMonth(), now.getDate() + d);
+      if (closureFor(checkDate)) continue;
+      var checkDay = checkDate.getDay();
       var dayMtgs = allMeetings.filter(function(m) { return m.day === checkDay; })
         .sort(function(a, b) { return a.time.localeCompare(b.time); });
       if (dayMtgs.length > 0) {
         var label = d === 1 ? 'Tomorrow' : DAYS[checkDay];
-        return { meeting: dayMtgs[0], isToday: false, dayLabel: label };
+        return { meeting: dayMtgs[0], isToday: false, dayLabel: label, skipped: todayClosure };
       }
     }
     return null;
@@ -2014,6 +2127,9 @@ window.addEventListener('scroll', () => {
       countdownText = result.dayLabel + ' at ' + ft.full;
     }
     info.appendChild(el('div', 'next-meeting-countdown', countdownText));
+    if (result.skipped) {
+      info.appendChild(el('div', 'next-meeting-closure', '\uD83C\uDFC8 No meetings today \u2014 Iowa home football game (vs. ' + result.skipped.opp + ').'));
+    }
 
     var tags = el('div', 'next-meeting-tags');
     addTagsTo(tags, m.types);
@@ -2062,6 +2178,20 @@ window.addEventListener('scroll', () => {
 
     var dayMeetings = allMeetings.filter(function(m) { return m.day === dayIndex; })
       .sort(function(a, b) { return a.time.localeCompare(b.time); });
+
+    if (closuresActive) {
+      var upcoming = CLOSURES.filter(function(c) {
+        var parts = c.date.split('-');
+        return c.date >= todayIso && new Date(parts[0], parts[1] - 1, parts[2]).getDay() === dayIndex;
+      });
+      if (upcoming.length) {
+        var note = el('div', 'day-closure-note');
+        var strong = el('strong', null, '\uD83C\uDFC8 No ' + DAYS[dayIndex] + ' meetings on ');
+        note.appendChild(strong);
+        note.appendChild(document.createTextNode(upcoming.map(function(c) { return c.label.replace(/^\w+, /, ''); }).join(', ') + ' \u2014 Iowa home football game day' + (upcoming.length > 1 ? 's' : '') + '.'));
+        listEl.appendChild(note);
+      }
+    }
 
     if (dayMeetings.length === 0) {
       listEl.appendChild(el('div', 'meetings-loading', 'No meetings scheduled for ' + DAYS[dayIndex] + '.'));
