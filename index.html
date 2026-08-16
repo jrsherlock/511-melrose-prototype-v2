@@ -187,7 +187,7 @@
     background: var(--white); border: 1px solid var(--border-light); border-radius: 20px;
     padding: 3px 12px; font-size: 0.86rem; font-weight: 600; color: var(--navy); white-space: nowrap;
   }
-  .schedule-notice .closure-dates li.past { opacity: 0.45; text-decoration: line-through; }
+  .schedule-notice .closure-dates li.past { opacity: 0.5; color: var(--text-light); background: var(--cream-dark); border-color: transparent; }
   .schedule-notice a { color: var(--slate); font-weight: 600; }
   .day-closure-note {
     background: rgba(200, 151, 62, 0.10); border: 1px dashed rgba(200, 151, 62, 0.6);
@@ -195,6 +195,15 @@
     font-size: 0.9rem; color: var(--text-dark); line-height: 1.5;
   }
   .day-closure-note strong { color: var(--navy); }
+  .day-closed-today {
+    background: var(--navy); border-left: 4px solid var(--warm-gold); border-radius: var(--radius);
+    padding: 26px 28px; color: var(--cream); display: flex; align-items: flex-start; gap: 18px;
+  }
+  .day-closed-today .closed-icon { font-size: 2rem; line-height: 1; }
+  .day-closed-today h4 { font-family: 'Lora', serif; font-size: 1.25rem; color: var(--warm-gold-light); margin: 0 0 6px; }
+  .day-closed-today p { margin: 0; font-size: 0.95rem; color: rgba(255,255,255,0.75); line-height: 1.55; }
+  .day-closed-today p + p { margin-top: 6px; }
+  .day-tab.closed-today { border-style: dashed; }
   .next-meeting-closure { font-size: 0.85rem; color: var(--warm-gold-light); margin-top: 6px; }
 
   /* ─── MEETINGS ─── */
@@ -2149,7 +2158,7 @@ window.addEventListener('scroll', () => {
       btn.setAttribute('role', 'tab');
       btn.setAttribute('aria-selected', i === selectedDay ? 'true' : 'false');
       btn.textContent = SHORT_DAYS[i];
-      if (i === today) btn.classList.add('today');
+      if (i === today) { btn.classList.add('today'); if (closureFor(new Date())) btn.classList.add('closed-today'); }
       if (i === selectedDay) btn.classList.add('active');
       btn.setAttribute('data-day', i);
       btn.setAttribute('data-umami-event', 'schedule-day');
@@ -2178,6 +2187,23 @@ window.addEventListener('scroll', () => {
 
     var dayMeetings = allMeetings.filter(function(m) { return m.day === dayIndex; })
       .sort(function(a, b) { return a.time.localeCompare(b.time); });
+
+    var todayClosure = isToday ? closureFor(now) : null;
+    if (todayClosure) {
+      var block = el('div', 'day-closed-today');
+      block.appendChild(el('div', 'closed-icon', '\uD83C\uDFC8'));
+      var body = el('div');
+      body.appendChild(el('h4', null, 'No meetings today at 511 Melrose'));
+      body.appendChild(el('p', null, 'Iowa home football game \u2014 vs. ' + todayClosure.opp + '. All ' + DAYS[dayIndex] + ' meetings are cancelled for today.'));
+      var next = findNextMeeting();
+      if (next) {
+        var nft = formatTime(next.meeting.time);
+        body.appendChild(el('p', null, 'Next meeting: ' + next.meeting.name + ' \u2014 ' + next.dayLabel + ' at ' + nft.full + '.'));
+      }
+      block.appendChild(body);
+      listEl.appendChild(block);
+      return;
+    }
 
     if (closuresActive) {
       var upcoming = CLOSURES.filter(function(c) {
