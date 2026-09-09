@@ -4,6 +4,54 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>511 Melrose Group — Alcoholics Anonymous — Iowa City, IA</title>
+<meta name="description" content="Alcoholics Anonymous meetings every day at 511 Melrose Ave in Iowa City. Open and closed meetings, newcomers always welcome, no dues or fees. See today&#39;s schedule.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://511melrosegroup.org/#group",
+      "name": "511 Melrose Group",
+      "alternateName": "Melrose Group",
+      "url": "https://511melrosegroup.org/",
+      "description": "An Alcoholics Anonymous group meeting at 511 Melrose Ave in Iowa City, Iowa. Meetings every day of the week. There are no dues or fees, and the only requirement for membership is a desire to stop drinking.",
+      "location": { "@id": "https://511melrosegroup.org/#place" },
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Alcoholics Anonymous",
+        "url": "https://www.aa.org/"
+      }
+    },
+    {
+      "@type": "Place",
+      "@id": "https://511melrosegroup.org/#place",
+      "name": "511 Melrose",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "511 Melrose Ave",
+        "addressLocality": "Iowa City",
+        "addressRegion": "IA",
+        "postalCode": "52246",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 41.6566207,
+        "longitude": -91.5463265
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://511melrosegroup.org/#website",
+      "url": "https://511melrosegroup.org/",
+      "name": "511 Melrose Group",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://511melrosegroup.org/#group" }
+    }
+  ]
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -816,7 +864,7 @@
     <div class="section-label">Meeting Schedule</div>
     <h2 class="section-title">Meetings at 511 Melrose Ave.</h2>
     <p class="section-intro">
-      511 Melrose Ave, Iowa City, IA 52240 &nbsp;·&nbsp;
+      511 Melrose Ave, Iowa City, IA 52246 &nbsp;·&nbsp;
       <a href="https://maps.app.goo.gl/sQ8GgSUFtDxtgVNBA" style="color:var(--warm-gold);text-decoration:none;font-weight:600;" data-umami-event="directions">Directions &rarr;</a>
     </p>
     <div class="schedule-notice" id="football-schedule-notice" role="note" hidden>
@@ -1930,7 +1978,7 @@ February 11, 2025</p>
   <div class="footer-grid">
     <div class="footer-brand">
       <h3>511 Melrose Group</h3>
-      <p>511 Melrose Ave, Iowa City, IA 52240<br>Meetings every day of the week.<br><br>Alcoholics Anonymous is a fellowship of people who share their experience, strength and hope with each other that they may solve their common problem and help others to recover from alcoholism.</p>
+      <p>511 Melrose Ave, Iowa City, IA 52246<br>Meetings every day of the week.<br><br>Alcoholics Anonymous is a fellowship of people who share their experience, strength and hope with each other that they may solve their common problem and help others to recover from alcoholism.</p>
     </div>
     <div class="footer-links">
       <h4>Meetings</h4>
@@ -2039,6 +2087,57 @@ window.addEventListener('scroll', () => {
       });
     }
   })();
+
+  /* ── Structured data for search engines ──
+     Built from the same meeting objects the page renders, so the markup can
+     never drift from what a visitor actually sees. Football closures become
+     exceptDate entries on each affected weekday's recurring schedule. */
+  var SCHEMA_DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  function injectMeetingSchema() {
+    if (!allMeetings.length) return;
+    var events = allMeetings.map(function(m) {
+      var types = m.types || [];
+      var isOpen = types.indexOf('C') === -1;
+      var except = CLOSURES.filter(function(c) {
+        return new Date(c.date + 'T12:00:00').getDay() === m.day;
+      }).map(function(c) { return c.date; });
+
+      var sched = {
+        '@type': 'Schedule',
+        byDay: 'https://schema.org/' + SCHEMA_DAYS[m.day],
+        startTime: m.time,
+        repeatFrequency: 'P1W',
+        scheduleTimezone: m.timezone || 'America/Chicago'
+      };
+      if (m.end_time) sched.endTime = m.end_time;
+      if (except.length) sched.exceptDate = except;
+
+      return {
+        '@type': 'Event',
+        name: m.name,
+        description: isOpen
+          ? 'Open Alcoholics Anonymous meeting. Anyone interested in A.A. is welcome to attend.'
+          : 'Closed Alcoholics Anonymous meeting, for those who have a desire to stop drinking.',
+        url: 'https://511melrosegroup.org/#meetings',
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        eventStatus: 'https://schema.org/EventScheduled',
+        isAccessibleForFree: true,
+        inLanguage: types.indexOf('SP') !== -1 ? 'es' : 'en-US',
+        eventSchedule: sched,
+        location: { '@id': 'https://511melrosegroup.org/#place' },
+        organizer: { '@id': 'https://511melrosegroup.org/#group' }
+      };
+    });
+
+    var prev = document.getElementById('meetings-schema');
+    if (prev) prev.remove();
+    var tag = document.createElement('script');
+    tag.type = 'application/ld+json';
+    tag.id = 'meetings-schema';
+    tag.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': events });
+    document.head.appendChild(tag);
+  }
 
   var bannerEl = document.getElementById('next-meeting-banner');
   var tabsEl = document.getElementById('day-tabs');
@@ -2307,6 +2406,7 @@ window.addEventListener('scroll', () => {
       renderBanner();
       renderTabs();
       renderDayList(selectedDay);
+      injectMeetingSchema();
 
       setInterval(function() { renderBanner(); }, 60000);
     })
